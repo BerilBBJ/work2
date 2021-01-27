@@ -1,0 +1,27 @@
+.pie{
+    text-align: center;
+}
+
+.pie svg {
+  position: relative;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  margin: auto;
+  width: 200px;
+}
+.graph {
+  visibility: hidden;
+}
+.graph > * {
+  visibility: visible;
+  -webkit-transition: all 200ms ease-in-out;
+  transition: all 200ms ease-in-out;
+}
+.graph:hover > * {
+  opacity: 0.5;
+}
+.graph__percent:hover {
+  opacity: 1;
+}

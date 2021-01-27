@@ -1,0 +1,292 @@
+<head>
+ <title>
+  Act II
+ </title>
+ <meta content="application/xhtml+xml; charset=utf-8" http-equiv="content-type"/>
+ <link href="../1.ico" rel="shortcut icon" type="image/x-icon"/>
+ <link href="../css/style.css" media="screen" rel="stylesheet" type="text/css">
+ </link>
+</head>
+<body>
+ <div class="wrap background">
+  <div id="logo">
+   <div class="clear">
+   </div>
+   <div id="left">
+    <center>
+     <h1>
+      <a href="../2.html">
+       <font color="White">
+        Act II
+       </font>
+      </a>
+     </h1>
+     <h2>
+      <font color="black">
+       Network and MITM attacks
+      </font>
+     </h2>
+    </center>
+    <p class="subtitle">
+     Introduction
+    </p>
+    This course was written by me, Funshine. Who the fuck I am? I was a freelance Blackhat, nation state contractor, dark web phisher, spoofer, forum lurking master, ex-associate (ish) at well-known hacking firm, who made a lot of money through my cybercrime career. Since I enjoy writing and have been a journalist, activist, hacktivist, turned cybercriminal, I've hung up my black hat and retired filling my time to create high quality cybercriminal courses for the people who take the time to find and read them. I'm creating courses from my experience that you can duplicate and launch on your own to be profitable as I was.
+    <br/>
+    <br/>
+    <font color="red">
+     <b>
+      Contact me at:
+      <br/>
+      Funshine@secmail.pro
+      <br/>
+      <br/>
+     </b>
+    </font>
+    Please send any tips or funds for my work. Getting paid for writing these courses gives me more motivation to write more relevant hacking information.
+    <br/>
+    <br/>
+    <b>
+     <u>
+      BTC Address:
+      <br/>
+     </u>
+     <font color="blue">
+      <b>
+       1BPn9ZUasNpB5PLeVESEAUNaeXpGfiA835
+      </b>
+      <br/>
+      <br/>
+     </font>
+     <style>
+      p.XMR {
+    word-wrap: break-word;
+}
+     </style>
+     <p class="XMR">
+      <u>
+       Monero Address:
+       <br/>
+      </u>
+      <font color="blue">
+       <b>
+        43eqTsxDoub11FiYw2Le57MaWYf9H9Jg447bwCBaEgzADixjzPEeASkKK9D8Bzg2XYKenVQGH9Bhh1dmsRPbWWrUF34nvDk
+       </b>
+      </font>
+     </p>
+    </b>
+    <br/>
+    <br/>
+    First off there is no one way of doing things. These courses are not the word of law when it comes to hacking but they are told from my perspective so if you have something to add, have a better way of explaining things, or anything you think that I don't know that pertains to the topics in these guides send me a god damn email and let me know what is WAT. That way we can keep it all updated for everyone to enjoy and cause a fuck show in their home towns. Arm yourselves friends which is exactly what you're going to be doing with the cyber warfare knowledge you're about to learn. Good job.
+    <br/>
+    <br/>
+    I wasn't too sure how to create this guide as the topic of "what can I do once on a network" can be so vast and everyone may have their own opinions. When we come to the Man-In-The-Middle (MITM) attack section we'll focus on when you have a RAT, malware, ransomware, file, etc. and you're ready to deliver it to people while on the same network as them. You should be getting into the mind set of aiming for targets that are within your skill level. What that means is you're not targeting American Express servers or employees but you should be aiming for compromising home networks or smaller business networks and the individual(s) that are connected to them.
+    <br/>
+    <br/>
+    There are many thingsto learn and talk about so I suggest doing a bunch of Adderall and/or cocaine and if you're relatively up to date with MITM attacks this should be a solid review or maybe learn some new tricks. Aho!
+    <br/>
+    <br/>
+    For the best results and to maximize this course it's recommended to follow along and perform all of the examples on a home network (preferably one you own) against your host machine with Kali in VM. It's best to have the target laptop/computer/VM not running any Anti-Virus(AV) at all so nothing will interfere with the examples used in this course. The target computer should be Windows 7 (at minimum), Windows 10, or an updated macOS with default settings left on. Windows 10 users have Windows Defender installed as the internal AV and XProtect/GateKeeper is installed for macOS users. Both come installed by default. This is fine to leave those on and running.
+    <br/>
+    <br/>
+    If you do not have another computer/device to practice targeting on then get one. No harm will come to your home network or the target device. I'm recommending to target your own home network to practice with and see how the attacks function so you're able to understand what other people will be seeing when you're performing these attacks against them. Remember not to use your laptop that is associated to anything illegal as we do not want that connecting to anything that can be associated to your actual identity. Did you not fucking read Act 0?
+    <br/>
+    <br/>
+    <font color="blue">
+     <b>
+      IMPORTANT
+     </b>
+     <br/>
+     No third-party AV software running to ensure nothing interferes with following along with the guide as some modern AV may pick up a MITM attack and act accordingly which may interfere with your learning. Evading Anti-Virus is a whole guide on it's own and there are too many AV,s to test against and too little time.
+     <br/>
+     <br/>
+    </font>
+    We want to focus on real targets on the network and the reality today is the people on a Wi-Fi network generally have an updated OS. Right? We're not going after Windows XP users and Windows 7 is slowly fading out. We're targeting the individuals who keep their operating systems up to date and generally do not have an Anti-Virus installed. I understand people yes will have Anti-Viruses installed however we need to build your hacking foundation up before we get into anything to do with evading AV. You should get into the mindset of infecting peopel locally instead of globally. I say this because it makes the targets you're after more feasible and realistic for yourself. If you understand what the majority of users around you are using you can begin to design your attacks to by-pass XYZ Anti-Virus and tailor them more to the crowd you're after. Maybe you're a hacktivist targeting some small union/government, targeting your professor to get on their laptop to alter your papers, targeting people to infect them with a RAT to steal their online banking credentials to drain their accounts, etc. Whatever it is you'll have a much better understanding of how people will react to XYZ attack because you know the population around you. We're targeting the people connected to the coffee shop network, connected to the library network, browsing their banking website on their home network, etc. We're not targeting organizations. You're not there yet ;)
+    <br/>
+    <br/>
+    Don't look to infect a million people. Look to infect a few hundred. Keep it low and slow. I know you want 10,000,000 USD but why don't we aim for an extra $2000 USD a month first and then plan for world domination. Never aim big in this cyber war. Aim for smaller companies, high value targets, etc. and keep a low profile. Flash 50's not 100's.
+    <br/>
+    <br/>
+    It's highly advisable that if you're encountering problems when we come to the MITM section of this guide to boot Kali directly from USB and not use Kali in a VM. This will eliminate %99.9 of your problems when following along with this course if you have any.
+    <br/>
+    <br/>
+    For example, I'm running the newest operating system all updated with VirtualBox and Kali in a VM with no problems. However, when it comes to certain MITM attacks the attacks do not function properly nor work at all. For whatever reason Kali in a VM launching some MITM attacks against other targets on the network has issues and may appear that the attacks do not work. This might be just with my setup but given the fact that I'm running everything on default settings with everything updated I can only assume others will have the similar problem.
+    <b>
+     So it's very important that when following along in the course that we're using the same setup.
+    </b>
+    So, please follow the pre-requisites exactly so you don't encounter any issues.
+    <br/>
+    <br/>
+    <center>
+     <a class="button" href="Chapter-2.html" style="text-decoration:none">
+      <b>
+       Click to continue to Chapter 2
+      </b>
+     </a>
+    </center>
+    <div id="side">
+     <div class="boxtop">
+     </div>
+     <div class="box">
+      <center>
+       <span class="item">
+        <strong>
+         HackTown
+        </strong>
+        <br>
+         Hacking Courses
+        </br>
+       </span>
+      </center>
+     </div>
+     <div class="box">
+      <a href="Chapter-1.html">
+       <span class="item">
+        <strong>
+         Chapter 1
+        </strong>
+        <br>
+         Introduction
+        </br>
+       </span>
+      </a>
+     </div>
+     <div class="box">
+      <a href="Chapter-2.html">
+       <span class="item">
+        <strong>
+         Chapter 2
+        </strong>
+        <br>
+         Pre-requisites
+        </br>
+       </span>
+      </a>
+     </div>
+     <div class="box">
+      <a href="Chapter-3.html">
+       <span class="item">
+        <strong>
+         Chapter 3
+        </strong>
+        <br>
+         Private IPs
+        </br>
+       </span>
+      </a>
+     </div>
+     <div class="box">
+      <a href="Chapter-4.html">
+       <span class="item">
+        <strong>
+         Chapter 4
+        </strong>
+        <br>
+         Router admin interface
+        </br>
+       </span>
+      </a>
+     </div>
+     <div class="box">
+      <a href="Chapter-5.html">
+       <span class="item">
+        <strong>
+         Chapter 5
+        </strong>
+        <br>
+         Searching for targets
+        </br>
+       </span>
+      </a>
+     </div>
+     <div class="box">
+      <a href="Chapter-6.html">
+       <span class="item">
+        <strong>
+         Chapter 6
+        </strong>
+        <br>
+         Router exploitation
+        </br>
+       </span>
+      </a>
+     </div>
+     <div class="box">
+      <a href="Chapter-7.html">
+       <span class="item">
+        <strong>
+         Chapter 7
+        </strong>
+        <br>
+         Printer exploitation
+        </br>
+       </span>
+      </a>
+     </div>
+     <div class="box">
+      <a href="Chapter-8.html">
+       <span class="item">
+        <strong>
+         Chapter 8
+        </strong>
+        <br>
+         Brute forcing the router interface
+        </br>
+       </span>
+      </a>
+     </div>
+     <div class="box">
+      <a href="Chapter-9.html">
+       <span class="item">
+        <strong>
+         Chapter 9
+        </strong>
+        <br>
+         Getting up to date
+        </br>
+       </span>
+      </a>
+     </div>
+     <div class="box">
+      <a href="Chapter-10.html">
+       <span class="item">
+        <strong>
+         Chapter 10
+        </strong>
+        <br>
+         Who's DAT Man-In-The-Middle(MITM)
+        </br>
+       </span>
+      </a>
+     </div>
+     <div class="box">
+      <a href="Chapter-11.html">
+       <span class="item">
+        <strong>
+         Chapter 11
+        </strong>
+        <br>
+         One method to rule them all
+        </br>
+       </span>
+      </a>
+     </div>
+     <div class="box">
+      <a href="Conclusion.html">
+       <span class="item">
+        <strong>
+         Conclusion
+        </strong>
+        <br>
+        </br>
+       </span>
+      </a>
+     </div>
+     <div class="boxbottom">
+     </div>
+    </div>
+    <p id="ad">
+    </p>
+   </div>
+  </div>
+ </div>
+</body>

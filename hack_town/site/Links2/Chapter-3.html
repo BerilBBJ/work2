@@ -1,0 +1,331 @@
+<head>
+ <title>
+  Act II
+ </title>
+ <meta content="application/xhtml+xml; charset=utf-8" http-equiv="content-type"/>
+ <link href="../1.ico" rel="shortcut icon" type="image/x-icon"/>
+ <link href="../css/style.css" media="screen" rel="stylesheet" type="text/css">
+ </link>
+</head>
+<body>
+ <div class="wrap background">
+  <div id="logo">
+   <div class="clear">
+   </div>
+   <div id="left">
+    <center>
+     <h1>
+      <a href="../2.html">
+       <font color="White">
+        Act II
+       </font>
+      </a>
+     </h1>
+     <h2>
+      <font color="black">
+       Network and MITM attacks
+      </font>
+     </h2>
+    </center>
+    <p class="subtitle">
+     Private IPs
+    </p>
+    Once you've connected to a Wi-Fi network you want to develop good "hacking habits" and start off by determining what type of subnet you're on. This is important for a few reasons but mainly to give you some insight into the network configuration and how evasive you should be while on the network.
+    <u>
+     <b>
+      In general
+     </b>
+    </u>
+    it's assumed if you've hacked onto your neighbors Wi-Fi network, connected to a small to medium sized businesses Wi-Fi network, or connected to your local coffee shop Wi-Fi network then we don't really need to modify much and we can simply attack each client on the network. If you've compromised a medium to large sized business or hacked onto a corporate network then there are steps you need to take in order to be successful and remain undetected but we're going to focus on the smaller fish for now.
+    <br/>
+    <br/>
+    You should be aware of the private IP addresses that are assigned to you by the Internet Assigned Numbers Authority (IANA) and what IP gets assigned to you when you connect to a network. This will give you a little insight into the "lowest hanging fruit" and what IP's you'll most likely encounter problems.
+    <br/>
+    <br/>
+    The IANA reserves the following IP address blocks for use as private IP addresses:
+    <li>
+     10.0.0.0 to 10.255.255.255.
+    </li>
+    <li>
+     172.16.0.0 to 172.31.255.255.
+    </li>
+    <li>
+     192.168.0.0 to 192.168.255.255.
+    </li>
+    <br/>
+    You can see in the picture below that the router public IP (the part facing the internet) has an IP of 68.202.151.70 and the router has assigned everyone who's connected to it a block of IPs. These private IPs are what the router will assign to the people who connect to it accordingly. Depending on the setup of the router will dictate which block of IPs are issued. Typically when you're connected to a home Wi-Fi network you can expect your IP being in the 192.168.X.X range.
+    <center>
+     <img height="300" src="../images2/26.png" width="700"/>
+     <br/>
+    </center>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    Let's go ahead and see what IP you've been assigned on the network you're currently connected to.
+    <br/>
+    <br/>
+    <h4>
+     Windows Users in the Command Line
+    </h4>
+    <font color="red">
+     <b>
+      ipconfig
+     </b>
+    </font>
+    <br/>
+    Look for "IPv4 Address" for your IP address and "Default Gateway" for the router IP.
+    <br/>
+    <br/>
+    <h4>
+     macOS/Linux/Kali Users in Terminal
+    </h4>
+    <font color="red">
+     <b>
+      sudo ifconfig
+     </b>
+    </font>
+    <br/>
+    <br/>
+    If you're using Linux/Kali first type "sudo iwconfig" to determine your wireless network card interface and then
+    <font color="red">
+     <b>
+      sudo ifconfig
+      <b>
+       INTERFACE
+      </b>
+     </b>
+    </font>
+    .
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    For the macOS users out there you'll be presented a lot of information by running "ifconfig" so look for either en0, en1, en2, etc. Those are your wireless interfaces and then look for "inet" and then an IP after that to see your IP.
+    <br/>
+    <br/>
+    For example, on macOS the
+    <font color="red">
+     <b>
+      ifconfig
+     </b>
+    </font>
+    command presents the following below:
+    <br/>
+    <center>
+     <img height="300" src="../images2/0.png" width="700"/>
+     <br/>
+    </center>
+    <br/>
+    <br/>
+    You'll notice in the screenshot above my IP is 192.168.0.7 which corresponds to the IANA private IP addresses talked about. Yours will be different, obviously, but the point is to see what subnet you've been assigned to. If you have anything either than 192.168.X.X then maybe you're not on a home network, the network has been configured to be this way, or you didn't switch your network settings in the VM to "Bridged Adaptor". This may cause some issues for you when following along depending on the router and built in defenses (there's a million different routers) but ideally this is why you should be on your home Wi-Fi network.
+    <br/>
+    <br/>
+    If you have an IP of anything in the 192.168.X.X range then this is best thing for you and your malicious ways you king hacker you. This gives you an idea that whomever setup the router/access point is probably less skilled which means the network is less protected and most likely will have all the default settings unchanged. Again, if your IP isn't in the 192.168.X.X range this is OK so please still follow along and hopefully you don't encounter major problems.
+    <br/>
+    <br/>
+    Anytime my IP is assigned in the 192.168.X.X range I clap and shout at the people around me in the coffee shop because the work required for causing fucking havoc is much less and I know that most of my attacks on the network will be successful, my actions are not being logged by the router, and I'm most likely going to be able to compromise the router itself.
+    <br/>
+    <br/>
+    For now we'll assume you have an IP in the range 192.168.X.X and we'll discuss techniques against it moving forward.
+    <u>
+     Most
+    </u>
+    of the time when dealing with home Wi-Fi networks this is the IP subnet you'll be assigned. Again, attacking business/corporate and some other networks is much different which we'll discuss at a later time.
+    <br/>
+    <br/>
+    Anytime you're on a network you don't own it's best to always assume there's some sort of monitoring going on and act accordingly. Maybe there's some fuck face running WireShark and looking for malicious activity or some bitch ass sysadmin who has setup some sort of honeypot bullshit on their network and is looking for people like you. It's better to get into the habits of acting in stealth then to be a bull in a China shop. Developing good hacking habits while practicing stealthy actions is much better for you and remaining undetected is what you should strive for, if possible or wanted.
+    <br/>
+    <br/>
+    Every time you connect to a network always check your internal IP which will give you the insight of how the network has been setup and what the router IP is, as you'll come to learn. This should be common practice each and every time you gain access to a network.
+    <br/>
+    <br/>
+    <font color="blue">
+     <h3>
+      You should be comfortable with:
+     </h3>
+     <li>
+      Finding the IP of your machine.
+     </li>
+     <li>
+      Figuring out which IP range you're in.
+     </li>
+     <br/>
+     <br/>
+    </font>
+    <b>
+     <center>
+      <a class="button" href="Chapter-4.html" style="text-decoration:none">
+       Click to continue to Chapter 4
+      </a>
+     </center>
+    </b>
+    <div id="side">
+     <div class="boxtop">
+     </div>
+     <div class="box">
+      <center>
+       <span class="item">
+        <strong>
+         HackTown
+        </strong>
+        <br>
+         Hacking Courses
+        </br>
+       </span>
+      </center>
+     </div>
+     <div class="box">
+      <a href="Chapter-1.html">
+       <span class="item">
+        <strong>
+         Chapter 1
+        </strong>
+        <br>
+         Introduction
+        </br>
+       </span>
+      </a>
+     </div>
+     <div class="box">
+      <a href="Chapter-2.html">
+       <span class="item">
+        <strong>
+         Chapter 2
+        </strong>
+        <br>
+         Pre-requisites
+        </br>
+       </span>
+      </a>
+     </div>
+     <div class="box">
+      <a href="Chapter-3.html">
+       <span class="item">
+        <strong>
+         Chapter 3
+        </strong>
+        <br>
+         Private IPs
+        </br>
+       </span>
+      </a>
+     </div>
+     <div class="box">
+      <a href="Chapter-4.html">
+       <span class="item">
+        <strong>
+         Chapter 4
+        </strong>
+        <br>
+         Router admin interface
+        </br>
+       </span>
+      </a>
+     </div>
+     <div class="box">
+      <a href="Chapter-5.html">
+       <span class="item">
+        <strong>
+         Chapter 5
+        </strong>
+        <br>
+         Searching for targets
+        </br>
+       </span>
+      </a>
+     </div>
+     <div class="box">
+      <a href="Chapter-6.html">
+       <span class="item">
+        <strong>
+         Chapter 6
+        </strong>
+        <br>
+         Router exploitation
+        </br>
+       </span>
+      </a>
+     </div>
+     <div class="box">
+      <a href="Chapter-7.html">
+       <span class="item">
+        <strong>
+         Chapter 7
+        </strong>
+        <br>
+         Printer exploitation
+        </br>
+       </span>
+      </a>
+     </div>
+     <div class="box">
+      <a href="Chapter-8.html">
+       <span class="item">
+        <strong>
+         Chapter 8
+        </strong>
+        <br>
+         Brute forcing the router interface
+        </br>
+       </span>
+      </a>
+     </div>
+     <div class="box">
+      <a href="Chapter-9.html">
+       <span class="item">
+        <strong>
+         Chapter 9
+        </strong>
+        <br>
+         Getting up to date
+        </br>
+       </span>
+      </a>
+     </div>
+     <div class="box">
+      <a href="Chapter-10.html">
+       <span class="item">
+        <strong>
+         Chapter 10
+        </strong>
+        <br>
+         Who's DAT Man-In-The-Middle(MITM)
+        </br>
+       </span>
+      </a>
+     </div>
+     <div class="box">
+      <a href="Chapter-11.html">
+       <span class="item">
+        <strong>
+         Chapter 11
+        </strong>
+        <br>
+         One method to rule them all
+        </br>
+       </span>
+      </a>
+     </div>
+     <div class="box">
+      <a href="Conclusion.html">
+       <span class="item">
+        <strong>
+         Conclusion
+        </strong>
+        <br>
+        </br>
+       </span>
+      </a>
+     </div>
+     <div class="boxbottom">
+     </div>
+    </div>
+    <p id="ad">
+    </p>
+   </div>
+  </div>
+ </div>
+</body>

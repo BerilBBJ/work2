@@ -1,0 +1,1426 @@
+<head>
+ <title>
+  Act II
+ </title>
+ <meta content="application/xhtml+xml; charset=utf-8" http-equiv="content-type"/>
+ <link href="../1.ico" rel="shortcut icon" type="image/x-icon"/>
+ <link href="../css/style.css" media="screen" rel="stylesheet" type="text/css">
+ </link>
+</head>
+<body>
+ <div class="wrap background">
+  <div id="logo">
+   <div class="clear">
+   </div>
+   <div id="left">
+    <center>
+     <h1>
+      <a href="../2.html">
+       <font color="White">
+        Act II
+       </font>
+      </a>
+     </h1>
+     <h2>
+      <font color="black">
+       Network and MITM attacks
+      </font>
+     </h2>
+    </center>
+    <p class="subtitle">
+     Searching for targets
+    </p>
+    <font color="blue">
+     <b>
+      Remember, in the MITM section if you're encounter any issues you should boot Kali from USB or install Kali as your main OS. Anytime people have problems then you should be using Kali as your host machine booting directly from USB! For now Kali in VM is fine but for fucks sake if you're encountering issues then please boot Kali directly from USB. This will eliminate %99.9 of your problems when following along with this course.
+     </b>
+    </font>
+    <br/>
+    <br/>
+    <br/>
+    If you're able to access the router admin interface then you can determine who's on the network. However, there are times when we can't get into the router admin interface so we'll need to scan the network to determine how many people are connected to it and what type of devices are on it.
+    <br/>
+    <br/>
+    There are a few techniques of finding targets on the network and each technique tends to display different results depending on what tool is being used and what network protocols are being used by that specific tool (ICMP, ARP, etc.). It also matters what type of machines you're scanning so I suggest using all the techniques discussed to see the differences of each.
+    <br/>
+    <br/>
+    The first tool we'll use is
+    <b>
+     <font color="purple" size="7">
+      fping
+     </font>
+    </b>
+    .
+    <br/>
+    <br/>
+    <b>
+     fping
+    </b>
+    is a tool we'll use to send Internet Control Message Protocol (ICMP) echo probes to network clients (other people on the network) and check for the ICMP responses. For anyone who's like WTF is ICMP?! This is just the ICMP protocol request/response commonly referred to as "ping". For anyone who's like WHOA WTF was just said please take a minute and Google that shit or stop what you're doing because if you don't understand ping, ICMP, and the absolute basics then maybe you're too noob level hacker fuck pants to fully enjoy this course. Level up man come on! It's literally one book about basic networking that you have to read. You've probably spent more fucking time reading Twitter on the shitter then it would take you to understand basic things. Educate yourself, learn specific points of interest, follow wicked guides like this, and shut the fuck up man get to acceptable cybercriminal hacker level.
+    <br/>
+    <br/>
+    Anyways, any network client that responds to an ICMP probe request the fping tool will consider that host active/alive which is a potential target for you. However, some machines are configured not to respond to ICMP probes (firewall, host settings, etc.) which is why we want to run a couple different tools to ensure we're capturing everyone and not missing any mother fuckers on the network.
+    <br/>
+    <br/>
+    Obviously you will be using your IP subnet and not typing my IP examples out like a fucking stooge. You need to be using YOUR IP and replace my IP examples...
+    <br/>
+    <br/>
+    In Kali open a new terminal window:
+    <br/>
+    <font color="red">
+     <b>
+      fping -sagq YOUR-IP-ENDING-IN-A-0/24
+     </b>
+    </font>
+    <br/>
+    <br/>
+    Here's my example of using fping
+    <br/>
+    Using my IP (192.168.0.7) as the example we want to scan the whole subnet.
+    <br/>
+    <font color="red">
+     <b>
+      fping -sagq 192.168.0.0/24
+     </b>
+    </font>
+    <br/>
+    Note the 192.168.0.0 instead of my IP of 192.168.0.7. This is the YOUR-IP-ENDING-IN-A-0 explanation. Hopefully you follow.
+    <br/>
+    <br/>
+    <li>
+     s = Print the stats after completion.
+    </li>
+    <li>
+     a = Shows active/alive targets.
+    </li>
+    <li>
+     g = Generate a target list.
+    </li>
+    <li>
+     q = Don't show per target list (we don't care about unreachable targets).
+    </li>
+    <br/>
+    I usually pipe the output into a file so I can review it at my leisure but do whatever works for you.
+    <br/>
+    <br/>
+    Piping the output into a file for review later would be:
+    <br/>
+    <font color="red">
+     <b>
+      fping -sagq 192.168.0.0/24 &gt; FILE
+      <br/>
+      cat FILE
+     </b>
+    </font>
+    <br/>
+    <br/>
+    Now after running fping you can see the targets on the network that you can potentially attack but like I said some hosts do not reply to ping (ICMP requests) and you want to ensure you're not missing any potential targets.
+    <br/>
+    <br/>
+    In Act I we briefly talked about the Address Resolution Protocol (ARP) in relation to MAC addresses. Picture the ARP as being able to map IP addresses to your Ethernet hardware addresses (MAC address). Matching your IP to your Wi-Fi network card MAC. Understand I hopes? The
+    <u>
+     router
+    </u>
+    keeps track of all the connected devices in a Content Addressable Memory (CAM) which essentially is just a table of records for everyone's MAC addresses. ARP is a simple request and response type protocol just like how ICMP is. It asks and waits for an answer. We can use this protocol in our favor to scan for devices on the network and is a very quick way to show every active IP device on the subnet. Since ARP cannot be re-routed this only works on the local network/subnet and obviously cannot be done across the internet like ICMP can. If there are devices on the network that are not responding to ICMP, HTTPS, HTTP, etc. requests then those devices might have a firewall active and are intentionally blocking those requests by design. Therefore, those hosts would not show themselves as an active host. However, devices cannot hide from ARP packets like they can hide from ping requests so let's look at another tool to help determine how many people are on the network.
+    <br/>
+    <br/>
+    Every device
+    <u>
+     should
+    </u>
+    respond to an ARP request but as stated before you would want to run
+    <b>
+     fping
+    </b>
+    alongside this next tool to ensure you're covering all avenues.
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    The second tool we'll be using is called
+    <b>
+     <font color="purple" size="7">
+      <b>
+       arp-scan
+      </b>
+     </font>
+     .
+     <br/>
+     <br/>
+    </b>
+    Keep in mind when using arp-scan that the responses that are displayed to you aren't always in order because some hosts may respond faster than others. Let's check it out.
+    <br/>
+    <br/>
+    In Kali open a new terminal window:
+    <br/>
+    <font color="red">
+     <b>
+      sudo arp-scan -l
+     </b>
+    </font>
+    <br/>
+    l = scanning the local subnet. Another way would be "sudo arp-scan 192.168.128.0/24".
+    <br/>
+    <br/>
+    Check out the results and try and see if you can match every host found by this tool to a device on your network. How many do you see? Any hosts displayed we can consider active targets and live hosts on the network we're on.
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    Let me show you an excellent example of the differences while on a "business network" I've hacked onto. Just read the following and don't type the syntax in. Just learn from my examples.
+    <br/>
+    <br/>
+    My Kali attacker machine IP is:
+    <br/>
+    192.168.129.240.
+    <br/>
+    <br/>
+    For this example the computer/laptop target IP is:
+    <br/>
+    192.168.128.158
+    <br/>
+    <br/>
+    Notice the difference of the IPs?
+    <br/>
+    The target laptop/computer we're after has an IP of 192.168.
+    <b>
+     128
+    </b>
+    .158 and my Kali machine has an IP of 192.168.
+    <b>
+     129
+    </b>
+    .240.
+    <br/>
+    <br/>
+    Ideally you should have another computer and know the IP of it on the same network. That will be YOUR target machine.
+    <br/>
+    <br/>
+    In Kali I opened up a new terminal window:
+    <br/>
+    <font color="red">
+     <b>
+      fping -sagq 192.168.128.0/24
+     </b>
+    </font>
+    <br/>
+    <br/>
+    Results:
+    <br/>
+    <center>
+     <img height="1200" src="../images2/06.png" width="650"/>
+     <br/>
+    </center>
+    <br/>
+    As you can see from the above screenshot we have (38) alive hosts on the network and we also can see the target IP (192.168.128.158) displayed as well. Remember, some of the hosts displayed will be out of order depending on when they received the ICMP packet and replied. Some hosts respond quicker than others :)
+    <br/>
+    <br/>
+    Using arp-scan you can see the difference in the number of available targets and IPs. Please note in my example results below I've removed the MAC addresses table to avoid being fingerprinted by you stalker fucks. LOL.
+    <br/>
+    <br/>
+    When I used arp-scan and fping while on the same network at the same time and compared the output results they were different.
+    <br/>
+    <br/>
+    In Kali I opened a new terminal window and typed:
+    <br/>
+    <font color="red">
+     <b>
+      sudo arp-scan -l
+     </b>
+    </font>
+    <br/>
+    <br/>
+    Results:
+    <br/>
+    <table>
+     <tr>
+      <th font-weight:bold;="" style="text-align:left;font-weight:bold;">
+       IP
+      </th>
+      <th style="text-align:left;font-weight:bold;">
+       Computer name
+      </th>
+     </tr>
+     <tr>
+      <td>
+       192.168.128.1
+      </td>
+      <td>
+       Meraki, Inc.
+      </td>
+     </tr>
+     <tr>
+      <td>
+       192.168.128.4
+      </td>
+      <td>
+       (Unknown)
+      </td>
+     </tr>
+     <tr>
+      <td>
+       192.168.128.8
+      </td>
+      <td>
+       Meraki, Inc.
+      </td>
+     </tr>
+     <tr>
+      <td>
+       192.168.128.10
+      </td>
+      <td>
+       Meraki, Inc.
+      </td>
+     </tr>
+     <tr>
+      <td>
+       192.168.128.12
+      </td>
+      <td>
+       Meraki, Inc.
+      </td>
+     </tr>
+     <tr>
+      <td>
+       192.168.128.16
+      </td>
+      <td>
+       Apple, Inc.
+      </td>
+     </tr>
+     <tr>
+      <td>
+       192.168.128.23
+      </td>
+      <td>
+       (Uknown)
+      </td>
+     </tr>
+     <tr>
+      <td>
+       192.168.128.26
+      </td>
+      <td>
+       (Unknown)
+      </td>
+     </tr>
+     <tr>
+      <td>
+       192.168.128.28
+      </td>
+      <td>
+       (Unknown)
+      </td>
+      <tr>
+       <td>
+        192.168.128.30
+       </td>
+       <td>
+        (Unknown)
+       </td>
+      </tr>
+      <tr>
+       <td>
+        192.168.128.31
+       </td>
+       <td>
+        Apple, Inc.
+       </td>
+      </tr>
+      <tr>
+       <td>
+        192.168.128.56
+       </td>
+       <td>
+        Apple, Inc.
+       </td>
+      </tr>
+      <tr>
+       <td>
+        192.168.128.66
+       </td>
+       <td>
+        (Unknown)
+       </td>
+      </tr>
+      <tr>
+       <td>
+        192.168.128.40
+       </td>
+       <td>
+        (Unknown)
+       </td>
+      </tr>
+      <tr>
+       <td>
+        192.168.128.45
+       </td>
+       <td>
+        (Unknown)
+       </td>
+      </tr>
+      <tr>
+       <td>
+        192.168.128.46
+       </td>
+       <td>
+        (Unknown)
+       </td>
+      </tr>
+      <tr>
+       <td>
+        192.168.128.47
+       </td>
+       <td>
+        (Unknown)
+       </td>
+      </tr>
+      <tr>
+       <td>
+        192.168.128.48
+       </td>
+       <td>
+        (Unknown)
+       </td>
+      </tr>
+      <tr>
+       <td>
+        192.168.128.65
+       </td>
+       <td>
+        (Unknown)
+       </td>
+      </tr>
+      <tr>
+       <td>
+        192.168.128.68
+       </td>
+       <td>
+        Apple, Inc.
+       </td>
+      </tr>
+      <tr>
+       <td>
+        192.168.128.67
+       </td>
+       <td>
+        Apple, Inc.
+       </td>
+      </tr>
+      <tr>
+       <td>
+        192.168.128.94
+       </td>
+       <td>
+        (Unknown)
+       </td>
+      </tr>
+      <tr>
+       <td>
+        192.168.128.75
+       </td>
+       <td>
+        D-Link International
+       </td>
+      </tr>
+      <tr>
+       <td>
+        192.168.128.77
+       </td>
+       <td>
+        Apple, Inc.
+       </td>
+      </tr>
+      <tr>
+       <td>
+        192.168.128.86
+       </td>
+       <td>
+        Apple, Inc.
+       </td>
+      </tr>
+      <tr>
+       <td>
+        192.168.128.89
+       </td>
+       <td>
+        (Unknown)
+       </td>
+      </tr>
+      <tr>
+       <td>
+        192.168.128.117
+       </td>
+       <td>
+        Apple, Inc.
+       </td>
+      </tr>
+      <tr>
+       <td>
+        192.168.128.121
+       </td>
+       <td>
+        Apple, Inc.
+       </td>
+      </tr>
+      <tr>
+       <td>
+        192.168.128.125
+       </td>
+       <td>
+        (Unknown)
+       </td>
+      </tr>
+      <tr>
+       <td>
+        192.168.128.131
+       </td>
+       <td>
+        (Unknown)
+       </td>
+      </tr>
+      <tr>
+       <td>
+        192.168.128.104
+       </td>
+       <td>
+        (Unknown)
+       </td>
+      </tr>
+      <tr>
+       <td>
+        192.168.128.113
+       </td>
+       <td>
+        (Unknown)
+       </td>
+      </tr>
+      <tr>
+       <td>
+        192.168.128.126
+       </td>
+       <td>
+        Samsung Electronics Co.,Ltd
+       </td>
+      </tr>
+      <tr>
+       <td>
+        192.168.128.158
+       </td>
+       <td>
+        Parallels, Inc.
+       </td>
+      </tr>
+      <tr>
+       <td>
+        192.168.128.165
+       </td>
+       <td>
+        (Unknown)
+       </td>
+      </tr>
+      <tr>
+       <td>
+        192.168.128.148
+       </td>
+       <td>
+        (Unknown)
+       </td>
+      </tr>
+      <tr>
+       <td>
+        192.168.128.150
+       </td>
+       <td>
+        Apple, Inc.
+       </td>
+      </tr>
+      <tr>
+       <td>
+        192.168.128.163
+       </td>
+       <td>
+        (Unknown)
+       </td>
+      </tr>
+      <tr>
+       <td>
+        192.168.128.169
+       </td>
+       <td>
+        Apple, Inc.
+       </td>
+      </tr>
+      <tr>
+       <td>
+        192.168.128.187
+       </td>
+       <td>
+        (Unknown)
+       </td>
+      </tr>
+      <tr>
+       <td>
+        192.168.128.212
+       </td>
+       <td>
+        (Unknown)
+       </td>
+      </tr>
+      <tr>
+       <td>
+        192.168.128.194
+       </td>
+       <td>
+        Rivet Networks
+       </td>
+      </tr>
+      <tr>
+       <td>
+        192.168.128.220
+       </td>
+       <td>
+        Apple, Inc.
+       </td>
+      </tr>
+      <tr>
+       <td>
+        192.168.128.205
+       </td>
+       <td>
+        Apple, Inc.
+       </td>
+      </tr>
+      <tr>
+       <td>
+        192.168.128.202
+       </td>
+       <td>
+        Rivet Networks
+       </td>
+      </tr>
+      <tr>
+       <td>
+        192.168.128.207
+       </td>
+       <td>
+        (Unknown)
+       </td>
+      </tr>
+      <tr>
+       <td>
+        192.168.128.210
+       </td>
+       <td>
+        (Unknown)
+       </td>
+      </tr>
+      <tr>
+       <td>
+        192.168.128.221
+       </td>
+       <td>
+        Apple, Inc.
+       </td>
+      </tr>
+      <tr>
+       <td>
+        192.168.128.228
+       </td>
+       <td>
+        (Unknown)
+       </td>
+      </tr>
+      <tr>
+       <td>
+        192.168.128.233
+       </td>
+       <td>
+        (Unknown)
+       </td>
+      </tr>
+      <tr>
+       <td>
+        192.168.128.239
+       </td>
+       <td>
+        (Unknown)
+       </td>
+      </tr>
+      <tr>
+       <td>
+        192.168.128.245
+       </td>
+       <td>
+        Apple, Inc.
+       </td>
+      </tr>
+      <tr>
+       <td>
+        192.168.128.249
+       </td>
+       <td>
+        (Unknown)
+       </td>
+      </tr>
+      <tr>
+       <td>
+        192.168.129.23
+       </td>
+       <td>
+        Apple, Inc.
+       </td>
+      </tr>
+      <td>
+       192.168.129.255
+      </td>
+      <td>
+       Apple, Inc.
+      </td>
+     </tr>
+     <td>
+      192.168.129.7
+     </td>
+     <td>
+      (Unknown)
+     </td>
+     <tr>
+      <td>
+       192.168.129.12
+      </td>
+      <td>
+       (Unknown)
+      </td>
+     </tr>
+     <tr>
+      <td>
+       192.168.129.19
+      </td>
+      <td>
+       (Unknown)
+      </td>
+     </tr>
+     <tr>
+      <td>
+       192.168.129.25
+      </td>
+      <td>
+       (Unknown)
+      </td>
+     </tr>
+     <tr>
+      <td>
+       192.168.129.26
+      </td>
+      <td>
+       Apple, Inc.
+      </td>
+     </tr>
+     <tr>
+      <td>
+       192.168.129.30
+      </td>
+      <td>
+       (Unknown)
+      </td>
+     </tr>
+     <tr>
+      <td>
+       192.168.129.42
+      </td>
+      <td>
+       (Unknown)
+      </td>
+     </tr>
+     <tr>
+      <td>
+       192.168.129.75
+      </td>
+      <td>
+       (Unknown)
+      </td>
+     </tr>
+     <tr>
+      <td>
+       192.168.129.57
+      </td>
+      <td>
+       (Unknown)
+      </td>
+     </tr>
+     <tr>
+      <td>
+       192.168.129.62
+      </td>
+      <td>
+       (Unknown)
+      </td>
+     </tr>
+     <tr>
+      <td>
+       192.168.129.66
+      </td>
+      <td>
+       Apple, Inc.
+      </td>
+     </tr>
+     <tr>
+      <td>
+       192.168.129.69
+      </td>
+      <td>
+       (Unknown)
+      </td>
+     </tr>
+     <tr>
+      <td>
+       192.168.129.71
+      </td>
+      <td>
+       Apple, Inc.
+      </td>
+     </tr>
+     <td>
+      192.168.129.72
+     </td>
+     <td>
+      (Unknown)
+     </td>
+     <tr>
+      <td>
+       192.168.129.73
+      </td>
+      <td>
+       (Unknown)
+      </td>
+     </tr>
+     <tr>
+      <td>
+       192.168.129.80
+      </td>
+      <td>
+       (Unknown)
+      </td>
+     </tr>
+     <tr>
+      <td>
+       192.168.129.93
+      </td>
+      <td>
+       Hon Hai Precision Ind. Co.,Ltd.
+      </td>
+     </tr>
+     <tr>
+      <td>
+       192.168.129.95
+      </td>
+      <td>
+       Apple, Inc.
+      </td>
+     </tr>
+     <tr>
+      <td>
+       192.168.129.97
+      </td>
+      <td>
+       iSmart Alarm, Inc.
+      </td>
+     </tr>
+     <tr>
+      <td>
+       192.168.129.127
+      </td>
+      <td>
+       Apple, Inc.
+      </td>
+     </tr>
+     <tr>
+      <td>
+       192.168.129.104
+      </td>
+      <td>
+       (Unknown)
+      </td>
+     </tr>
+     <tr>
+      <td>
+       192.168.129.108
+      </td>
+      <td>
+       (Unknown)
+      </td>
+     </tr>
+     <tr>
+      <td>
+       192.168.129.110
+      </td>
+      <td>
+       (Unknown)
+      </td>
+     </tr>
+     <tr>
+      <td>
+       192.168.129.111
+      </td>
+      <td>
+       (Unknown)
+      </td>
+     </tr>
+     <tr>
+      <td>
+       192.168.129.137
+      </td>
+      <td>
+       (Unknown)
+      </td>
+     </tr>
+     <tr>
+      <td>
+       192.168.129.139
+      </td>
+      <td>
+       (Unknown)
+      </td>
+     </tr>
+     <tr>
+      <td>
+       192.168.129.117
+      </td>
+      <td>
+       Apple, Inc.
+      </td>
+     </tr>
+     <tr>
+      <td>
+       192.168.129.122
+      </td>
+      <td>
+       Liteon Technology Corporation
+      </td>
+     </tr>
+     <tr>
+      <td>
+       192.168.129.130
+      </td>
+      <td>
+       Apple, Inc.
+      </td>
+     </tr>
+     <tr>
+      <td>
+       192.168.129.138
+      </td>
+      <td>
+       (Unknown)
+      </td>
+     </tr>
+     <tr>
+      <td>
+       192.168.129.152
+      </td>
+      <td>
+       Meraki, Inc.
+      </td>
+     </tr>
+     <tr>
+      <td>
+       192.168.129.163
+      </td>
+      <td>
+       (Unknown)
+      </td>
+     </tr>
+     <tr>
+      <td>
+       192.168.129.152
+      </td>
+      <td>
+       Meraki, Inc.
+      </td>
+     </tr>
+     <tr>
+      <td>
+       192.168.129.163
+      </td>
+      <td>
+       (Unknown)
+      </td>
+     </tr>
+     <tr>
+      <td>
+       192.168.129.189
+      </td>
+      <td>
+       Meraki, Inc.
+      </td>
+     </tr>
+     <tr>
+      <td>
+       192.168.129.169
+      </td>
+      <td>
+       Axis Communications AB
+      </td>
+     </tr>
+     <tr>
+      <td>
+       192.168.129.172
+      </td>
+      <td>
+       (Unknown)
+      </td>
+     </tr>
+     <tr>
+      <td>
+       192.168.129.174
+      </td>
+      <td>
+       (Unknown)
+      </td>
+     </tr>
+     <tr>
+      <td>
+       192.168.129.181
+      </td>
+      <td>
+       Meraki, Inc.
+      </td>
+     </tr>
+     <tr>
+      <td>
+       192.168.129.188
+      </td>
+      <td>
+       Axis Communications AB
+      </td>
+     </tr>
+     <tr>
+      <td>
+       192.168.129.190
+      </td>
+      <td>
+       Apple, Inc.
+      </td>
+     </tr>
+     <tr>
+      <td>
+       192.168.129.191
+      </td>
+      <td>
+       Meraki, Inc.
+      </td>
+     </tr>
+     <tr>
+      <td>
+       192.168.129.201
+      </td>
+      <td>
+       Elitegroup Computer System Co.,Ltd.
+      </td>
+     </tr>
+     <tr>
+      <td>
+       192.168.129.202
+      </td>
+      <td>
+       Axis Communications AB
+      </td>
+     </tr>
+     <tr>
+      <td>
+       192.168.129.203
+      </td>
+      <td>
+       Axis Communications AB
+      </td>
+     </tr>
+     <tr>
+      <td>
+       192.168.129.210
+      </td>
+      <td>
+       Apple, Inc.
+      </td>
+     </tr>
+     <tr>
+      <td>
+       192.168.129.212
+      </td>
+      <td>
+       (Unknown)
+      </td>
+     </tr>
+     <tr>
+      <td>
+       192.168.129.216
+      </td>
+      <td>
+       AzureWave Technology Inc.
+      </td>
+     </tr>
+     <tr>
+      <td>
+       192.168.129.225
+      </td>
+      <td>
+       PALLADIUM ENERGY ELETRONICA DA AMAZONIA
+      </td>
+     </tr>
+     <tr>
+      <td>
+       192.168.129.251
+      </td>
+      <td>
+       (Unknown)
+      </td>
+     </tr>
+     <tr>
+      <td>
+       192.168.129.230
+      </td>
+      <td>
+       Apple, Inc.
+      </td>
+     </tr>
+     <tr>
+      <td>
+       192.168.129.236
+      </td>
+      <td>
+       Meraki, Inc
+      </td>
+     </tr>
+     <tr>
+      <td>
+       192.168.129.247
+      </td>
+      <td>
+       HTC Corporation
+      </td>
+     </tr>
+     <tr>
+      <td>
+       192.168.129.254
+      </td>
+      <td>
+       Apple, Inc
+      </td>
+     </tr>
+     <tr>
+      <td>
+       107 packets received by filter, 0 packets dropped by kernel
+      </td>
+     </tr>
+     <tr>
+      <td>
+       Ending arp-scan 1.9.5: 512 hosts scanned in 3.329 seconds (148.36 hosts/sec).
+       <b>
+        107 responded
+       </b>
+      </td>
+     </tr>
+    </table>
+    <br/>
+    See how many more hosts were discovered!?!
+    <br/>
+    <br/>
+    <b>
+     fping
+    </b>
+    discovered
+    <u>
+     38 hosts
+    </u>
+    on the network whereas
+    <b>
+     arp-scan
+    </b>
+    found
+    <u>
+     107 hosts
+    </u>
+    on the network.
+    <br/>
+    <br/>
+    arp-scan found much more than fping was able to find and also found hosts on 192.168.128.0/24 and 192.168.129.0/24 subnets. This is because of Classless Inter-Domain Routing (CIDR) which you can research on your own but we won't get into anything that technical because it's boring as fuck. This demonstrates why using two tools is much more effective in determining all the hosts on the network and you should be considering running both when on the hunt for hosts on the network. I've had each tool pick up a different amount of targets so run both, depending on situation, and keep the hosts in a file so you're able to target the proper ones should you choose to do so. Try and stay a little organized as well.
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    So we've now scanned the network and have a whole bunch of targets we can focus on. Fucking great. There's a couple of things we can do to determine what is what. First, the most obvious, is to use the tool
+    <b>
+     nmap
+    </b>
+    to scan each IP we found on the network in order to determine what ports are open and what services/applications are running on those ports. If you don't know what nmap is you're an idiot and should Google that shit right the fuck now. It's to be assumed you know what nmap is. We can also use nmap to discover hosts on the network and to see what ports are open which will help us in developing an attack surface should we choose to go down this road.
+    <br/>
+    <br/>
+    <font color="blue">
+     <b>
+      Remember to replace my IP examples with your own IP values.
+     </b>
+    </font>
+    <br/>
+    <br/>
+    <font color="red">
+     <b>
+      nmap -T 5 -Pn -PRV YOUR-IP-ENDING-IN-A-0/24
+     </b>
+    </font>
+    <br/>
+    <br/>
+    My Kali attacker machine IP is:
+    <br/>
+    192.168.129.240.
+    <br/>
+    <br/>
+    In Kali I open a new Terminal window:
+    <br/>
+    <font color="red">
+     <b>
+      nmap -T 5 -Pn -PRV 192.168.129.0/24
+     </b>
+    </font>
+    <br/>
+    -v to see more details when that command is ran.
+    <br/>
+    <br/>
+    Running the above nmap command will use ICMP and ARP requests along with scanning the top common ports on the whole subnet. This method will make a lot of noise and depending on how many hosts are on the network will take some time to complete. The "-T 5" basically tells nmap to scan as fast as fuckin possible, like a machine gun, and is very detectable when on a corporate network. Do not run that command when on a corporate network. It's only recommended to include the "-T 5" option when connected to home networks, coffee shops, libraries, etc. where you know there's no IT budget for network defenses. Got it? Who the fuck is monitoring their own personal network that much and analzying all that data?! I'm sure some do but on home Wi-Fi networks and small business networks no they don't, fuck no.
+    <br/>
+    <br/>
+    nmap will scan the whole subnet while probing the most common ports while using the -Pn option to treat all hosts as online. Remember, some machines don't reply to ping requests and may appear "offline" but when in fact they're "online". By default nmap will skip any hosts that don't reply to a ICMP echo request and we don't want to miss anything fun like a forgotten webserver displaying home directory contents or something stupid left open, unattended, and insecure. So, ensuring that when -Pn is added nmap assumes the host is alive and scans it accordingly. If you didn't include the -Pn then nmap would send first a ICMP request to a host and since the host didn't reply nmap moves on and you miss out on something good. Doubtful. The point is you want to include -Pn.
+    <br/>
+    <br/>
+    But let's be serious it's very doubtful you're going to run nmap and come across some vulnerable application because we assume most devices connected to the networks we're targeting are Windows 7+ or updated macOS users. Those users don't have random old ass application running with open ports and a public Metasploit module available for you to attack it. In this day in age it's doubtful you'll find something of interest but none the less it can be worth a check to see.
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    nmap is also very helpful for when you want to scan the local network for open web application ports such as 80, 8080, 8000, and 443. I use this command sometimes when the router IP is not on the default one as assumed (IE: 192.168.0.1). Since I know the router admin login page is over HTTP/HTTPS I scan the local network looking for open ports that would tell me a web server is running on. For example, the owner of the Wi-Fi network changed the router IP default settings from 192.168.128.1 to 192.168.128.50. If we scan the subnet for open web ports we can determine which IPs are running a web server and connect to them accordingly.
+    <br/>
+    <br/>
+    To focus our scans looking strictly for web servers we can tell nmap to scan for specific open ports.
+    <br/>
+    <font color="red">
+     <b>
+      nmap -PRV -p80,8080,8000,443 192.168.129.0/24
+     </b>
+    </font>
+    <br/>
+    <br/>
+    Lastly, if you wanted to you
+    <u>
+     could
+    </u>
+    scan all 65535 ports of all the IP's on the network by using the following command (warning this can take a very long time so unless it's absolutely required do not run it):
+    <br/>
+    <font color="red">
+     <b>
+      nmap -PRV -p- -T 5 -Pn 192.168.128.0/24
+     </b>
+    </font>
+    <br/>
+    <br/>
+    nmap is a very useful tool and should be researched on your own. There are so many syntax variations when it comes to using nmap at different times against different computers which is a topic on it's own. I'm not going into detail with nmap as hopefully most that can follow this course are at least familiar with it. There are plenty of tutorials and YouTube videos on how to use nmap so take the time to tinker around with it and get comfortable with using it.
+    <br/>
+    <br/>
+    Once you've leveled up from skiddie hacker fuck face level to intermediate hacker level extravaganza you'll see why nmap should be in your toolbox when it comes to targeting a company/organization.
+    <br/>
+    <br/>
+    <h3>
+     <font color="blue">
+      To recap you've learned in this chapter how to:
+     </font>
+    </h3>
+    <li>
+     Determine how many people are on the network.
+    </li>
+    <li>
+     Determine what type of devices are on the network.
+    </li>
+    <li>
+     Begin to profile what you can and cannot attack on the network.
+    </li>
+    <br/>
+    <br/>
+    <b>
+     <center>
+      <a class="button" href="Chapter-6.html" style="text-decoration:none">
+       Click to continue to Chapter 6
+      </a>
+     </center>
+    </b>
+    <div id="side">
+     <div class="boxtop">
+     </div>
+     <div class="box">
+      <center>
+       <span class="item">
+        <strong>
+         HackTown
+        </strong>
+        <br>
+         Hacking Courses
+        </br>
+       </span>
+      </center>
+     </div>
+     <div class="box">
+      <a href="Chapter-1.html">
+       <span class="item">
+        <strong>
+         Chapter 1
+        </strong>
+        <br>
+         Introduction
+        </br>
+       </span>
+      </a>
+     </div>
+     <div class="box">
+      <a href="Chapter-2.html">
+       <span class="item">
+        <strong>
+         Chapter 2
+        </strong>
+        <br>
+         Pre-requisites
+        </br>
+       </span>
+      </a>
+     </div>
+     <div class="box">
+      <a href="Chapter-3.html">
+       <span class="item">
+        <strong>
+         Chapter 3
+        </strong>
+        <br>
+         Private IPs
+        </br>
+       </span>
+      </a>
+     </div>
+     <div class="box">
+      <a href="Chapter-4.html">
+       <span class="item">
+        <strong>
+         Chapter 4
+        </strong>
+        <br>
+         Router admin interface
+        </br>
+       </span>
+      </a>
+     </div>
+     <div class="box">
+      <a href="Chapter-5.html">
+       <span class="item">
+        <strong>
+         Chapter 5
+        </strong>
+        <br>
+         Searching for targets
+        </br>
+       </span>
+      </a>
+     </div>
+     <div class="box">
+      <a href="Chapter-6.html">
+       <span class="item">
+        <strong>
+         Chapter 6
+        </strong>
+        <br>
+         Router exploitation
+        </br>
+       </span>
+      </a>
+     </div>
+     <div class="box">
+      <a href="Chapter-7.html">
+       <span class="item">
+        <strong>
+         Chapter 7
+        </strong>
+        <br>
+         Printer exploitation
+        </br>
+       </span>
+      </a>
+     </div>
+     <div class="box">
+      <a href="Chapter-8.html">
+       <span class="item">
+        <strong>
+         Chapter 8
+        </strong>
+        <br>
+         Brute forcing the router interface
+        </br>
+       </span>
+      </a>
+     </div>
+     <div class="box">
+      <a href="Chapter-9.html">
+       <span class="item">
+        <strong>
+         Chapter 9
+        </strong>
+        <br>
+         Getting up to date
+        </br>
+       </span>
+      </a>
+     </div>
+     <div class="box">
+      <a href="Chapter-10.html">
+       <span class="item">
+        <strong>
+         Chapter 10
+        </strong>
+        <br>
+         Who's DAT Man-In-The-Middle(MITM)
+        </br>
+       </span>
+      </a>
+     </div>
+     <div class="box">
+      <a href="Chapter-11.html">
+       <span class="item">
+        <strong>
+         Chapter 11
+        </strong>
+        <br>
+         One method to rule them all
+        </br>
+       </span>
+      </a>
+     </div>
+     <div class="box">
+      <a href="Conclusion.html">
+       <span class="item">
+        <strong>
+         Conclusion
+        </strong>
+        <br>
+        </br>
+       </span>
+      </a>
+     </div>
+     <div class="boxbottom">
+     </div>
+    </div>
+    <p id="ad">
+    </p>
+   </div>
+  </div>
+ </div>
+</body>

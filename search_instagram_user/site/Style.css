@@ -1,0 +1,287 @@
+﻿body 
+{
+    /* background-image:url(Images/account1.jpg); 
+    background-repeat:no-repeat;
+    background-attachment:fixed;*/
+    background-color:#45516f;
+}
+
+a
+{
+    color:#000000;
+}
+
+#LeakedMenu
+{
+    margin:0 auto;
+    width:950px;
+    height:50px;
+    border-top-left-radius:6px;
+    border-top-right-radius:6px;
+    border-bottom-left-radius:6px;
+    border-bottom-right-radius:6px;
+    border-color:white;
+    border-style:solid;
+    border-width:3px;
+    text-align:left;
+    direction:ltr;
+    line-height:30px;
+    background-color:#e0e47e;
+    background-color:#c49b61;
+    font:14px Tahoma;
+}
+
+#LeakedMenu ul {
+    list-style-type:none;
+}
+
+#LeakedMenu ul li{
+    display:block;
+    float:left;
+}
+
+#LeakedMenu ul li a:link {
+    padding:7px;
+    font:14px Tahoma;
+    text-decoration:none;
+}
+
+#LeakedMenu ul li a:hover {
+    padding:7px;
+    background-color:#f5bd09;
+    border-radius:6px;
+    text-decoration:none;
+    font:15px Tahoma;
+    color:darkred;
+}
+
+#LeakedMenu ul li a:visited {
+    padding:7px;
+    text-decoration:none;
+}
+
+#LeakedMenu ul li a:active {
+    padding:7px;
+    text-decoration:none;
+}
+
+.ValidateFields
+{
+    margin:0 auto;
+    padding:2px;
+    text-align:center;
+    direction:ltr;
+    line-height:30px;
+    background-color:red;
+    font:16px Tahoma;
+    color:white;
+}
+
+.InfoPanel
+{
+    margin:0 auto;
+    padding:15px;
+    border-top-left-radius:6px;
+    border-top-right-radius:6px;
+    border-bottom-left-radius:6px;
+    border-bottom-right-radius:6px;
+    border-color:white;
+    border-style:solid;
+    border-width:2px;
+    text-align:center;
+    line-height:30px;
+    font:16px Tahoma;
+    background-color:#ddb122;
+    color:black;
+}
+
+.WarningPanel
+{
+    margin:0 auto;
+    padding:15px;
+    border-top-left-radius:6px;
+    border-top-right-radius:6px;
+    border-bottom-left-radius:6px;
+    border-bottom-right-radius:6px;
+    border-color:white;
+    border-style:solid;
+    border-width:2px;
+    text-align:center;
+    direction:ltr;
+    line-height:30px;
+    font:15px Tahoma;
+    background-color:#7e0e06;
+    color:white;
+}
+
+.MainHeaderPanel
+{
+    margin:0 auto;
+    padding-bottom:15px;
+    border-top-left-radius:6px;
+    border-top-right-radius:6px;
+    border-bottom-left-radius:6px;
+    border-bottom-right-radius:6px;
+    border-color:white;
+    border-style:solid;
+    border-width:2px;
+    text-align:center;
+    font-family:Verdana;
+    font-size:12px;
+    color:white;
+    background:#304aad;
+}
+
+.HeaderPanel
+{
+    margin:0 auto;
+    padding:15px;
+    border-top-left-radius:6px;
+    border-top-right-radius:6px;
+    border-color:white;
+    border-style:solid;
+    border-width:2px;
+    text-align:center;
+    font-family:Verdana;
+    font-size:16px;
+    color:white;
+    /*background:#78ed11;*/
+    background:#284187;
+}
+
+.Container
+{
+    margin:0 auto;
+    padding:15px;
+    width:600px;
+    border-bottom-left-radius:6px;
+    border-bottom-right-radius:6px;
+    border-color:white;
+    border-style:solid;
+    border-width:2px;
+    text-align:left;
+    direction:ltr;
+    line-height:30px;
+    font:14px Verdana;
+    table-layout:auto;
+    color:black;
+    background-color:#56b4fb;
+}
+
+.DataPanel
+{
+    margin:0 auto;
+    padding:15px;
+    border-top-left-radius:6px;
+    border-top-right-radius:6px;
+    border-bottom-left-radius:6px;
+    border-bottom-right-radius:6px;
+    border-color:white;
+    border-style:solid;
+    border-width:2px;
+    text-align:center;
+    direction:ltr;
+    line-height:30px;
+    font:16px Tahoma;
+    background-color:#FFFBD6;
+    color:black;
+}
+
+.DataPanel2
+{
+    margin:0 auto;
+    padding:15px;
+    text-align:left;
+    direction:ltr;
+    font:12px Tahoma;
+    color:#000000;
+    table-layout: auto
+}
+
+.Loading
+{
+    margin:0 auto;
+    padding:15px;
+    border-top-left-radius:6px;
+    border-top-right-radius:6px;
+    border-bottom-left-radius:6px;
+    border-bottom-right-radius:6px;
+    border-color:white;
+    border-style:solid;
+    border-width:2px;
+    text-align:center;
+    direction:ltr;
+    line-height:30px;
+    font:15px Verdana;
+    background-color:#7e0e06;
+    color:white;
+}
+
+.MainBody
+{
+    margin:0 auto;
+    padding:15px;
+    text-align:left;
+    direction:ltr;
+    font:16px Verdana;
+    color:black;
+}
+
+.MainBodyWarning
+{
+    margin:0 auto;
+    padding:15px;
+    text-align:left;
+    direction:ltr;
+    font:16px Verdana;
+    background-color:#ddb122;
+    color:black;
+}
+
+.BtcButtons
+{
+    padding-bottom:8px;
+    padding-top:8px;
+    padding-left:15px;
+    padding-right:15px;
+    text-align:center;
+    font:14px Verdana;
+    background-color:#0c5f12;
+    color:white;
+}
+
+.Buttons
+{
+    text-align:center;
+    font:16px verdana;
+    background-color:#45516f;
+    color:white;
+}
+
+.NButtons
+{
+    text-align:center;
+    font:16px verdana;
+    Height:25px;
+    Width:125px;
+}
+
+.HiddenPanel
+{
+    margin:0 auto;
+    text-align:left;
+    direction:ltr;
+    font:0.001px Verdana;
+    color:#45516f;
+}
+
+.Labels
+{
+    text-align:right;
+    font:14px verdana;
+}
+
+.TextBoxes
+{
+    font:14px verdana;
+}

@@ -1,0 +1,1521 @@
+<!DOCTYPE html>
+<html lang="en">
+ <meta content="text/html;charset=utf-8" http-equiv="content-type"/>
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="IE=edge" http-equiv="X-UA-Compatible"/>
+  <meta content="width=device-width, initial-scale=1" name="viewport"/>
+  <title>
+   GoMart - Cart
+  </title>
+  <!-- Latest compiled and minified Bootstrap CSS -->
+  <!--  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />-->
+  <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+   -->
+  <!--  <link rel="icon" href="https://cdn0.iconfinder.com/data/icons/social-messaging-ui-color-shapes/128/shopping-circle-green-512.png">-->
+  <link href="https://png.pngtree.com/svg/20170720/shopping_cart_green_252246.png" rel="icon"/>
+  <link href="libs/css/bootstrap/bootstrap.css" rel="stylesheet">
+   <!-- our custom CSS -->
+   <link href="libs/css/custom.css" rel="stylesheet"/>
+  </link>
+ </head>
+ <body>
+  <!-- navbar -->
+  <div class="navbar navbar-default navbar-static-top" role="navigation">
+   <div class="container">
+    <div class="navbar-header">
+     <button class="navbar-toggle" data-target=".navbar-collapse" data-toggle="collapse" type="button">
+      <span class="sr-only">
+       Toggle navigation
+      </span>
+      <span class="icon-bar">
+      </span>
+      <span class="icon-bar">
+      </span>
+      <span class="icon-bar">
+      </span>
+     </button>
+     <a class="navbar-brand company-logo" href="products.html">
+      Go
+      <span class="martSpan">
+       Mart
+      </span>
+      <span class="glyphicon glyphicon-shopping-cart">
+      </span>
+     </a>
+    </div>
+    <div class="navbar-collapse collapse">
+     <ul class="nav navbar-nav">
+      <!-- highlight if $page_title has 'Products' word. -->
+      <li>
+       <a class="dropdown-toggle" href="products.html">
+        Products
+       </a>
+      </li>
+      <li>
+       <a class="dropdown-toggle" href="track.html">
+        Track Order
+       </a>
+      </li>
+      <li style="display: none">
+       <a class="dropdown-toggle" href="seller_register.html">
+        Become a Seller
+       </a>
+      </li>
+      <li>
+       <a class="dropdown-toggle" href="proof.html">
+        Proof
+       </a>
+      </li>
+      <li>
+       <a class="dropdown-toggle" href="escrow.html">
+        Escrow
+       </a>
+      </li>
+      <li>
+       <a class="dropdown-toggle" href="info.html">
+        Info
+       </a>
+      </li>
+      <li>
+       <a class="dropdown-toggle" href="delivery.html">
+        Delivery
+       </a>
+      </li>
+     </ul>
+     <ul class="navbar-nav nav navbar-right">
+      <li class="active">
+       <a href="cart.html">
+        Cart
+        <span class="badge badge-cart" id="comparison-count">
+         40
+        </span>
+       </a>
+      </li>
+      <li>
+       <a href="register.html">
+        Login/Sign Up
+       </a>
+      </li>
+     </ul>
+    </div>
+    <!--/.nav-collapse -->
+   </div>
+  </div>
+  <div class="visible-xs">
+   <div class="row container">
+    <div class="col-xs-2 nav-bar-mobile-custom">
+     <a href="track.html">
+      Track Order
+     </a>
+    </div>
+    <div class="col-xs-2 nav-bar-mobile-custom">
+     <a href="proof.html">
+      Proof
+     </a>
+    </div>
+    <div class="col-xs-2 nav-bar-mobile-custom">
+     <a href="escrow.html">
+      Escrow
+     </a>
+    </div>
+    <div class="col-xs-2 nav-bar-mobile-custom">
+     <a href="info.html">
+      Info
+     </a>
+    </div>
+    <div class="col-xs-2 nav-bar-mobile-custom">
+     <a href="delivery.html">
+      Delivery
+     </a>
+    </div>
+    <div class="col-xs-2 nav-bar-mobile-custom">
+     <a href="cart.html">
+      Cart
+     </a>
+    </div>
+   </div>
+  </div>
+  <!-- /navbar -->
+  <!-- container -->
+  <div class="container">
+   <div class="row">
+    <div class="col-md-1">
+    </div>
+    <div class="col-md-10">
+     <!--  <p>Started in 2016, we provide the best quality products from dark web. All our products have 6 months replacement/refund warranty.</p>
+                  <p>We have inventories in 6 countries around the world. It doesn't matter where you want it delivered, we got you covered.</p>
+                  <p>Happy Shopping!</p>-->
+     <div class="alert alert-success">
+      <strong>
+       LIMITED TIME OFFER!
+      </strong>
+      Free express shipping globally on orders above 100$. No coupons needed.
+     </div>
+    </div>
+    <div class="col-md-1">
+    </div>
+   </div>
+   <div class="row">
+    <div class="col-md-12">
+     <div class="page-header header-row">
+      <h1 style="display: inline">
+       Cart
+      </h1>
+      <span style="margin-top: 10px;float: right">
+       <a href="mailto:gomart@thetormail.com">
+        <i class="fa fa-envelope">
+        </i>
+        gomart@thetormail.com
+       </a>
+      </span>
+     </div>
+    </div>
+    <div class="col-md-12">
+     <div class="alert alert-info">
+      Product was removed from your cart!
+     </div>
+    </div>
+    <div class="cart-row">
+     <div class="col-md-8">
+      <div class="product-name m-b-10px">
+       <h4>
+        Cash Money €4000
+       </h4>
+      </div>
+      <form action="http://w6uc2htc3lfcs3g2.onion/update_quantity.php" class="update-quantity-form">
+       <div class="product-id" style="display:none;">
+        8
+       </div>
+       <div class="input-group">
+        <input id="id" name="id" type="hidden" value="8"/>
+        <input class="form-control cart-quantity" min="1" name="quantity" type="number" value="1"/>
+        <span class="input-group-btn">
+         <button class="btn btn-default update-quantity" type="submit">
+          Update
+         </button>
+        </span>
+       </div>
+      </form>
+      <a class="btn btn-default" href="cartaa34.html?id=8">
+       Delete
+      </a>
+     </div>
+     <div class="col-md-4">
+      <h4>
+       $365.00
+      </h4>
+     </div>
+    </div>
+    <div class="cart-row">
+     <div class="col-md-8">
+      <div class="product-name m-b-10px">
+       <h4>
+        Cash Money €500
+       </h4>
+      </div>
+      <form action="http://w6uc2htc3lfcs3g2.onion/update_quantity.php" class="update-quantity-form">
+       <div class="product-id" style="display:none;">
+        5
+       </div>
+       <div class="input-group">
+        <input id="id" name="id" type="hidden" value="5"/>
+        <input class="form-control cart-quantity" min="1" name="quantity" type="number" value="1"/>
+        <span class="input-group-btn">
+         <button class="btn btn-default update-quantity" type="submit">
+          Update
+         </button>
+        </span>
+       </div>
+      </form>
+      <a class="btn btn-default" href="cart5a6d.html?id=5">
+       Delete
+      </a>
+     </div>
+     <div class="col-md-4">
+      <h4>
+       $60.00
+      </h4>
+     </div>
+    </div>
+    <div class="cart-row">
+     <div class="col-md-8">
+      <div class="product-name m-b-10px">
+       <h4>
+        Driving License
+       </h4>
+      </div>
+      <form action="http://w6uc2htc3lfcs3g2.onion/update_quantity.php" class="update-quantity-form">
+       <div class="product-id" style="display:none;">
+        10
+       </div>
+       <div class="input-group">
+        <input id="id" name="id" type="hidden" value="10"/>
+        <input class="form-control cart-quantity" min="1" name="quantity" type="number" value="1"/>
+        <span class="input-group-btn">
+         <button class="btn btn-default update-quantity" type="submit">
+          Update
+         </button>
+        </span>
+       </div>
+      </form>
+      <a class="btn btn-default" href="cart6ae1.html?id=10">
+       Delete
+      </a>
+     </div>
+     <div class="col-md-4">
+      <h4>
+       $99.00
+      </h4>
+     </div>
+    </div>
+    <div class="cart-row">
+     <div class="col-md-8">
+      <div class="product-name m-b-10px">
+       <h4>
+        eBay Gift Card $150
+       </h4>
+      </div>
+      <form action="http://w6uc2htc3lfcs3g2.onion/update_quantity.php" class="update-quantity-form">
+       <div class="product-id" style="display:none;">
+        19
+       </div>
+       <div class="input-group">
+        <input id="id" name="id" type="hidden" value="19"/>
+        <input class="form-control cart-quantity" min="1" name="quantity" type="number" value="1"/>
+        <span class="input-group-btn">
+         <button class="btn btn-default update-quantity" type="submit">
+          Update
+         </button>
+        </span>
+       </div>
+      </form>
+      <a class="btn btn-default" href="cartb364.html?id=19">
+       Delete
+      </a>
+     </div>
+     <div class="col-md-4">
+      <h4>
+       $20.00
+      </h4>
+     </div>
+    </div>
+    <div class="cart-row">
+     <div class="col-md-8">
+      <div class="product-name m-b-10px">
+       <h4>
+        eBay Gift Card $300
+       </h4>
+      </div>
+      <form action="http://w6uc2htc3lfcs3g2.onion/update_quantity.php" class="update-quantity-form">
+       <div class="product-id" style="display:none;">
+        20
+       </div>
+       <div class="input-group">
+        <input id="id" name="id" type="hidden" value="20"/>
+        <input class="form-control cart-quantity" min="1" name="quantity" type="number" value="1"/>
+        <span class="input-group-btn">
+         <button class="btn btn-default update-quantity" type="submit">
+          Update
+         </button>
+        </span>
+       </div>
+      </form>
+      <a class="btn btn-default" href="cart97af.html?id=20">
+       Delete
+      </a>
+     </div>
+     <div class="col-md-4">
+      <h4>
+       $35.00
+      </h4>
+     </div>
+    </div>
+    <div class="cart-row">
+     <div class="col-md-8">
+      <div class="product-name m-b-10px">
+       <h4>
+        ID Card
+       </h4>
+      </div>
+      <form action="http://w6uc2htc3lfcs3g2.onion/update_quantity.php" class="update-quantity-form">
+       <div class="product-id" style="display:none;">
+        11
+       </div>
+       <div class="input-group">
+        <input id="id" name="id" type="hidden" value="11"/>
+        <input class="form-control cart-quantity" min="1" name="quantity" type="number" value="1"/>
+        <span class="input-group-btn">
+         <button class="btn btn-default update-quantity" type="submit">
+          Update
+         </button>
+        </span>
+       </div>
+      </form>
+      <a class="btn btn-default" href="cartcf71.html?id=11">
+       Delete
+      </a>
+     </div>
+     <div class="col-md-4">
+      <h4>
+       $249.00
+      </h4>
+     </div>
+    </div>
+    <div class="cart-row">
+     <div class="col-md-8">
+      <div class="product-name m-b-10px">
+       <h4>
+        iPhone 11 - 128GB
+       </h4>
+      </div>
+      <form action="http://w6uc2htc3lfcs3g2.onion/update_quantity.php" class="update-quantity-form">
+       <div class="product-id" style="display:none;">
+        63
+       </div>
+       <div class="input-group">
+        <input id="id" name="id" type="hidden" value="63"/>
+        <input class="form-control cart-quantity" min="1" name="quantity" type="number" value="1"/>
+        <span class="input-group-btn">
+         <button class="btn btn-default update-quantity" type="submit">
+          Update
+         </button>
+        </span>
+       </div>
+      </form>
+      <a class="btn btn-default" href="cartd4da.html?id=63">
+       Delete
+      </a>
+     </div>
+     <div class="col-md-4">
+      <h4>
+       $399.00
+      </h4>
+     </div>
+    </div>
+    <div class="cart-row">
+     <div class="col-md-8">
+      <div class="product-name m-b-10px">
+       <h4>
+        iPhone 11 - 256GB
+       </h4>
+      </div>
+      <form action="http://w6uc2htc3lfcs3g2.onion/update_quantity.php" class="update-quantity-form">
+       <div class="product-id" style="display:none;">
+        64
+       </div>
+       <div class="input-group">
+        <input id="id" name="id" type="hidden" value="64"/>
+        <input class="form-control cart-quantity" min="1" name="quantity" type="number" value="1"/>
+        <span class="input-group-btn">
+         <button class="btn btn-default update-quantity" type="submit">
+          Update
+         </button>
+        </span>
+       </div>
+      </form>
+      <a class="btn btn-default" href="cartf633.html?id=64">
+       Delete
+      </a>
+     </div>
+     <div class="col-md-4">
+      <h4>
+       $449.00
+      </h4>
+     </div>
+    </div>
+    <div class="cart-row">
+     <div class="col-md-8">
+      <div class="product-name m-b-10px">
+       <h4>
+        iPhone 11 - 64GB
+       </h4>
+      </div>
+      <form action="http://w6uc2htc3lfcs3g2.onion/update_quantity.php" class="update-quantity-form">
+       <div class="product-id" style="display:none;">
+        62
+       </div>
+       <div class="input-group">
+        <input id="id" name="id" type="hidden" value="62"/>
+        <input class="form-control cart-quantity" min="1" name="quantity" type="number" value="1"/>
+        <span class="input-group-btn">
+         <button class="btn btn-default update-quantity" type="submit">
+          Update
+         </button>
+        </span>
+       </div>
+      </form>
+      <a class="btn btn-default" href="cart93d7.html?id=62">
+       Delete
+      </a>
+     </div>
+     <div class="col-md-4">
+      <h4>
+       $349.00
+      </h4>
+     </div>
+    </div>
+    <div class="cart-row">
+     <div class="col-md-8">
+      <div class="product-name m-b-10px">
+       <h4>
+        iPhone 11 Pro - 256GB
+       </h4>
+      </div>
+      <form action="http://w6uc2htc3lfcs3g2.onion/update_quantity.php" class="update-quantity-form">
+       <div class="product-id" style="display:none;">
+        66
+       </div>
+       <div class="input-group">
+        <input id="id" name="id" type="hidden" value="66"/>
+        <input class="form-control cart-quantity" min="1" name="quantity" type="number" value="1"/>
+        <span class="input-group-btn">
+         <button class="btn btn-default update-quantity" type="submit">
+          Update
+         </button>
+        </span>
+       </div>
+      </form>
+      <a class="btn btn-default" href="carta7f1.html?id=66">
+       Delete
+      </a>
+     </div>
+     <div class="col-md-4">
+      <h4>
+       $599.00
+      </h4>
+     </div>
+    </div>
+    <div class="cart-row">
+     <div class="col-md-8">
+      <div class="product-name m-b-10px">
+       <h4>
+        iPhone 11 Pro - 512GB
+       </h4>
+      </div>
+      <form action="http://w6uc2htc3lfcs3g2.onion/update_quantity.php" class="update-quantity-form">
+       <div class="product-id" style="display:none;">
+        67
+       </div>
+       <div class="input-group">
+        <input id="id" name="id" type="hidden" value="67"/>
+        <input class="form-control cart-quantity" min="1" name="quantity" type="number" value="1"/>
+        <span class="input-group-btn">
+         <button class="btn btn-default update-quantity" type="submit">
+          Update
+         </button>
+        </span>
+       </div>
+      </form>
+      <a class="btn btn-default" href="cart43e7.html?id=67">
+       Delete
+      </a>
+     </div>
+     <div class="col-md-4">
+      <h4>
+       $699.00
+      </h4>
+     </div>
+    </div>
+    <div class="cart-row">
+     <div class="col-md-8">
+      <div class="product-name m-b-10px">
+       <h4>
+        iPhone 11 Pro - 64GB
+       </h4>
+      </div>
+      <form action="http://w6uc2htc3lfcs3g2.onion/update_quantity.php" class="update-quantity-form">
+       <div class="product-id" style="display:none;">
+        65
+       </div>
+       <div class="input-group">
+        <input id="id" name="id" type="hidden" value="65"/>
+        <input class="form-control cart-quantity" min="1" name="quantity" type="number" value="1"/>
+        <span class="input-group-btn">
+         <button class="btn btn-default update-quantity" type="submit">
+          Update
+         </button>
+        </span>
+       </div>
+      </form>
+      <a class="btn btn-default" href="cart6e2b.html?id=65">
+       Delete
+      </a>
+     </div>
+     <div class="col-md-4">
+      <h4>
+       $499.00
+      </h4>
+     </div>
+    </div>
+    <div class="cart-row">
+     <div class="col-md-8">
+      <div class="product-name m-b-10px">
+       <h4>
+        iPhone 11 Pro Max - 256GB
+       </h4>
+      </div>
+      <form action="http://w6uc2htc3lfcs3g2.onion/update_quantity.php" class="update-quantity-form">
+       <div class="product-id" style="display:none;">
+        69
+       </div>
+       <div class="input-group">
+        <input id="id" name="id" type="hidden" value="69"/>
+        <input class="form-control cart-quantity" min="1" name="quantity" type="number" value="1"/>
+        <span class="input-group-btn">
+         <button class="btn btn-default update-quantity" type="submit">
+          Update
+         </button>
+        </span>
+       </div>
+      </form>
+      <a class="btn btn-default" href="cart632b.html?id=69">
+       Delete
+      </a>
+     </div>
+     <div class="col-md-4">
+      <h4>
+       $699.00
+      </h4>
+     </div>
+    </div>
+    <div class="cart-row">
+     <div class="col-md-8">
+      <div class="product-name m-b-10px">
+       <h4>
+        iPhone 11 Pro Max - 512GB
+       </h4>
+      </div>
+      <form action="http://w6uc2htc3lfcs3g2.onion/update_quantity.php" class="update-quantity-form">
+       <div class="product-id" style="display:none;">
+        70
+       </div>
+       <div class="input-group">
+        <input id="id" name="id" type="hidden" value="70"/>
+        <input class="form-control cart-quantity" min="1" name="quantity" type="number" value="1"/>
+        <span class="input-group-btn">
+         <button class="btn btn-default update-quantity" type="submit">
+          Update
+         </button>
+        </span>
+       </div>
+      </form>
+      <a class="btn btn-default" href="cartb424.html?id=70">
+       Delete
+      </a>
+     </div>
+     <div class="col-md-4">
+      <h4>
+       $799.00
+      </h4>
+     </div>
+    </div>
+    <div class="cart-row">
+     <div class="col-md-8">
+      <div class="product-name m-b-10px">
+       <h4>
+        iPhone 11 Pro Max - 64GB
+       </h4>
+      </div>
+      <form action="http://w6uc2htc3lfcs3g2.onion/update_quantity.php" class="update-quantity-form">
+       <div class="product-id" style="display:none;">
+        68
+       </div>
+       <div class="input-group">
+        <input id="id" name="id" type="hidden" value="68"/>
+        <input class="form-control cart-quantity" min="1" name="quantity" type="number" value="1"/>
+        <span class="input-group-btn">
+         <button class="btn btn-default update-quantity" type="submit">
+          Update
+         </button>
+        </span>
+       </div>
+      </form>
+      <a class="btn btn-default" href="cart8c2b.html?id=68">
+       Delete
+      </a>
+     </div>
+     <div class="col-md-4">
+      <h4>
+       $599.00
+      </h4>
+     </div>
+    </div>
+    <div class="cart-row">
+     <div class="col-md-8">
+      <div class="product-name m-b-10px">
+       <h4>
+        iPhone 8 - 128GB
+       </h4>
+      </div>
+      <form action="http://w6uc2htc3lfcs3g2.onion/update_quantity.php" class="update-quantity-form">
+       <div class="product-id" style="display:none;">
+        57
+       </div>
+       <div class="input-group">
+        <input id="id" name="id" type="hidden" value="57"/>
+        <input class="form-control cart-quantity" min="1" name="quantity" type="number" value="1"/>
+        <span class="input-group-btn">
+         <button class="btn btn-default update-quantity" type="submit">
+          Update
+         </button>
+        </span>
+       </div>
+      </form>
+      <a class="btn btn-default" href="cart210c.html?id=57">
+       Delete
+      </a>
+     </div>
+     <div class="col-md-4">
+      <h4>
+       $249.00
+      </h4>
+     </div>
+    </div>
+    <div class="cart-row">
+     <div class="col-md-8">
+      <div class="product-name m-b-10px">
+       <h4>
+        iPhone 8 - 64GB
+       </h4>
+      </div>
+      <form action="http://w6uc2htc3lfcs3g2.onion/update_quantity.php" class="update-quantity-form">
+       <div class="product-id" style="display:none;">
+        56
+       </div>
+       <div class="input-group">
+        <input id="id" name="id" type="hidden" value="56"/>
+        <input class="form-control cart-quantity" min="1" name="quantity" type="number" value="1"/>
+        <span class="input-group-btn">
+         <button class="btn btn-default update-quantity" type="submit">
+          Update
+         </button>
+        </span>
+       </div>
+      </form>
+      <a class="btn btn-default" href="cart2437.html?id=56">
+       Delete
+      </a>
+     </div>
+     <div class="col-md-4">
+      <h4>
+       $199.00
+      </h4>
+     </div>
+    </div>
+    <div class="cart-row">
+     <div class="col-md-8">
+      <div class="product-name m-b-10px">
+       <h4>
+        iPhone 8 Plus - 128GB
+       </h4>
+      </div>
+      <form action="http://w6uc2htc3lfcs3g2.onion/update_quantity.php" class="update-quantity-form">
+       <div class="product-id" style="display:none;">
+        59
+       </div>
+       <div class="input-group">
+        <input id="id" name="id" type="hidden" value="59"/>
+        <input class="form-control cart-quantity" min="1" name="quantity" type="number" value="1"/>
+        <span class="input-group-btn">
+         <button class="btn btn-default update-quantity" type="submit">
+          Update
+         </button>
+        </span>
+       </div>
+      </form>
+      <a class="btn btn-default" href="cart433f.html?id=59">
+       Delete
+      </a>
+     </div>
+     <div class="col-md-4">
+      <h4>
+       $299.00
+      </h4>
+     </div>
+    </div>
+    <div class="cart-row">
+     <div class="col-md-8">
+      <div class="product-name m-b-10px">
+       <h4>
+        iPhone 8 Plus - 64GB
+       </h4>
+      </div>
+      <form action="http://w6uc2htc3lfcs3g2.onion/update_quantity.php" class="update-quantity-form">
+       <div class="product-id" style="display:none;">
+        58
+       </div>
+       <div class="input-group">
+        <input id="id" name="id" type="hidden" value="58"/>
+        <input class="form-control cart-quantity" min="1" name="quantity" type="number" value="1"/>
+        <span class="input-group-btn">
+         <button class="btn btn-default update-quantity" type="submit">
+          Update
+         </button>
+        </span>
+       </div>
+      </form>
+      <a class="btn btn-default" href="cart781a.html?id=58">
+       Delete
+      </a>
+     </div>
+     <div class="col-md-4">
+      <h4>
+       $249.00
+      </h4>
+     </div>
+    </div>
+    <div class="cart-row">
+     <div class="col-md-8">
+      <div class="product-name m-b-10px">
+       <h4>
+        iPhone XR - 128Gb
+       </h4>
+      </div>
+      <form action="http://w6uc2htc3lfcs3g2.onion/update_quantity.php" class="update-quantity-form">
+       <div class="product-id" style="display:none;">
+        61
+       </div>
+       <div class="input-group">
+        <input id="id" name="id" type="hidden" value="61"/>
+        <input class="form-control cart-quantity" min="1" name="quantity" type="number" value="1"/>
+        <span class="input-group-btn">
+         <button class="btn btn-default update-quantity" type="submit">
+          Update
+         </button>
+        </span>
+       </div>
+      </form>
+      <a class="btn btn-default" href="cartb41c.html?id=61">
+       Delete
+      </a>
+     </div>
+     <div class="col-md-4">
+      <h4>
+       $349.00
+      </h4>
+     </div>
+    </div>
+    <div class="cart-row">
+     <div class="col-md-8">
+      <div class="product-name m-b-10px">
+       <h4>
+        iPhone XR - 64GB
+       </h4>
+      </div>
+      <form action="http://w6uc2htc3lfcs3g2.onion/update_quantity.php" class="update-quantity-form">
+       <div class="product-id" style="display:none;">
+        60
+       </div>
+       <div class="input-group">
+        <input id="id" name="id" type="hidden" value="60"/>
+        <input class="form-control cart-quantity" min="1" name="quantity" type="number" value="1"/>
+        <span class="input-group-btn">
+         <button class="btn btn-default update-quantity" type="submit">
+          Update
+         </button>
+        </span>
+       </div>
+      </form>
+      <a class="btn btn-default" href="cart66f6.html?id=60">
+       Delete
+      </a>
+     </div>
+     <div class="col-md-4">
+      <h4>
+       $299.00
+      </h4>
+     </div>
+    </div>
+    <div class="cart-row">
+     <div class="col-md-8">
+      <div class="product-name m-b-10px">
+       <h4>
+        iTunes Gift Card $500
+       </h4>
+      </div>
+      <form action="http://w6uc2htc3lfcs3g2.onion/update_quantity.php" class="update-quantity-form">
+       <div class="product-id" style="display:none;">
+        18
+       </div>
+       <div class="input-group">
+        <input id="id" name="id" type="hidden" value="18"/>
+        <input class="form-control cart-quantity" min="1" name="quantity" type="number" value="1"/>
+        <span class="input-group-btn">
+         <button class="btn btn-default update-quantity" type="submit">
+          Update
+         </button>
+        </span>
+       </div>
+      </form>
+      <a class="btn btn-default" href="cart9ff6.html?id=18">
+       Delete
+      </a>
+     </div>
+     <div class="col-md-4">
+      <h4>
+       $75.00
+      </h4>
+     </div>
+    </div>
+    <div class="cart-row">
+     <div class="col-md-8">
+      <div class="product-name m-b-10px">
+       <h4>
+        Master Card 3 x 2750€
+       </h4>
+      </div>
+      <form action="http://w6uc2htc3lfcs3g2.onion/update_quantity.php" class="update-quantity-form">
+       <div class="product-id" style="display:none;">
+        45
+       </div>
+       <div class="input-group">
+        <input id="id" name="id" type="hidden" value="45"/>
+        <input class="form-control cart-quantity" min="1" name="quantity" type="number" value="1"/>
+        <span class="input-group-btn">
+         <button class="btn btn-default update-quantity" type="submit">
+          Update
+         </button>
+        </span>
+       </div>
+      </form>
+      <a class="btn btn-default" href="cart9f94.html?id=45">
+       Delete
+      </a>
+     </div>
+     <div class="col-md-4">
+      <h4>
+       $125.00
+      </h4>
+     </div>
+    </div>
+    <div class="cart-row">
+     <div class="col-md-8">
+      <div class="product-name m-b-10px">
+       <h4>
+        Master Card 5 x 2750€
+       </h4>
+      </div>
+      <form action="http://w6uc2htc3lfcs3g2.onion/update_quantity.php" class="update-quantity-form">
+       <div class="product-id" style="display:none;">
+        46
+       </div>
+       <div class="input-group">
+        <input id="id" name="id" type="hidden" value="46"/>
+        <input class="form-control cart-quantity" min="1" name="quantity" type="number" value="1"/>
+        <span class="input-group-btn">
+         <button class="btn btn-default update-quantity" type="submit">
+          Update
+         </button>
+        </span>
+       </div>
+      </form>
+      <a class="btn btn-default" href="cart510d.html?id=46">
+       Delete
+      </a>
+     </div>
+     <div class="col-md-4">
+      <h4>
+       $210.00
+      </h4>
+     </div>
+    </div>
+    <div class="cart-row">
+     <div class="col-md-8">
+      <div class="product-name m-b-10px">
+       <h4>
+        Master Card 5 x 3100$
+       </h4>
+      </div>
+      <form action="http://w6uc2htc3lfcs3g2.onion/update_quantity.php" class="update-quantity-form">
+       <div class="product-id" style="display:none;">
+        49
+       </div>
+       <div class="input-group">
+        <input id="id" name="id" type="hidden" value="49"/>
+        <input class="form-control cart-quantity" min="1" name="quantity" type="number" value="1"/>
+        <span class="input-group-btn">
+         <button class="btn btn-default update-quantity" type="submit">
+          Update
+         </button>
+        </span>
+       </div>
+      </form>
+      <a class="btn btn-default" href="cart6397.html?id=49">
+       Delete
+      </a>
+     </div>
+     <div class="col-md-4">
+      <h4>
+       $199.00
+      </h4>
+     </div>
+    </div>
+    <div class="cart-row">
+     <div class="col-md-8">
+      <div class="product-name m-b-10px">
+       <h4>
+        Money Gram $1000
+       </h4>
+      </div>
+      <form action="http://w6uc2htc3lfcs3g2.onion/update_quantity.php" class="update-quantity-form">
+       <div class="product-id" style="display:none;">
+        27
+       </div>
+       <div class="input-group">
+        <input id="id" name="id" type="hidden" value="27"/>
+        <input class="form-control cart-quantity" min="1" name="quantity" type="number" value="1"/>
+        <span class="input-group-btn">
+         <button class="btn btn-default update-quantity" type="submit">
+          Update
+         </button>
+        </span>
+       </div>
+      </form>
+      <a class="btn btn-default" href="cart8218.html?id=27">
+       Delete
+      </a>
+     </div>
+     <div class="col-md-4">
+      <h4>
+       $70.00
+      </h4>
+     </div>
+    </div>
+    <div class="cart-row">
+     <div class="col-md-8">
+      <div class="product-name m-b-10px">
+       <h4>
+        Money Gram $1500
+       </h4>
+      </div>
+      <form action="http://w6uc2htc3lfcs3g2.onion/update_quantity.php" class="update-quantity-form">
+       <div class="product-id" style="display:none;">
+        28
+       </div>
+       <div class="input-group">
+        <input id="id" name="id" type="hidden" value="28"/>
+        <input class="form-control cart-quantity" min="1" name="quantity" type="number" value="1"/>
+        <span class="input-group-btn">
+         <button class="btn btn-default update-quantity" type="submit">
+          Update
+         </button>
+        </span>
+       </div>
+      </form>
+      <a class="btn btn-default" href="cart1f3a.html?id=28">
+       Delete
+      </a>
+     </div>
+     <div class="col-md-4">
+      <h4>
+       $99.00
+      </h4>
+     </div>
+    </div>
+    <div class="cart-row">
+     <div class="col-md-8">
+      <div class="product-name m-b-10px">
+       <h4>
+        Money Gram $2000
+       </h4>
+      </div>
+      <form action="http://w6uc2htc3lfcs3g2.onion/update_quantity.php" class="update-quantity-form">
+       <div class="product-id" style="display:none;">
+        29
+       </div>
+       <div class="input-group">
+        <input id="id" name="id" type="hidden" value="29"/>
+        <input class="form-control cart-quantity" min="1" name="quantity" type="number" value="1"/>
+        <span class="input-group-btn">
+         <button class="btn btn-default update-quantity" type="submit">
+          Update
+         </button>
+        </span>
+       </div>
+      </form>
+      <a class="btn btn-default" href="cart4c0f.html?id=29">
+       Delete
+      </a>
+     </div>
+     <div class="col-md-4">
+      <h4>
+       $120.00
+      </h4>
+     </div>
+    </div>
+    <div class="cart-row">
+     <div class="col-md-8">
+      <div class="product-name m-b-10px">
+       <h4>
+        Passport
+       </h4>
+      </div>
+      <form action="http://w6uc2htc3lfcs3g2.onion/update_quantity.php" class="update-quantity-form">
+       <div class="product-id" style="display:none;">
+        12
+       </div>
+       <div class="input-group">
+        <input id="id" name="id" type="hidden" value="12"/>
+        <input class="form-control cart-quantity" min="1" name="quantity" type="number" value="1"/>
+        <span class="input-group-btn">
+         <button class="btn btn-default update-quantity" type="submit">
+          Update
+         </button>
+        </span>
+       </div>
+      </form>
+      <a class="btn btn-default" href="cart7c35.html?id=12">
+       Delete
+      </a>
+     </div>
+     <div class="col-md-4">
+      <h4>
+       $799.00
+      </h4>
+     </div>
+    </div>
+    <div class="cart-row">
+     <div class="col-md-8">
+      <div class="product-name m-b-10px">
+       <h4>
+        PayPal $1750
+       </h4>
+      </div>
+      <form action="http://w6uc2htc3lfcs3g2.onion/update_quantity.php" class="update-quantity-form">
+       <div class="product-id" style="display:none;">
+        32
+       </div>
+       <div class="input-group">
+        <input id="id" name="id" type="hidden" value="32"/>
+        <input class="form-control cart-quantity" min="1" name="quantity" type="number" value="1"/>
+        <span class="input-group-btn">
+         <button class="btn btn-default update-quantity" type="submit">
+          Update
+         </button>
+        </span>
+       </div>
+      </form>
+      <a class="btn btn-default" href="carta13c.html?id=32">
+       Delete
+      </a>
+     </div>
+     <div class="col-md-4">
+      <h4>
+       $75.00
+      </h4>
+     </div>
+    </div>
+    <div class="cart-row">
+     <div class="col-md-8">
+      <div class="product-name m-b-10px">
+       <h4>
+        PayPal $2500
+       </h4>
+      </div>
+      <form action="http://w6uc2htc3lfcs3g2.onion/update_quantity.php" class="update-quantity-form">
+       <div class="product-id" style="display:none;">
+        33
+       </div>
+       <div class="input-group">
+        <input id="id" name="id" type="hidden" value="33"/>
+        <input class="form-control cart-quantity" min="1" name="quantity" type="number" value="1"/>
+        <span class="input-group-btn">
+         <button class="btn btn-default update-quantity" type="submit">
+          Update
+         </button>
+        </span>
+       </div>
+      </form>
+      <a class="btn btn-default" href="cart5cc4.html?id=33">
+       Delete
+      </a>
+     </div>
+     <div class="col-md-4">
+      <h4>
+       $99.00
+      </h4>
+     </div>
+    </div>
+    <div class="cart-row">
+     <div class="col-md-8">
+      <div class="product-name m-b-10px">
+       <h4>
+        Steam Gift Card $250
+       </h4>
+      </div>
+      <form action="http://w6uc2htc3lfcs3g2.onion/update_quantity.php" class="update-quantity-form">
+       <div class="product-id" style="display:none;">
+        14
+       </div>
+       <div class="input-group">
+        <input id="id" name="id" type="hidden" value="14"/>
+        <input class="form-control cart-quantity" min="1" name="quantity" type="number" value="1"/>
+        <span class="input-group-btn">
+         <button class="btn btn-default update-quantity" type="submit">
+          Update
+         </button>
+        </span>
+       </div>
+      </form>
+      <a class="btn btn-default" href="carte264.html?id=14">
+       Delete
+      </a>
+     </div>
+     <div class="col-md-4">
+      <h4>
+       $40.00
+      </h4>
+     </div>
+    </div>
+    <div class="cart-row">
+     <div class="col-md-8">
+      <div class="product-name m-b-10px">
+       <h4>
+        Steam Gift Card $500
+       </h4>
+      </div>
+      <form action="http://w6uc2htc3lfcs3g2.onion/update_quantity.php" class="update-quantity-form">
+       <div class="product-id" style="display:none;">
+        15
+       </div>
+       <div class="input-group">
+        <input id="id" name="id" type="hidden" value="15"/>
+        <input class="form-control cart-quantity" min="1" name="quantity" type="number" value="1"/>
+        <span class="input-group-btn">
+         <button class="btn btn-default update-quantity" type="submit">
+          Update
+         </button>
+        </span>
+       </div>
+      </form>
+      <a class="btn btn-default" href="cart7572.html?id=15">
+       Delete
+      </a>
+     </div>
+     <div class="col-md-4">
+      <h4>
+       $75.00
+      </h4>
+     </div>
+    </div>
+    <div class="cart-row">
+     <div class="col-md-8">
+      <div class="product-name m-b-10px">
+       <h4>
+        VISA Card 3 x 2750€
+       </h4>
+      </div>
+      <form action="http://w6uc2htc3lfcs3g2.onion/update_quantity.php" class="update-quantity-form">
+       <div class="product-id" style="display:none;">
+        51
+       </div>
+       <div class="input-group">
+        <input id="id" name="id" type="hidden" value="51"/>
+        <input class="form-control cart-quantity" min="1" name="quantity" type="number" value="1"/>
+        <span class="input-group-btn">
+         <button class="btn btn-default update-quantity" type="submit">
+          Update
+         </button>
+        </span>
+       </div>
+      </form>
+      <a class="btn btn-default" href="cart31e2.html?id=51">
+       Delete
+      </a>
+     </div>
+     <div class="col-md-4">
+      <h4>
+       $120.00
+      </h4>
+     </div>
+    </div>
+    <div class="cart-row">
+     <div class="col-md-8">
+      <div class="product-name m-b-10px">
+       <h4>
+        VISA Card 5 x 2750€
+       </h4>
+      </div>
+      <form action="http://w6uc2htc3lfcs3g2.onion/update_quantity.php" class="update-quantity-form">
+       <div class="product-id" style="display:none;">
+        52
+       </div>
+       <div class="input-group">
+        <input id="id" name="id" type="hidden" value="52"/>
+        <input class="form-control cart-quantity" min="1" name="quantity" type="number" value="1"/>
+        <span class="input-group-btn">
+         <button class="btn btn-default update-quantity" type="submit">
+          Update
+         </button>
+        </span>
+       </div>
+      </form>
+      <a class="btn btn-default" href="cart3075.html?id=52">
+       Delete
+      </a>
+     </div>
+     <div class="col-md-4">
+      <h4>
+       $210.00
+      </h4>
+     </div>
+    </div>
+    <div class="cart-row">
+     <div class="col-md-8">
+      <div class="product-name m-b-10px">
+       <h4>
+        VISA Card 5 x 3100$
+       </h4>
+      </div>
+      <form action="http://w6uc2htc3lfcs3g2.onion/update_quantity.php" class="update-quantity-form">
+       <div class="product-id" style="display:none;">
+        55
+       </div>
+       <div class="input-group">
+        <input id="id" name="id" type="hidden" value="55"/>
+        <input class="form-control cart-quantity" min="1" name="quantity" type="number" value="1"/>
+        <span class="input-group-btn">
+         <button class="btn btn-default update-quantity" type="submit">
+          Update
+         </button>
+        </span>
+       </div>
+      </form>
+      <a class="btn btn-default" href="cart17f9.html?id=55">
+       Delete
+      </a>
+     </div>
+     <div class="col-md-4">
+      <h4>
+       $199.00
+      </h4>
+     </div>
+    </div>
+    <div class="cart-row">
+     <div class="col-md-8">
+      <div class="product-name m-b-10px">
+       <h4>
+        Western Union $1000
+       </h4>
+      </div>
+      <form action="http://w6uc2htc3lfcs3g2.onion/update_quantity.php" class="update-quantity-form">
+       <div class="product-id" style="display:none;">
+        35
+       </div>
+       <div class="input-group">
+        <input id="id" name="id" type="hidden" value="35"/>
+        <input class="form-control cart-quantity" min="1" name="quantity" type="number" value="1"/>
+        <span class="input-group-btn">
+         <button class="btn btn-default update-quantity" type="submit">
+          Update
+         </button>
+        </span>
+       </div>
+      </form>
+      <a class="btn btn-default" href="cart46a0.html?id=35">
+       Delete
+      </a>
+     </div>
+     <div class="col-md-4">
+      <h4>
+       $70.00
+      </h4>
+     </div>
+    </div>
+    <div class="cart-row">
+     <div class="col-md-8">
+      <div class="product-name m-b-10px">
+       <h4>
+        Western Union $1500
+       </h4>
+      </div>
+      <form action="http://w6uc2htc3lfcs3g2.onion/update_quantity.php" class="update-quantity-form">
+       <div class="product-id" style="display:none;">
+        36
+       </div>
+       <div class="input-group">
+        <input id="id" name="id" type="hidden" value="36"/>
+        <input class="form-control cart-quantity" min="1" name="quantity" type="number" value="1"/>
+        <span class="input-group-btn">
+         <button class="btn btn-default update-quantity" type="submit">
+          Update
+         </button>
+        </span>
+       </div>
+      </form>
+      <a class="btn btn-default" href="cartbe8b.html?id=36">
+       Delete
+      </a>
+     </div>
+     <div class="col-md-4">
+      <h4>
+       $99.00
+      </h4>
+     </div>
+    </div>
+    <div class="cart-row">
+     <div class="col-md-8">
+      <div class="product-name m-b-10px">
+       <h4>
+        Western Union $2000
+       </h4>
+      </div>
+      <form action="http://w6uc2htc3lfcs3g2.onion/update_quantity.php" class="update-quantity-form">
+       <div class="product-id" style="display:none;">
+        37
+       </div>
+       <div class="input-group">
+        <input id="id" name="id" type="hidden" value="37"/>
+        <input class="form-control cart-quantity" min="1" name="quantity" type="number" value="1"/>
+        <span class="input-group-btn">
+         <button class="btn btn-default update-quantity" type="submit">
+          Update
+         </button>
+        </span>
+       </div>
+      </form>
+      <a class="btn btn-default" href="cartad8e.html?id=37">
+       Delete
+      </a>
+     </div>
+     <div class="col-md-4">
+      <h4>
+       $120.00
+      </h4>
+     </div>
+    </div>
+    <div class="col-md-8">
+    </div>
+    <div class="col-md-4">
+     <div class="cart-row">
+      <h4 class="m-b-10px">
+       Total (39 items)
+      </h4>
+      <h4>
+       $10,367.00
+      </h4>
+      <a class="btn btn-success m-b-10px" href="checkout.html">
+       <span class="glyphicon glyphicon-shopping-cart">
+       </span>
+       Proceed to Checkout
+      </a>
+     </div>
+    </div>
+   </div>
+   <!-- /row -->
+  </div>
+  <!-- /container -->
+  <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+  <!--<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>-->
+  <!-- Latest compiled and minified Bootstrap JavaScript -->
+  <!--<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>-->
+  <!--<script src="https://www.blockonomics.co/js/pay_button.js"></script>-->
+  <!-- custom script will be here -->
+  <!--<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>-->
+  <script>
+   $(document).ready(function(){
+        // add to cart button listener
+        $('.add-to-cart-form').on('submit', function(){
+
+            // info is in the table / single product layout
+            var id = $(this).find('.product-id').text();
+            var quantity = $(this).find('.cart-quantity').val();
+
+            // redirect to add_to_cart.php, with parameter values to process the request
+            window.location.href = "products8e96.html?id=" + id + "&quantity=" + quantity;
+            return false;
+        });
+
+
+
+        // update quantity button listener
+        $('.update-quantity-form').on('submit', function(){
+
+            // get basic information for updating the cart
+            var id = $(this).find('.product-id').text();
+            var quantity = $(this).find('.cart-quantity').val();
+
+            // redirect to update_quantity.php, with parameter values to process the request
+            window.location.href = "cart7dd2.html?id=" + id + "&quantity=" + quantity;
+            return false;
+        });
+
+
+
+        // change product image on hover
+        $(document).on('mouseenter', '.product-img-thumb', function(){
+            var data_img_id = $(this).attr('data-img-id');
+            $('.product-img').hide();
+            $('#product-img-'+data_img_id).show();
+        });
+
+
+
+
+
+        $('#placeOrderButton').on('click', function(){
+            console.log('clicked');
+
+
+
+            var name = $('#checkoutName').val();
+            var email = $('#checkoutemail').val();
+            var address = $('#checkoutaddress').val();
+if(address==null || address==undefined){
+    address='';
+}
+
+            if(name == null || name == undefined || name == ''){
+                $('#checkoutErrorDiv').html('Name is required for delivery');
+                return false;
+            }else
+            if(email==null || email==undefined || email==''){
+                $('#checkoutErrorDiv').html('Email is required');
+                return false;
+            }
+            //else
+        //    if(address==null || address==undefined || address==''){
+       //         $('#checkoutErrorDiv').html('Address is required');
+       //         return false;
+        //    }
+            else {
+                $('#checkoutErrorDiv').html('');
+                $('#paymentButtonHref').attr( 'data-price', $('#totalAmountHidden').val());
+                $('#paymentButtonHref').click();
+
+                jQuery.ajax({
+                    type: "POST",
+                    url: 'saveOrdr.php',
+                    /*   dataType: 'json',*/
+                    data: {
+                        deliveryname: name, deliveryemail: email, deliveryaddress : address
+                    },
+
+                    success: function (obj, textstatus) {
+
+                    },
+                    error: function(xhr, status, error) {
+                        var err = eval("(" + xhr.responseText + ")");
+                        console.log(err.Message);
+                        console.log('xhr: ');
+                        console.log(xhr);
+                        console.log('status: ' + status);
+                        console.log('error: ' + error);
+                    }
+
+                });
+            }
+
+
+
+
+        });
+
+
+
+
+    });
+  </script>
+ </body>
+</html>

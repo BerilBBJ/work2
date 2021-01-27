@@ -1,0 +1,459 @@
+<head>
+ <title>
+  Act II
+ </title>
+ <meta content="application/xhtml+xml; charset=utf-8" http-equiv="content-type"/>
+ <link href="../css/style.css" media="screen" rel="stylesheet" type="text/css"/>
+ <link href="../1.ico" rel="shortcut icon" type="image/x-icon"/>
+</head>
+<body>
+ <div class="wrap background">
+  <div id="logo">
+   <div class="clear">
+   </div>
+   <div id="left">
+    <center>
+     <h1>
+      <a href="../2.html">
+       <font color="White">
+        Act II
+       </font>
+      </a>
+     </h1>
+     <h2>
+      <font color="black">
+       Network and MITM attacks
+      </font>
+     </h2>
+    </center>
+    <p class="subtitle">
+     Pre-requisites
+    </p>
+    <font color="black" size="4">
+     <b>
+      <br/>
+      Computer/Laptop
+      <br/>
+     </b>
+    </font>
+    <li>
+     Intel or AMD CPU
+    </li>
+    <br/>
+    <li>
+     Minimum 4GB of RAM
+    </li>
+    <br/>
+    <li>
+     60+ GB of hard disk space
+    </li>
+    <br/>
+    <li>
+     Internet access
+    </li>
+    <br/>
+    <br/>
+    The more memory your computer has the better it will be because being able to run multiple VM's at once is very beneficial. When you run VM's you dedicated some RAM to those machines and operating smoothly is what everyone wants. Hard drive space is important too if you plan on having a multiple VM's as each can take up to 10GB each minimum.
+    <br/>
+    <br/>
+    <font color="black" size="4">
+     <b>
+      "Professional" cybercriminal maniacs have their machines like:
+      <br/>
+     </b>
+    </font>
+    <li>
+     Intel or AMD CPU
+    </li>
+    <br/>
+    <li>
+     32+ GB of RAM
+    </li>
+    <br/>
+    <li>
+     1 TB+ of hard disk space
+    </li>
+    <br/>
+    <li>
+     Internet access
+    </li>
+    <br/>
+    <br/>
+    <br/>
+    <font color="black" size="4">
+     <b>
+      Download VirtualBox and the VirtualBox Extension Pack from:
+      <br/>
+     </b>
+    </font>
+    <font color="blue">
+     https://www.virtualbox.org/wiki/Downloads
+     <br/>
+     <br/>
+     Once VirtualBox is installed double click on the VirtualBox Extension Pack you downloaded to install that to ensure VirtualBox runs smoothly for this course!
+     <br/>
+     <br/>
+    </font>
+    <br/>
+    <br/>
+    <font color="black" size="4">
+     <b>
+      Download Kali VirtualBox
+     </b>
+    </font>
+    <br/>
+    <font color="blue">
+     <b>
+      https://www.kali.org/downloads/
+      <br/>
+     </b>
+    </font>
+    <center>
+     <img height="350" src="../images2/45.png" width="700"/>
+    </center>
+    <br/>
+    <br/>
+    Download either the 64-Bit or 32-Bit version of Kali. This is different for everyone so if the one you downloaded doesn't load Kali then the other one will and now you'll know! ;) If it boots up and you're at Kali desktop then good!
+    <br/>
+    <br/>
+    If you have issues then download the Kali ISO and install it through virtualbox. If you can't run any of those then your machine just isn't up to par brothers.
+    <br/>
+    <br/>
+    If you're using Kali in a VM then you can skip to the next portion at "
+    <font color="red">
+     <b>
+      Let's continue to setup our machine
+     </b>
+    </font>
+    ".
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    Some people may want to use Kali as their main OS or boot Kali directly from USB. If you choose to do this then:
+    <h4>
+     Download Kali ISO
+    </h4>
+    <font color="blue">
+     Make sure you select the right ISO for you!
+    </font>
+    <br/>
+    If you do that then we'll need to install the Kali Linux ISO onto USB so we can boot directly from it. You'll need a USB preferably with 6GB capacity or more. If you decide to use Kali in a VM this is fine as well.
+    <br/>
+    <br/>
+    Download Etcher to install an operating system (OS) on USB to start-up from:
+    <br/>
+    https://www.balena.io/etcher
+    <br/>
+    <br/>
+    Once Etcher is installed plug in your USB, run Etcher, and click on "Select image", then select the Kali ISO, and click "Flash".
+    <center>
+     <img height="425" src="../images2/46.png" width="700"/>
+    </center>
+    <br/>
+    <br/>
+    Once you've installed Kali to the USB you can now boot directly from it.
+    <br/>
+    <br/>
+    <center>
+     <a href="25.html" target="_blank">
+      <font color="blue">
+       <b>
+        Click to Read - Learn how to boot from USB
+       </b>
+      </font>
+     </a>
+     <br/>
+    </center>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <font color="red">
+     <b>
+      Let's continue to setup our machine
+     </b>
+    </font>
+    <br/>
+    Ok if you downloaded the Kali Virtualbox file it will be similar to "kali-linux-2020.3-vbox-amd64.ova" or "kali-linux-2020.3-vbox-i386.ova". Simply double click on the file to import it into VirtualBox for you. This may take a few minutes.
+
+
+
+Once that's done let's setup the Kali machine.
+    <br/>
+    <br/>
+    <center>
+     <font color="blue">
+      Default username is "kali" and default password is "kali"
+     </font>
+    </center>
+    <br/>
+    In Virtualbox, select your Kali VM, and click on Settings. Click on "Network" and make sure your network adaptor is set to "Bridged Adapter" and reflects your wireless card.
+    <center>
+     <img height="225" src="../images2/59.png" width="600"/>
+    </center>
+    <br/>
+    <br/>
+    Once you've configured the network portion properly start your Kali VM and once Kali loads open Terminal and type the following into it:
+    <br/>
+    <font color="red">
+     <b>
+      sudo apt-get update &amp;&amp; sudo apt-get install gedit bettercap dsniff driftnet python3-pip python-dev python-setuptools libpcap0.8-dev libnetfilter-queue-dev libssl-dev libjpeg-dev libxml2-dev libxslt1-dev libcapstone3 libcapstone-dev libffi-dev file -y &amp;&amp; sudo apt autoremove -y
+     </b>
+    </font>
+    <br/>
+    <br/>
+    If you get any errors at all when running the above command such as:
+    <br/>
+    "E: Could not get lock ...."
+    <br/>
+    Run the commands below before running the above command again:
+    <br/>
+    <font color="red">
+     <b>
+      sudo rm /var/lib/dpkg/lock-frontend
+      <br/>
+      sudo rm /var/lib/dpkg/lock
+      <br/>
+      sudo rm /var/cache/apt/archives/lock
+     </b>
+    </font>
+    <br/>
+    Once you've run all those commands you can the run the above update command with success.
+    <br/>
+    <br/>
+    <font color="blue" size="4">
+     <b>
+      UPDATE - August 19, 2020
+      <br/>
+     </b>
+    </font>
+    <font color="blue">
+     It appears the latest bettercap update fucked some things up with MITM attacks so for now everyone should revert back to bettercap 2.20. Until a new release comes out that fixes the problem it's best to use an older release.
+     <br/>
+     <br/>
+     Download 2.20 release from:
+     <br/>
+    </font>
+    <font color="red">
+     <b>
+      wget https://github.com/bettercap/bettercap/releases/download/v2.20/bettercap_linux_amd64_2.20.zip
+      <br/>
+      unzip bettercap_linux_amd64_2.20.zip
+      <br/>
+      sudo apt remove bettercap
+      <br/>
+      sudo ./bettercap
+      <br/>
+     </b>
+    </font>
+    <font color="blue">
+     From there on in you can follow the commands in ACT II Chapter 10+ without issue.
+    </font>
+    <br/>
+    <br/>
+    When that's finished and you're back to Terminal then we're ready to go.
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <font color="blue">
+     <h3>
+      <b>
+       For best results moving forward:
+      </b>
+     </h3>
+     <li>
+      An attacker computer running Kali in VM or booting directly from USB.
+     </li>
+     <li>
+      A separate computer to be the target (Windows 7+ or MacOS all updated preferably).
+     </li>
+     <li>
+      A home network (Preferably one you own and know the WiFi password along with router admin interface password as well).
+     </li>
+     <li>
+      Your Kali and target computer on the same network with internet connectivity.
+     </li>
+    </font>
+    <br/>
+    Right then time to educate ourselves a bit on some items that are important to know. Let's get right into it comrades.
+    <br/>
+    <br/>
+    <b>
+     <center>
+      <a class="button" href="Chapter-3.html" style="text-decoration:none">
+       Click to continue to Chapter 3
+      </a>
+     </center>
+    </b>
+    <div id="side">
+     <div class="boxtop">
+     </div>
+     <div class="box">
+      <center>
+       <span class="item">
+        <strong>
+         Funshine's
+        </strong>
+        <br>
+         Hacking Guides
+        </br>
+       </span>
+      </center>
+     </div>
+     <div class="box">
+      <a href="Chapter-1.html">
+       <span class="item">
+        <strong>
+         Chapter 1
+        </strong>
+        <br>
+         Introduction
+        </br>
+       </span>
+      </a>
+     </div>
+     <div class="box">
+      <a href="Chapter-2.html">
+       <span class="item">
+        <strong>
+         Chapter 2
+        </strong>
+        <br>
+         Pre-requisites
+        </br>
+       </span>
+      </a>
+     </div>
+     <div class="box">
+      <a href="Chapter-3.html">
+       <span class="item">
+        <strong>
+         Chapter 3
+        </strong>
+        <br>
+         Private IPs
+        </br>
+       </span>
+      </a>
+     </div>
+     <div class="box">
+      <a href="Chapter-4.html">
+       <span class="item">
+        <strong>
+         Chapter 4
+        </strong>
+        <br>
+         Router admin interface
+        </br>
+       </span>
+      </a>
+     </div>
+     <div class="box">
+      <a href="Chapter-5.html">
+       <span class="item">
+        <strong>
+         Chapter 5
+        </strong>
+        <br>
+         Searching for targets
+        </br>
+       </span>
+      </a>
+     </div>
+     <div class="box">
+      <a href="Chapter-6.html">
+       <span class="item">
+        <strong>
+         Chapter 6
+        </strong>
+        <br>
+         Router exploitation
+        </br>
+       </span>
+      </a>
+     </div>
+     <div class="box">
+      <a href="Chapter-7.html">
+       <span class="item">
+        <strong>
+         Chapter 7
+        </strong>
+        <br>
+         Printer exploitation
+        </br>
+       </span>
+      </a>
+     </div>
+     <div class="box">
+      <a href="Chapter-8.html">
+       <span class="item">
+        <strong>
+         Chapter 8
+        </strong>
+        <br>
+         Brute forcing the router interface
+        </br>
+       </span>
+      </a>
+     </div>
+     <div class="box">
+      <a href="Chapter-9.html">
+       <span class="item">
+        <strong>
+         Chapter 9
+        </strong>
+        <br>
+         Getting up to date
+        </br>
+       </span>
+      </a>
+     </div>
+     <div class="box">
+      <a href="Chapter-10.html">
+       <span class="item">
+        <strong>
+         Chapter 10
+        </strong>
+        <br>
+         Who's DAT Man-In-The-Middle(MITM)
+        </br>
+       </span>
+      </a>
+     </div>
+     <div class="box">
+      <a href="Chapter-11.html">
+       <span class="item">
+        <strong>
+         Chapter 11
+        </strong>
+        <br>
+         One method to rule them all
+        </br>
+       </span>
+      </a>
+     </div>
+     <div class="box">
+      <a href="Conclusion.html">
+       <span class="item">
+        <strong>
+         Conclusion
+        </strong>
+        <br>
+        </br>
+       </span>
+      </a>
+     </div>
+     <div class="boxbottom">
+     </div>
+    </div>
+    <p id="ad">
+    </p>
+   </div>
+  </div>
+ </div>
+</body>

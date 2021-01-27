@@ -1,0 +1,124 @@
+<!doctype html>
+<html lang="en">
+
+<!-- Mirrored from deepdothh3xqavqx.onion/signup by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 12 Oct 2020 00:54:01 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="css/app.css">
+
+
+            <title>DeepDotMarket - Sign Up</title>
+    
+</head>
+<body class="pb-4">
+<nav class="navbar navbar-expand-lg  navbar-dark bg-mgray">
+    <div class="container">
+        <a class="navbar-brand" href="index.html">DeepDotMarket</a>
+
+        <input type="checkbox" id="navbar-toggle-cbox">
+
+
+        <label class="navbar-toggler" for="navbar-toggle-cbox" data-toggle="collapse"
+               data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+               aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </label>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+
+                <ul class="navbar-nav mr-auto">
+                                                            
+                </ul>
+
+                <ul class="navbar-nav">
+                                            <li class="nav-item">
+                            <a class="nav-link" href="signin.html">Sign In</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="signup">Sign Up</a>
+                        </li>
+                                    </ul>
+
+        </div>
+    </div>
+</nav>
+
+
+    <div class="container">
+                <div class="mt-4">
+            
+    <div class="row mt-5">
+        <div class="col-md-6 offset-md-3">
+            <h2>Sign Up</h2>
+
+
+            <div class="mt-3">
+                <form action="http://deepdothh3xqavqx.onion/signup" method="post">
+                    <input type="hidden" name="_token" value="o8E24h4nH3t6z4r0pXZUhcY5gpPpkpkdDK4WlGqZ">
+
+                    <div class="form-group ">
+                        <input type="text" class="form-control " placeholder="Username" name="username" id="username">
+                                            </div>
+                    <div class="form-row">
+                        <div class="col">
+                            <input type="password" class="form-control " placeholder="Password" name="password"
+                                   id="password">
+                        </div>
+                        <div class="col">
+                            <input type="password" class="form-control " placeholder="Confirm Password"
+                                   name="password_confirmation" id="password_confirm">
+                        </div>
+
+                    </div>
+                                        <div class="form-group mt-1">
+                        <span class="text-muted">
+                            Your private key for decrypting messages will be protected with your password. Please make
+                            sure that you choose a strong one
+                        </span>
+                    </div>
+                    <div class="form-group">
+                        <div class="input-group mb-2">
+                            <div class="input-group-prepend">
+                                <div class="input-group-text">Referral Code</div>
+                            </div>
+                            <input type="text" name="refid" value="" class="form-control"
+                                   >
+                        </div>
+
+                    </div>
+                    <div class="form-group  mt-3">
+    <div class="text-center">
+        <img src="data:image/jpeg;base64,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" alt="">
+    </div>
+    <input class="form-control mt-3 " type="text" name="captcha" placeholder="Enter Captcha">
+    
+</div>                                        <div class="form-group text-center">
+                        <div class="row">
+                            <div class="col-xs-12 col-md-4 offset-md-4">
+                                <button type="submit" class="btn btn-outline-primary btn-block">Sign Up</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group text-center">
+                        <a href="signin.html" class="text-muted">Already have an account ?</a>
+                    </div>
+                </form>
+            </div>
+
+        </div>
+    </div>
+
+
+        </div>
+
+
+</div>
+
+</body>
+
+<!-- Mirrored from deepdothh3xqavqx.onion/signup by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 12 Oct 2020 00:54:01 GMT -->
+</html>

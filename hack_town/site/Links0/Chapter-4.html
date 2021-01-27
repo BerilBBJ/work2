@@ -1,0 +1,668 @@
+<head>
+ <title>
+  Act 0
+ </title>
+ <meta content="application/xhtml+xml; charset=utf-8" http-equiv="content-type"/>
+ <link href="../1.ico" rel="shortcut icon" type="image/x-icon"/>
+ <link href="../css/style.css" media="screen" rel="stylesheet" type="text/css">
+ </link>
+</head>
+<body>
+ <div class="wrap background">
+  <div class="clear">
+  </div>
+  <div id="left">
+   <div id="left">
+    <center>
+     <h1>
+      <a href="../0.html">
+       <font color="White">
+        Act 0 - OPSec
+       </font>
+      </a>
+     </h1>
+    </center>
+    <p class="subtitle">
+     MAC addresses and their importance
+    </p>
+    You should be aware that every network card (your hardware that connects to a Wi-Fi network) in a laptop/computer has a Media Access Control (MAC) address associated to it. MAC addresses are "linked" to the physical network card installed in your laptop when they're manufactured. When you're connected to a Wi-Fi network the router uses something called a Address Resolution Protocol (ARP) which associates an IP address to a MAC address on the network. ARP is like a gateway that takes data going to your IP address (from the internet) through a piece of computer hardware (your network card) to you. They work hand in hand.
+    <br/>
+    <br/>
+    In very basic drug addict terms, it means your laptop and the router are connected and know about one another on the network so they can send the right data packets to the right computer. This way the router can ensure the data is being sent to the proper person on the network. Makes sense right?
+    <br/>
+    <br/>
+    You don't have to know the technical details exactly, but you should have a general understanding of what a MAC address is. So again, the data sent from your computer to the internet has to be sent from your machine, to your Wi-Fi router, then to the internet, and back again through the same process when receiving data. Not rocket science, right? Your router must know which IP to send the data back to or everyone on your network would receive everyone else's data. It would be a fuck show of packets. This obviously wouldn't work so we need the router to associate a MAC address to an IP and keep track of the clients on the network and where to send their packets so everyone receives the right data. Thanks to ARP and the associated ARP table the router knows which MAC address to deliver the data to and what their IP is.
+    <br/>
+    <br/>
+    MAC addresses are "unique" to each network card manufactured and can be identified to the specific make of a network card. Consider them as a fingerprint at a crime scene. Should the MAC address be logged when you're on a network and your laptop seized by the feds they could compare their logs and link the MAC address to your laptop linking you to whatever crazy crime you committed.
+    <br/>
+    <br/>
+    Hypothetically, let's say you've done something illegal when you were connected to your local library Wi-Fi network with your laptop and have attracted the attention of law enforcement (LE). Now the police are logging MAC addresses that connect to the local library public Wi-Fi network and looking for a suspect who hacked from that location they could potentially sit on that network looking for the same MAC address until they find it again and then begin to profile the people in the area.
+    <br/>
+    <br/>
+    Eventually leading them to you.
+    <br/>
+    <br/>
+    Whenever you save a network that you've connected to in your computer or cell phone that device will always be looking for that saved network all the time. Your devices are wirelessly sending certain types of packets looking for that network all the time. So when you're hacking your ass off at the local library your cellphone or computer is looking for "My-Home" Wi-Fi network to automatically connect to when it finds it. Anyone in the area capturing wireless packets would be able to see that device is looking for that specific network and begin to profile individuals in that area.
+    <br/>
+    <br/>
+    Remember, MAC addresses are "unique" so just by connecting to your home network and to another Wi-Fi you've used for illegal or questionable purposes you've created a potential connection to YOU, if indeed they're on to your activities and logging shit this isn't good. You've either unintentionally done this with your laptop or you've brought your cellphone with you and used your laptop to connect to an open network. Ultimately, they could associate the MAC address to the make of your computer and hypothetically could determine where that unit was sold. You should've purchased your "work" computer with cash so I wouldn't worry too much here. Investigations work exactly like this and connecting the dots will eventually point LE in the direction of a suspect. Classic police and detective work usually catches most people.
+    <br/>
+    <br/>
+    <h4>
+     <u>
+      Example of tactics used by Law Enforcement (LE)
+     </u>
+    </h4>
+    <br/>
+    <li>
+     You connect to your home Wi-Fi network and have saved the network in your device so it will automatically connect when in range thus constantly transmitting probe requests out looking for that network which also includes your MAC address in the probe request frame and the name of the Wi-Fi network it's looking for. Anyone sniffing wireless traffic will be able to see this.
+    </li>
+    <br/>
+    <li>
+     You connect to the library Wi-Fi network without changing your laptop MAC address.
+    </li>
+    <br/>
+    <li>
+     You launch a hack and try to take over the world. Obviously.
+    </li>
+    <br/>
+    <li>
+     Police are eventually notified, if what you've done has warranted their attention, they trace the IP back that did the hack back to library public Wi-Fi network and setup a sting/logging investigation.
+    </li>
+    <br/>
+    <li>
+     You come back to library public Wi-Fi and launch another hack.
+    </li>
+    <br/>
+    <li>
+     Police now have MAC address of a laptop that connected to the network that launched the hack and begin to connect the dots which would be happening from their end.
+    </li>
+    <br/>
+    <li>
+     You eventually either return or connect to your Wi-Fi network in close proximity.
+    </li>
+    <br/>
+    <li>
+     Police see that MAC address sending probe request frames out looking for your home Wi-Fi network and now have a connection/location to who/where you are.
+    </li>
+    <br/>
+    <li>
+     Of course this all depends on their budget and whether or not you're a target worth their time. In a nut shell if they invest some time in looking for you it's a matter of time until jail if you did not take the proper actions to conceal yourself.
+    </li>
+    <br/>
+    I'd say the majority of people out there know that spoofing their MAC address is a key step in preventing from being tracked while connected to Wi-Fi network you're connected to. I don't think this is news to anyone, however another important tracking method used against you is the hostname of your computer OR your computer name. Your computer name is what you named your laptop such as Funshine-PC, HackTown MacBook, Funshine.local, etc. The hostname can be traceable just as a MAC address if everything is being logged by authorities when on the network. Having random MAC addresses always appearing with the same hostname or computer name on the network is pretty obvious it's the same individual. All those tracking values should be changed before connecting to any network. Depending on which OS you are using will dictate which program you use and how you do it.
+    <br/>
+    <br/>
+    <font color="blue">
+     <b>
+      If you're currently connected to a network where you can access the Wi-Fi router login page do so now and login into it. Find out where you're able to see what clients are connected to the network and you should be able to view how many clients are connected to the Wi-Fi network along with what their MAC address and computer name of each device connected to the network. If you have don't know how to access your Wi-Fi router login page then now is a good time to Google "How to access my Wi-Fi router login page".
+     </b>
+    </font>
+    <br/>
+    <br/>
+    When I was younger I was spoofing my MAC address for years but didn't realize how ineffective this was until I had an issue on a corporate network that taught me this. There are other network tracking techniques that are used that look for similar computer names and hostnames. You can be linked to your device just as easily with a hostname as well with a MAC. What I want you to understand is how you can be tracked on a network with other items besides your MAC address. Using your MAC address and computer name/hostname against you linking you to other Wi-Fi networks you connected to could help pin-point your computer if you've been tracked to a location from a previous mistake. All bad. Making connections, connections, and more connections...
+    <br/>
+    <br/>
+    Note: macOS hostnames usually go by hostname.local by default.
+    <br/>
+    <br/>
+    A perfect example to see this is to load up your Kali VM, open Terminal, and type "hostname" to be displayed the hostname of your Kali VM. You'll notice your hostname is "kali". Not really hiding much there are you?.
+    <br/>
+    <br/>
+    In the following examples assume the following:
+    <br/>
+    <center>
+     <table>
+      <tr>
+       <th>
+        MAC Address
+       </th>
+       <th>
+        Computer Name
+       </th>
+       <th>
+        Hostname
+       </th>
+      </tr>
+      <td>
+       A1:B1:C1:D1:E1:F1
+      </td>
+      <td style="text-align:center">
+       Viktor-pc
+      </td>
+      <td style="text-align:center">
+       Viktor.local
+      </td>
+      <tr>
+       <td>
+        A2:B2:C2:D2:E2:F2
+       </td>
+       <td style="text-align:center">
+        Viktor-pc
+       </td>
+       <td style="text-align:center">
+        Viktor.local
+       </td>
+      </tr>
+      <tr>
+       <td>
+        A3:B3:C3:D3:E3:F3
+       </td>
+       <td style="text-align:center">
+        Viktor-pc
+       </td>
+       <td style="text-align:center">
+        Viktor.local
+       </td>
+      </tr>
+     </table>
+     <br/>
+     <br/>
+    </center>
+    <u>
+     Example 1
+    </u>
+    - Spoofing your MAC
+    <br/>
+    <center>
+     <table>
+      <tr>
+       <th>
+        MAC Address
+       </th>
+       <th>
+        Computer name
+       </th>
+       <th>
+        Hostname
+       </th>
+      </tr>
+      <td>
+       00:11:22:33:44:55
+      </td>
+      <td style="text-align:center">
+       Viktor-pc
+      </td>
+      <td style="text-align:center">
+       Viktor.local
+      </td>
+      <tr>
+       <td>
+        11:22:11:33:44:11
+       </td>
+       <td style="text-align:center">
+        Viktor-pc
+       </td>
+       <td style="text-align:center">
+        Viktor.local
+       </td>
+      </tr>
+      <tr>
+       <td>
+        22:11:22:33:11:44
+       </td>
+       <td style="text-align:center">
+        Viktor-pc
+       </td>
+       <td style="text-align:center">
+        Viktor.local
+       </td>
+      </tr>
+     </table>
+     <br/>
+    </center>
+    As you can see just by spoofing your MAC address doesn't really hide who you are too well. Viktor-pc/Viktor.local seems to be the one doing malicious activity on the network but yet their MAC address is different each time...hmm...right? You can see that just because you're changing your MAC address doesn't mean you're covering up all your tracks.
+    <br/>
+    <br/>
+    <br/>
+    <u>
+     Example 2
+    </u>
+    - Spoofing your MAC and changing computer name
+    <br/>
+    <center>
+     <table>
+      <tr>
+       <th>
+        MAC Address
+       </th>
+       <th>
+        Computer name
+       </th>
+       <th>
+        Hostname
+       </th>
+      </tr>
+      <td>
+       00:11:22:33:44:55
+      </td>
+      <td style="text-align:center">
+       Alexei-pc
+      </td>
+      <td style="text-align:center">
+       Alexei.local
+      </td>
+      <tr>
+       <td>
+        11:22:11:33:44:11
+       </td>
+       <td style="text-align:center">
+        Anna-pc
+       </td>
+       <td style="text-align:center">
+        Anna.local
+       </td>
+      </tr>
+      <tr>
+       <td>
+        22:11:22:33:11:44
+       </td>
+       <td style="text-align:center">
+        Dina-pc
+       </td>
+       <td style="text-align:center">
+        Dina.local
+       </td>
+      </tr>
+     </table>
+     <br/>
+     <br/>
+    </center>
+    I highly suggest changing all values before connecting to any network and on every shutdown of your laptop/computer! This should be done on your
+    <b>
+     host
+    </b>
+    machine and whatever VM you have connecting to the network.
+    <br/>
+    <br/>
+    You want to get in the habit of spoofing your MAC address, computer name, and hostname of your laptop before connecting to any network. It's best to confirm this yourself if this is your first time spoofing any of these items to ensure that the commands you're typing actually do what they're intended to do.
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <center>
+     <font color="green" font="" size="5">
+      <b>
+       Spoofing your MAC address
+      </b>
+     </font>
+     <br/>
+     VMware and other Virtualization software can change it before starting up the machine under:
+     <br/>
+     Network Adaptor -&gt; Advanced Settings.
+    </center>
+    <br/>
+    <br/>
+    <center>
+     <i>
+      This should be done
+      <u>
+       BEFORE
+      </u>
+      connecting to any networks
+     </i>
+    </center>
+    <br/>
+    <h4>
+     <b>
+      <font size="4">
+       Windows
+      </font>
+     </b>
+    </h4>
+    Download and install TMAC. The GUI is pretty self-explanatory
+    <br/>
+    <font color="blue">
+     <b>
+      http://www.technitium.com/tmac
+      <br/>
+     </b>
+    </font>
+    Use "ipconfig" in the command line to determine your network card needed to change and confirm it has been changed after using the program.
+    <br/>
+    <br/>
+    <h4>
+     <b>
+      <font size="4">
+       macOS
+      </font>
+     </b>
+    </h4>
+    Download spoof-mac from:
+    <br/>
+    <font color="blue">
+     <b>
+      https://github.com/feross/SpoofMAC
+      <br/>
+      <br/>
+     </b>
+    </font>
+    To spoof your MAC address in Terminal.app type:
+    <br/>
+    <font color="red">
+     <b>
+      sudo spoof-mac randomize en0
+     </b>
+    </font>
+    <br/>
+    <i>
+     en0 is the example used and may be different for you. In most cases it will be "en0" or "en1".(use ifconfig to determine your wireless interface)
+    </i>
+    <br/>
+    <br/>
+    <h4>
+     <font size="4">
+      Linux
+     </font>
+    </h4>
+    <font color="red">
+     <b>
+      sudo apt-get update &amp;&amp; sudo apt-get install macchanger -y
+     </b>
+    </font>
+    <br/>
+    Command to use:
+    <br/>
+    <font color="red">
+     <b>
+      sudo macchanger -r wlan0
+     </b>
+    </font>
+    <br/>
+    <i>
+     wlan0 is the network card interface example used and may be different for you.
+    </i>
+    <br/>
+    <br/>
+    <h4>
+     <font size="4">
+      Kali
+     </font>
+    </h4>
+    <font color="red">
+     <b>
+      sudo macchanger -r wlan0
+     </b>
+    </font>
+    <br/>
+    <i>
+     wlan0 is the network card interface example used and may be different for you.
+    </i>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <center>
+     <font color="green" font="" size="5">
+      <b>
+       Spoofing your hostname/computer
+      </b>
+     </font>
+     <br/>
+    </center>
+    <center>
+     <i>
+      This should be done
+      <u>
+       BEFORE
+      </u>
+      connecting to any networks
+     </i>
+    </center>
+    <h4>
+     <font size="4">
+      Windows 7
+     </font>
+    </h4>
+    Click the start button
+    <br/>
+    Right clicking Computer and click Properties
+    <br/>
+    Computer Name tab, click change
+    <br/>
+    Under Computer Name enter the new name
+    <br/>
+    <br/>
+    <h4>
+     <font size="4">
+      Windows 10
+     </font>
+    </h4>
+    Click on the search bar bottom left of screen
+    <br/>
+    Search for "Control Panel" and open it
+    <br/>
+    Click on "System and Security"
+    <br/>
+    Click on "System"
+    <br/>
+    Click on "Change Settings" under "Computer name, domain, and workgroup settings"
+    <br/>
+    Click on "Change"
+    <br/>
+    Then change your computer name to whatever
+    <br/>
+    <br/>
+    <h4>
+     <font size="4">
+      macOS
+     </font>
+    </h4>
+    System Preferences – Sharing – Change Computer Name
+    <br/>
+    <br/>
+    Change your System Preferences first before using the hostname command below as sometimes it will not set. In the example below I spoof my hostname to "TestName".
+    <br/>
+    <br/>
+    In Terminal.app
+    <br/>
+    <font color="red">
+     <b>
+      sudo hostname TestName
+     </b>
+    </font>
+    <br/>
+    <br/>
+    <h4>
+     <font size="4">
+      Linux
+     </font>
+    </h4>
+    Open Terminal and type "hostname" to see your hostname. In the example below I spoof my hostname to "TestName".
+    <br/>
+    In Terminal:
+    <br/>
+    <font color="red">
+     <b>
+      sudo hostname TestName
+     </b>
+    </font>
+    <br/>
+    <br/>
+    <h4>
+     <font size="4">
+      Kali
+     </font>
+    </h4>
+    Open terminal and type "hostname" to see your hostname
+    <br/>
+    Not changing the default "kali" hostname will be a problem if there's any Wi-Fi cyber security in place.
+    <br/>
+    <br/>
+    In the example below I spoof my hostname to "TestName".
+    <br/>
+    <br/>
+    In Terminal type:
+    <br/>
+    <font color="red">
+     <b>
+      sudo hostname TestName
+     </b>
+    </font>
+    <br/>
+    <br/>
+    If you've followed these steps it's now considered reasonably "safe" to connect to a Wi-Fi network and feel confident that if there's any logging happening you're always a random connection to the Wi-Fi network each time. Be a ghost.
+    <br/>
+    <br/>
+    <center>
+     <font color="blue">
+      <b>
+       You should try the above commands and spoof your MAC and computer/host name now. Always remember to spoof your MAC, computer name, and hostname before connecting to any network! It should become common practice to do this every time you start your machine before connecting to a network and before you shut down your machine. Ideally have it scripted, cronjob, and automated.
+      </b>
+     </font>
+    </center>
+    <br/>
+    <br/>
+    <center>
+     <a class="button" href="Chapter-5.html" style="text-decoration:none">
+      <b>
+       Click to continue to Chapter 5
+      </b>
+     </a>
+    </center>
+    <div id="side">
+     <div class="boxtop">
+     </div>
+     <div class="box">
+      <center>
+       <span class="item">
+        <strong>
+         HackTown
+        </strong>
+        <br>
+         Hacking Courses
+        </br>
+       </span>
+      </center>
+     </div>
+     <div class="box">
+      <a href="Chapter-1.html">
+       <span class="item">
+        <strong>
+         Chapter 1
+        </strong>
+        <br>
+         Introduction
+        </br>
+       </span>
+      </a>
+     </div>
+     <div class="box">
+      <a href="Chapter-2.html">
+       <span class="item">
+        <strong>
+         Chapter 2
+        </strong>
+        <br>
+         A Jolly Rogers catch-up
+        </br>
+       </span>
+      </a>
+     </div>
+     <div class="box">
+      <a href="Chapter-3.html">
+       <span class="item">
+        <strong>
+         Chapter 3
+        </strong>
+        <br>
+         Computers and Hardening of your OS
+        </br>
+       </span>
+      </a>
+     </div>
+     <div class="box">
+      <a href="Chapter-4.html">
+       <span class="item">
+        <strong>
+         Chapter 4
+        </strong>
+        <br>
+         Spoofing your MAC and hostname
+        </br>
+       </span>
+      </a>
+     </div>
+     <div class="box">
+      <a href="Chapter-5.html">
+       <span class="item">
+        <strong>
+         Chapter 5
+        </strong>
+        <br>
+         Encryption
+        </br>
+       </span>
+      </a>
+     </div>
+     <div class="box">
+      <a href="Chapter-6.html">
+       <span class="item">
+        <strong>
+         Chapter 6
+        </strong>
+        <br>
+         VM, VPS, RDP, VPN
+        </br>
+       </span>
+      </a>
+     </div>
+     <div class="box">
+      <a href="Chapter-7.html">
+       <span class="item">
+        <strong>
+         Chapter 7
+        </strong>
+        <br>
+         Anonymous Crypto
+        </br>
+       </span>
+      </a>
+     </div>
+     <div class="box">
+      <a href="Chapter-8.html">
+       <span class="item">
+        <strong>
+         Chapter 8
+        </strong>
+        <br>
+         PGP
+        </br>
+       </span>
+      </a>
+     </div>
+     <div class="box">
+      <a href="Chapter-9.html">
+       <span class="item">
+        <strong>
+         Chapter 9
+        </strong>
+        <br>
+         Anonymous e-mails
+        </br>
+       </span>
+      </a>
+     </div>
+     <div class="box">
+      <a href="Conclusion.html">
+       <span class="item">
+        <strong>
+         Conclusion
+        </strong>
+        <br>
+        </br>
+       </span>
+      </a>
+     </div>
+     <div class="boxbottom">
+     </div>
+    </div>
+    <p id="ad">
+    </p>
+   </div>
+  </div>
+ </div>
+</body>

@@ -1,0 +1,352 @@
+@charset "UTF-8";
+@import url(reset.html);
+
+body { background-color:#000000; font-size:11px; line-height:18px; font-family:Trebuchet MS, Arial, Helvetica, Sans-serif; color:#666666; }
+h1 { font-size:15px; color:#cc2b30; font-weight:bold; line-height:30px; text-transform:uppercase; padding:0; margin:0; }
+h2 { font-size:14px; color:#A11E22; font-weight:bold; line-height:30px; text-transform:uppercase; padding:0; margin:0; }
+h3 { font-size:24px; color:#A11E22; font-weight:bold; line-height:50px; padding:0; margin:0; }
+h4 { font-size:14px; color:#FFFFFF; font-weight:bold; line-height:20px; text-transform:uppercase; padding:0; margin:0; border-bottom:1px solid #A11E22; }
+h5 { font-size:14px; color:#FFFFFF; font-weight:bold; line-height:20px; text-transform:uppercase; padding:0; margin:0; border-bottom:1px solid #666666; }
+h6 { font-size:22px; color:#999999; font-weight:bold; line-height:30px; padding:0; margin:0; }
+p { line-height:21px; font-size:14px; padding:0px 0px 10px 0px; }
+p.price { color: #CCCCCC; }
+em { font-weight:bold; color:#999999; }
+b.time { color: #807E7E; }
+br.time_space { display: block; margin-bottom: 7px; }
+
+/* DEFAULT ANCHORS */
+a {	color:#CCC; text-decoration:none; }
+a:hover { color:#FFF; }
+a, a img {border:none; }
+a:active, a:focus{ outline:none;}
+
+/* CUSTOM ANCHORS */
+a.more { color:#CCCCCC; text-transform:uppercase; line-height:20px; letter-spacing:1px; padding:3px 10px 2px 10px; border-bottom:3px solid #323232; }
+a.more:hover { color:#FFFFFF; border-bottom:3px solid #A11E22; background-color:#262626; }
+a.btn { color:#FFFFFF; font-size:9px; font-weight:bold; text-transform:uppercase; letter-spacing:1px; padding:3px 4px; background:url(../images/takethewalk/btn_bg.html) left #A11E22; border:1px solid #000000; }
+a.btn1 { color:#FFFFFF; background:url(../images/takethewalk/list_btn_arrow_over.html) left no-repeat #444444; margin:0; padding:1px 4px 1px 14px; border:1px solid #666666; font-size:10px; text-transform:uppercase; letter-spacing:1px; }
+a.btn1:hover { color:#FFFFFF; background:url(../images/takethewalk/list_btn_arrow_over.html) left no-repeat #666666; border:1px solid #666666; }
+a.btn2 { color:#FFFFFF; background:url(../images/takethewalk/list_btn_arrow_over.html) left no-repeat #444444; margin:0; padding:1px 4px 1px 14px; border:1px solid #A11E22; font-size:10px; text-transform:uppercase; letter-spacing:1px; }
+a.btn2:hover { color:#FFFFFF; background:url(../images/takethewalk/list_btn_arrow_over.html) left no-repeat #A11E22; border:1px solid #A11E22; }
+
+/* FLOATS */
+.left { float: left; margin-left: 4%; }
+.right { float: right; }
+.leftimg { float: left; margin:0px 15px 5px 0px; }
+.rightimg { float: right; margin:0px 0px 5px 15px; }
+
+/* BREAKS */
+.force_break { clear:both; }
+.soft_break { clear:both; }
+.hr_break { clear:both; height:1px; background:url(../images/takethewalk/border_dot_horizontal.html) repeat-x; }
+
+/* STRUCTURE */
+#container { width:985px; height:100%; min-height:100%; margin:0px auto 60px; }
+.one_column { width:223px; }
+.two_column { width:477px; }
+.three_column { width:100%; }
+.four_column { width:985px; }
+
+/* COLUMN SPECS */
+.margin_left { padding-left:15px; }
+.margin_right { padding-right:15px; }
+.border_left { background:url(../images/takethewalk/border_dot_vertical.html) top left repeat-y; padding-left:15px; }
+.border_right { background:url(../images/takethewalk/border_dot_vertical.html) top right repeat-y; padding-right:15px; }
+
+/* HEADER */
+#header { height:100px; padding:0px 0px 0px 0px; background: url(../images/takethewalk/header_tagline.html) bottom right no-repeat; }
+.logo { padding:65px 0px 0px 0px; }
+a.register { color:#FFFFFF; font-weight:bold; background:url(../images/takethewalk/header_btn_bg.html) left #A11E22; line-height:20px; letter-spacing:1px; padding:10px 30px 2px 30px; }
+a.register:hover { color:#000000; }
+#header a.more { padding-top:7px; }
+
+/* CONTENT */
+#content { background:url(../images/takethewalk/content_bg.html) top center no-repeat; padding:60px 0px 60px 0px; }
+#content .photo { border:3px solid #A11E22; }
+#content .flash_cause { width:223px; padding:20px 0px 20px 0px; }
+#content .product_photo { border:3px solid #333333; margin-left:10px;}
+
+/* FOOTER */
+#footer { font-size:10px; }
+#footer .inner { padding:30px 0; }
+#footer ul li { display:inline; }
+#footer li a { color:#666666; letter-spacing:1px; font-weight:bold; padding:0px 20px 0px 0px; text-decoration:none; text-transform:uppercase; }
+#footer a:hover { color:#999999; }
+#footer .inner p { color:#666666; padding:10px 0px 0px 0px; letter-spacing:0.05em; }
+#home a#subnav_home,
+#list a#subnav_list,
+#sms a#subnav_sms,
+#music a#subnav_music,
+#shoes a#subnav_shoes,
+#schools a#subnav_schools,
+#water a#subnav_water,
+#walk a#subnav_walk { color:#FFFFFF; }
+a.nm { color:#666666; background:url(../images/takethewalk/nm_clock_off.html) left no-repeat; padding-left:12px; }
+a.nm:hover { color:#999999; background:url(../images/takethewalk/nm_clock_on.html) left no-repeat;; }
+
+/* NAV */
+#nav { padding:15px 20px; background:url(../images/takethewalk/nav_bg.html) top no-repeat; }
+#nav ul li { width:183px; display:list-item; }
+#nav li { list-style:none; line-height:30px; border-bottom:1px solid #000000; }
+#nav a { color:#CCCCCC; font-size:12px; text-transform:none; font-weight:bold; }
+#nav a:hover { color:#FFFFFF; border-color:#333333; }
+#nav a.home { background:url(../images/takethewalk/nav_icon_home.html) left no-repeat; padding-left:25px; }
+#nav a.list { background:url(../images/takethewalk/nav_icon_list.html) left no-repeat; padding-left:25px; }
+#nav a.sms { background:url(../images/takethewalk/nav_icon_sms.html) left no-repeat; padding-left:25px; }
+#nav a.music { background:url(../images/takethewalk/nav_icon_music.html) left no-repeat; padding-left:25px; }
+#nav a.shoes { background:url(../images/takethewalk/nav_icon_shoes.html) left no-repeat; padding-left:25px; }
+#nav a.schools { background:url(../images/takethewalk/nav_icon_books.html) left no-repeat; padding-left:25px; }
+#nav a.water { background:url(../images/takethewalk/nav_icon_water.html) left no-repeat; padding-left:25px; }
+#nav a.walk { background:url(../images/takethewalk/nav_icon_walk.html) left no-repeat; padding-left:25px; }
+#home a#nav_home,
+#list a#nav_list,
+#sms a#nav_sms,
+#music a#nav_music,
+#shoes a#nav_shoes,
+#schools a#nav_schools,
+#water a#nav_water,
+#walk a#nav_walk { color:#A11E22; }
+
+/* HOMEPAGE CONTENT */
+#flash_home { background-color:#000000; height:250px; padding:0; margin:0; margin-top: 65px; }
+#content_home { background:url(../images/takethewalk/content_bg_home.html) top center no-repeat; padding:30px 0px 60px 0px; }
+#causes { width:731px; }
+.cause { height:170px; margin-bottom: 55px; }
+.cause h1 { padding-top:25px; }
+.cause p { width:170px; }
+#shoes { height:170px; }
+#news_tour { padding-bottom:15px; }
+#news_tour h1 { color:#CCCCCC; font-size:13px; text-transform:none; padding-right:8px; }
+#news_tour h2 { font-size:13px; text-transform:none; }
+#news_tour a { color:#666666; }
+#news_tour a:hover { color:#999999; }
+#news_hosted { padding-bottom:15px; }
+#news_hosted h1 { color:#CCCCCC; font-size:13px; text-transform:none; padding-right:8px; }
+#news_hosted h2 { color:#999999; font-size:13px; text-transform:none; }
+#news_hosted a { color:#666666; }
+#news_hosted a:hover { color:#999999; }
+
+/* WALK LIST */
+.legend { color:#999999; background:#000000; margin:0; padding:4px 8px; border:1px solid #323232; font-size:10px; text-transform:uppercase; letter-spacing:1px; }
+.legend .title { display:block; }
+.legend img { padding:1px 6px 0px 0px; display:block; }
+.walk { padding:15px 0px; }
+.walk h1 { font-size:14px; color:#999999; font-weight:bold; line-height:30px; text-transform:none; padding:0; margin:0; }
+.walk h2.sms { padding:0px 6px 0px 18px; margin:0; background:url(../images/takethewalk/list_icon_sms.html) left no-repeat; }
+.walk h2.music { padding:0px 6px 0px 18px; margin:0; background:url(../images/takethewalk/list_icon_music.html) left no-repeat; }
+.walk h2.shoes { padding:0px 6px 0px 18px; margin:0; background:url(../images/takethewalk/list_icon_shoes.html) left no-repeat; }
+.walk h2.schools { padding:0px 6px 0px 18px; margin:0; background:url(../images/takethewalk/list_icon_book.html) left no-repeat; }
+.walk h2.water { padding:0px 6px 0px 18px; margin:0; background:url(../images/takethewalk/list_icon_water.html) left no-repeat; }
+.walk h2 { font-size:14px; color:#CCCCCC; font-weight:bold; line-height:30px; text-transform:none; padding:0px 6px 0px 0px; margin:0; }
+.walk a.more { color:#FFFFFF; background:url(../images/takethewalk/list_btn_arrow.html) left no-repeat #282828; margin:0; padding:1px 4px 1px 14px; border:1px solid #444444; font-size:10px; text-transform:uppercase; letter-spacing:1px; }
+.walk a.more:hover { color:#FFFFFF; background:url(../images/takethewalk/list_btn_arrow_over.html) left no-repeat #A11E22; border:1px solid #A11E22; }
+.tour_walk { padding:15px 0px; background:url(../images/takethewalk/tour_walk_bg.html); }
+.tour_walk h1 { font-size:14px; color:#A11E22; font-weight:bold; line-height:30px; text-transform:none; padding:0; margin:0; }
+.tour_walk h2 { font-size:14px; color:#FFFFFF; font-weight:bold; line-height:30px; text-transform:none; padding:0px 6px 0px 18px; margin:0; background:url(../images/takethewalk/list_legend_tour.html) left no-repeat; }
+.tour_walk p { color:#CCCCCC; }
+.tour_walk a.more { color:#FFFFFF; background:url(../images/takethewalk/list_btn_arrow.html) left no-repeat #282828; margin:0; padding:1px 4px 1px 14px; border:1px solid #444444; font-size:10px; text-transform:uppercase; letter-spacing:1px; }
+.tour_walk a.more:hover { color:#FFFFFF; background:url(../images/takethewalk/list_btn_arrow_over.html) left no-repeat #A11E22; border:1px solid #A11E22; }
+.walk_details { padding-top:15px; }
+.walk_details h6 { padding-right:8px; }
+
+/* SUBPAGE CONTENT */
+#product { padding:10px 0px 0px 0px; }
+#product .inner { padding:15px 0px 25px 0px; }
+#product .inner h1 { padding-right:4px; }
+#donate { padding-bottom:15px; }
+#donate p { padding-top:10px; }
+#donate form { padding-bottom:8px; }
+#donate input.amount { width:60px; }
+
+/* FORM STUFF */
+input { color:#999999; font-size:14px; background-color:#323232; border:1px solid #666666; padding:10px; width: 580px; border-radius: 2px; }
+input.sub { color: #FFFFFF; font-weight: none; background: url(../images/takethewalk/header_btn_bg.html) left #A11E22; line-height: 20px; letter-spacing: 1px; width: 180px; border:none; border-radius: 1px; margin-bottom: 18px; }
+textarea.text { color:#999999; font-size:14px; background-color:#323232; border:1px solid #666666; width: 600px; border-radius: 2px; height: 200px; font-family: Trebuchet MS, Arial, Helvetica, Sans-serif; }
+input.btn { color:#FFFFFF; font-size:9px; font-weight:bold; text-transform:uppercase; letter-spacing:1px; padding:3px 4px; background:url(../images/takethewalk/btn_bg.html) left #A11E22; border:1px solid #000000; }
+select { color:#CCCCCC; font-size:10px; background-color:#323232; border:1px solid #666666; padding:1px; }
+optgroup { color:#CCCCCC; text-transform:uppercase; font-style:normal; font-weight:normal; padding:0 2px; border-top:dotted 1px #666666; }
+option { color:#999999; font-size:10px; background-color:#323232; margin:0; padding-left:10px; }
+#input.btn { color:#FFFFFF; font-size:9px; font-weight:bold; text-transform:uppercase; letter-spacing:1px; padding:0px 6px 1px 7px; background:url(../images/takethewalk/btn_bg.html) left #A11E22; border:none; float:left; }
+.submit .btn2 { color:#FFFFFF; background:url(../images/takethewalk/list_btn_arrow_over.html) left no-repeat #444444; margin:0; padding:1px 4px 1px 14px; border:1px solid #A11E22; font-size:10px; text-transform:uppercase; letter-spacing:1px; cursor: pointer;}
+.submit .btn3 { color:#FFFFFF; background:url(../images/takethewalk/list_btn_arrow_over.html) left no-repeat #444444; margin:0; padding:1px 4px 1px 14px; border:1px solid #A11E22; font-size:10px; text-transform:uppercase; letter-spacing:1px; width:70px; cursor: pointer; }
+.submit input.btn {cursor: pointer;}
+
+/* EXTRAS */
+#newsletter { background:#000000; margin:0; padding:0px 8px; border:1px solid #323232; }
+#newsletter h1 { color:#CCCCCC; padding-right:6px; }
+#newsletter a.details { color:#666666; font-size:10px; font-style:italic; display:block; padding:7px 0px 0px 0px; }
+#newsletter a.details:hover { color:#A11E22; }
+#newsletter form { padding-bottom:8px; }
+#cart_summary { background-color:#222222; }
+#cart_summary .inner { padding:10px; }
+#cart_summary .inner .item { padding:0px 0px 0px 0px;}
+#cart_summary .inner .item h1 { color:#666666; font-size:11px; font-weight:normal; text-transform:none; letter-spacing:1px;  }
+#cart_summary .inner .item h2 { color:#999999; font-size:11px; text-transform:none; }
+
+/* NEW ADDITIONS */
+a.details { color:#666666; font-size:10px; font-style:italic; padding-left:6px; }
+a.details:hover { color:#A11E22; }
+a.btn { color:#FFFFFF; font-size:10px; font-weight:bold; text-transform:uppercase; letter-spacing:1px; padding:2px 6px; background:url(../images/takethewalk/btn_bg.html) left #A11E22; border:1px solid #000000; }
+.form_break { clear:both; padding:5px 0px; }
+.host_forms { width:223px; padding-top:20px; }
+.host_forms th { text-align:left; padding:4px 0px 0px 0px; color: #999999; }
+.host_forms th.required { font-size:10px; line-height:16px; font-weight:bold; font-style:normal; color:#ffffff; }
+.host_forms td input { text-align:left; width:200px; padding:2px 3px 1px 3px; }
+.host_forms td textarea { text-align:left; font-size:11px; color:#999999; width:200px; padding:2px 3px 1px 3px; border:1px solid #666666; background-color:#323232; }
+.host_forms td.btn { padding-top:15px; }
+.host_forms th.checkout_table_title { font-size:14px; line-height:16px; font-weight:normal; color:#999999; padding:0px; }
+.host_forms th.checkout_table_title h2 { padding-top:0px; }
+.host_forms input.btn { width:auto; padding:2px 4px; background:url(../images/takethewalk/btn_bg.html) left #A11E22; border:1px solid #000000; }
+.host_forms em.bold { font-size:12px; color:#FFFFFF; font-weight:bold; }
+.host_forms p { padding-top:0px; margin:0; }
+.host_forms span.error { font-size:11px; line-height:16px; font-style:italic; color:#FFFFFF; padding:0px 0px 0px 8px; }
+.host_error { font-size:12px; line-height:16px; font-style:italic; color:#FFFFFF; padding:20px 0px 10px 0px; }
+p#host { font-size:12px; padding:9px 15px 0px 0px; color:#999999; }
+span.host { color:#FFFFFF; font-weight:bold; padding-left:4px; }
+div#profile { padding-top:20px; }
+div.approve { padding:15px 15px;background:url(../images/takethewalk/walk_approve_bg.html) top left #303030; border-bottom:3px solid #000000; border-top:3px solid #000000; }
+div.approve a.check { padding-top:6px; }
+.current_walk { padding:10px 0px; background:url(../images/takethewalk/border_dot_horizontal.html) bottom repeat-x; }
+em.bold { font-size:12px; color:#FFFFFF; font-weight:bold; }
+input#visitor_hanson_realname { color:#CCCCCC; font-size:10px; background-color:#222222; border:1px solid #323232; padding:2px; }
+input#visitor_hanson_location { color:#CCCCCC; font-size:10px; background-color:#222222; border:1px solid #323232; padding:2px; }
+input#visitor_email { color:#CCCCCC; font-size:10px; background-color:#222222; border:1px solid #323232; padding:2px; }
+
+/*----------------- Login Fade -----------------*/
+/*-- div#login_fade { width:437px;} ---*/
+div#login_fade { padding:  10px 0px;}
+#topnav_toolbox { float:right; }
+.login_forms th.required { font-size:10px; line-height:16px; font-weight:bold; font-style:normal; color:#ffffff; }
+.login_forms input { text-align:left; width:190px; padding:2px 3px 1px 3px; }
+.login_forms td { padding:0px 4px 0px 0px; }
+.login_forms input.btn { width:auto; }
+.login_forms td.btn { padding:0px; }
+.login_forms span.btn { padding-right:4px; }
+.login_forms td.close { padding-top:4px; }
+
+.donate_icon {padding-right: 4px;}
+
+/*----------------- Tool Tip -----------------*/
+
+/*	these are for Tool-Tips. 
+	Use <span>title</span> for tooltip. -------------------*/
+	
+#newsletter a{ z-index:10; }
+#newsletter a:hover{ position:relative; z-index:100; }			
+#newsletter a .tooltip{ display:none; }
+#newsletter a:hover .tooltip{
+	width: 203px;
+	font-weight:bold;
+	display:block;
+	position:absolute;
+	float:left;
+	white-space:;
+	top:-237px;
+	left:-160px;
+	background:#A11E22;
+	color:#ffffff;
+	font-style:normal;
+	padding: 10px 10px 10px 10px;
+	z-index:10;			
+}
+.callout{
+	padding-top:30px;
+
+}
+.callout p{
+	color:#666666;
+	font-size:11px;
+}
+.callout h2{
+	font-size:20px;
+	color:#ccc;
+	text-transform: capitalize;
+	padding:0; margin:0;
+}
+
+#flash_walk_piece {
+	width:224px;
+	height:64px;
+	background:url(../images/takethewalk/milesWalked_bg.html) no-repeat;
+}
+.twitter{
+	background:url(../images/takethewalk/tweet_icon.html) no-repeat bottom right;
+	margin-bottom:20px;
+}
+.twitter p{
+	font-size:12px;
+	color:#ccc;
+	font-style: italic;
+}
+.twitter .entry_metadata{
+	color:#999;
+	font-size:11px;
+	font-weight: bold;
+	display: block;
+	padding-bottom:5px;
+}
+.twitter a{
+	color:#a11e22;
+	text-decoration: underline;
+}
+
+.miles-walked {
+	position: relative;
+	width: 223px;
+	height: 64px;
+	background-image: url(../images/takethewalk/ttw_miles_bg.html);
+}
+
+.miles-walked-text {
+	position: absolute;
+	color: white;
+	font-size: 35px;
+	top: 16px;
+	left: 32px;
+}
+
+.goal-progress {
+	position: relative;
+	width: 223px;
+	height: 42px;
+
+}
+.goal-icon {
+	position: absolute;
+	left: 2px;
+	top: 5px;
+}
+
+.goal-progress-outer {
+	position: absolute;
+	left: 28px;
+	top: 8px;
+	width: 190px;
+	height: 5px;
+	background-color: #333333;
+}
+
+.goal-progress-inner {
+	height: 100%;
+	width: 0%;
+	background-color: #666666;
+}
+.goal-amount {
+	position: absolute;
+	left: 27px;
+	top: 12px;
+	color: #cbcbcb;
+	font-size: 9px;
+}
+
+.goal-title {
+	position: absolute;
+	left: 60px;
+	top: 12px;
+	color: #929292;
+	font-size: 9px;
+}
+
+.interior-slideshow {
+	border: 2px solid #a71824;
+}

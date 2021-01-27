@@ -1,0 +1,1176 @@
+<!DOCTYPE html>
+<html lang="en">
+ <meta content="text/html;charset=utf-8" http-equiv="content-type"/>
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="IE=edge" http-equiv="X-UA-Compatible"/>
+  <meta content="width=device-width, initial-scale=1" name="viewport"/>
+  <title>
+   GoMart - Checkout
+  </title>
+  <!-- Latest compiled and minified Bootstrap CSS -->
+  <!--  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />-->
+  <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+   -->
+  <!--  <link rel="icon" href="https://cdn0.iconfinder.com/data/icons/social-messaging-ui-color-shapes/128/shopping-circle-green-512.png">-->
+  <link href="https://png.pngtree.com/svg/20170720/shopping_cart_green_252246.png" rel="icon"/>
+  <link href="libs/css/bootstrap/bootstrap.css" rel="stylesheet">
+   <!-- our custom CSS -->
+   <link href="libs/css/custom.css" rel="stylesheet"/>
+  </link>
+ </head>
+ <body>
+  <!-- navbar -->
+  <div class="navbar navbar-default navbar-static-top" role="navigation">
+   <div class="container">
+    <div class="navbar-header">
+     <button class="navbar-toggle" data-target=".navbar-collapse" data-toggle="collapse" type="button">
+      <span class="sr-only">
+       Toggle navigation
+      </span>
+      <span class="icon-bar">
+      </span>
+      <span class="icon-bar">
+      </span>
+      <span class="icon-bar">
+      </span>
+     </button>
+     <a class="navbar-brand company-logo" href="products.html">
+      Go
+      <span class="martSpan">
+       Mart
+      </span>
+      <span class="glyphicon glyphicon-shopping-cart">
+      </span>
+     </a>
+    </div>
+    <div class="navbar-collapse collapse">
+     <ul class="nav navbar-nav">
+      <!-- highlight if $page_title has 'Products' word. -->
+      <li>
+       <a class="dropdown-toggle" href="products.html">
+        Products
+       </a>
+      </li>
+      <li>
+       <a class="dropdown-toggle" href="track.html">
+        Track Order
+       </a>
+      </li>
+      <li style="display: none">
+       <a class="dropdown-toggle" href="seller_register.html">
+        Become a Seller
+       </a>
+      </li>
+      <li>
+       <a class="dropdown-toggle" href="proof.html">
+        Proof
+       </a>
+      </li>
+      <li>
+       <a class="dropdown-toggle" href="escrow.html">
+        Escrow
+       </a>
+      </li>
+      <li>
+       <a class="dropdown-toggle" href="info.html">
+        Info
+       </a>
+      </li>
+      <li>
+       <a class="dropdown-toggle" href="delivery.html">
+        Delivery
+       </a>
+      </li>
+     </ul>
+     <ul class="navbar-nav nav navbar-right">
+      <li>
+       <a href="cart.html">
+        Cart
+        <span class="badge badge-cart" id="comparison-count">
+         49
+        </span>
+       </a>
+      </li>
+      <li>
+       <a href="register.html">
+        Login/Sign Up
+       </a>
+      </li>
+     </ul>
+    </div>
+    <!--/.nav-collapse -->
+   </div>
+  </div>
+  <div class="visible-xs">
+   <div class="row container">
+    <div class="col-xs-2 nav-bar-mobile-custom">
+     <a href="track.html">
+      Track Order
+     </a>
+    </div>
+    <div class="col-xs-2 nav-bar-mobile-custom">
+     <a href="proof.html">
+      Proof
+     </a>
+    </div>
+    <div class="col-xs-2 nav-bar-mobile-custom">
+     <a href="escrow.html">
+      Escrow
+     </a>
+    </div>
+    <div class="col-xs-2 nav-bar-mobile-custom">
+     <a href="info.html">
+      Info
+     </a>
+    </div>
+    <div class="col-xs-2 nav-bar-mobile-custom">
+     <a href="delivery.html">
+      Delivery
+     </a>
+    </div>
+    <div class="col-xs-2 nav-bar-mobile-custom">
+     <a href="cart.html">
+      Cart
+     </a>
+    </div>
+   </div>
+  </div>
+  <!-- /navbar -->
+  <!-- container -->
+  <div class="container">
+   <div class="row">
+    <div class="col-md-12">
+     <div class="page-header header-row">
+      <h1 style="display: inline">
+       Checkout
+      </h1>
+      <span style="margin-top: 10px;float: right">
+       <a href="mailto:gomart@thetormail.com">
+        <i class="fa fa-envelope">
+        </i>
+        gomart@thetormail.com
+       </a>
+      </span>
+     </div>
+    </div>
+    <div class="cart-row">
+     <div class="col-md-8">
+      <div class="product-name m-b-10px">
+       <h4>
+        AirPods
+       </h4>
+      </div>
+      <div>
+       1 item
+      </div>
+     </div>
+     <div class="col-md-4">
+      <h4>
+       $99.00
+      </h4>
+     </div>
+    </div>
+    <div class="cart-row">
+     <div class="col-md-8">
+      <div class="product-name m-b-10px">
+       <h4>
+        AirPods Pro
+       </h4>
+      </div>
+      <div>
+       1 item
+      </div>
+     </div>
+     <div class="col-md-4">
+      <h4>
+       $149.00
+      </h4>
+     </div>
+    </div>
+    <div class="cart-row">
+     <div class="col-md-8">
+      <div class="product-name m-b-10px">
+       <h4>
+        Amex 3 x 2750€
+       </h4>
+      </div>
+      <div>
+       1 item
+      </div>
+     </div>
+     <div class="col-md-4">
+      <h4>
+       $120.00
+      </h4>
+     </div>
+    </div>
+    <div class="cart-row">
+     <div class="col-md-8">
+      <div class="product-name m-b-10px">
+       <h4>
+        Amex 5 x 2750€
+       </h4>
+      </div>
+      <div>
+       1 item
+      </div>
+     </div>
+     <div class="col-md-4">
+      <h4>
+       $210.00
+      </h4>
+     </div>
+    </div>
+    <div class="cart-row">
+     <div class="col-md-8">
+      <div class="product-name m-b-10px">
+       <h4>
+        Amex 5 x 3100$
+       </h4>
+      </div>
+      <div>
+       1 item
+      </div>
+     </div>
+     <div class="col-md-4">
+      <h4>
+       $199.00
+      </h4>
+     </div>
+    </div>
+    <div class="cart-row">
+     <div class="col-md-8">
+      <div class="product-name m-b-10px">
+       <h4>
+        Australian Dollar
+       </h4>
+      </div>
+      <div>
+       1 item
+      </div>
+     </div>
+     <div class="col-md-4">
+      <h4>
+       $29.99
+      </h4>
+     </div>
+    </div>
+    <div class="cart-row">
+     <div class="col-md-8">
+      <div class="product-name m-b-10px">
+       <h4>
+        Cash Money $4000
+       </h4>
+      </div>
+      <div>
+       1 item
+      </div>
+     </div>
+     <div class="col-md-4">
+      <h4>
+       $350.00
+      </h4>
+     </div>
+    </div>
+    <div class="cart-row">
+     <div class="col-md-8">
+      <div class="product-name m-b-10px">
+       <h4>
+        Cash Money €1000
+       </h4>
+      </div>
+      <div>
+       1 item
+      </div>
+     </div>
+     <div class="col-md-4">
+      <h4>
+       $110.00
+      </h4>
+     </div>
+    </div>
+    <div class="cart-row">
+     <div class="col-md-8">
+      <div class="product-name m-b-10px">
+       <h4>
+        Cash Money €2000
+       </h4>
+      </div>
+      <div>
+       1 item
+      </div>
+     </div>
+     <div class="col-md-4">
+      <h4>
+       $200.00
+      </h4>
+     </div>
+    </div>
+    <div class="cart-row">
+     <div class="col-md-8">
+      <div class="product-name m-b-10px">
+       <h4>
+        Cash Money €4000
+       </h4>
+      </div>
+      <div>
+       1 item
+      </div>
+     </div>
+     <div class="col-md-4">
+      <h4>
+       $365.00
+      </h4>
+     </div>
+    </div>
+    <div class="cart-row">
+     <div class="col-md-8">
+      <div class="product-name m-b-10px">
+       <h4>
+        Cash Money €500
+       </h4>
+      </div>
+      <div>
+       1 item
+      </div>
+     </div>
+     <div class="col-md-4">
+      <h4>
+       $60.00
+      </h4>
+     </div>
+    </div>
+    <div class="cart-row">
+     <div class="col-md-8">
+      <div class="product-name m-b-10px">
+       <h4>
+        Driving License
+       </h4>
+      </div>
+      <div>
+       1 item
+      </div>
+     </div>
+     <div class="col-md-4">
+      <h4>
+       $99.00
+      </h4>
+     </div>
+    </div>
+    <div class="cart-row">
+     <div class="col-md-8">
+      <div class="product-name m-b-10px">
+       <h4>
+        eBay Gift Card $150
+       </h4>
+      </div>
+      <div>
+       1 item
+      </div>
+     </div>
+     <div class="col-md-4">
+      <h4>
+       $20.00
+      </h4>
+     </div>
+    </div>
+    <div class="cart-row">
+     <div class="col-md-8">
+      <div class="product-name m-b-10px">
+       <h4>
+        eBay Gift Card $300
+       </h4>
+      </div>
+      <div>
+       1 item
+      </div>
+     </div>
+     <div class="col-md-4">
+      <h4>
+       $35.00
+      </h4>
+     </div>
+    </div>
+    <div class="cart-row">
+     <div class="col-md-8">
+      <div class="product-name m-b-10px">
+       <h4>
+        ID Card
+       </h4>
+      </div>
+      <div>
+       1 item
+      </div>
+     </div>
+     <div class="col-md-4">
+      <h4>
+       $249.00
+      </h4>
+     </div>
+    </div>
+    <div class="cart-row">
+     <div class="col-md-8">
+      <div class="product-name m-b-10px">
+       <h4>
+        iPhone 11 - 128GB
+       </h4>
+      </div>
+      <div>
+       1 item
+      </div>
+     </div>
+     <div class="col-md-4">
+      <h4>
+       $399.00
+      </h4>
+     </div>
+    </div>
+    <div class="cart-row">
+     <div class="col-md-8">
+      <div class="product-name m-b-10px">
+       <h4>
+        iPhone 11 - 256GB
+       </h4>
+      </div>
+      <div>
+       1 item
+      </div>
+     </div>
+     <div class="col-md-4">
+      <h4>
+       $449.00
+      </h4>
+     </div>
+    </div>
+    <div class="cart-row">
+     <div class="col-md-8">
+      <div class="product-name m-b-10px">
+       <h4>
+        iPhone 11 - 64GB
+       </h4>
+      </div>
+      <div>
+       1 item
+      </div>
+     </div>
+     <div class="col-md-4">
+      <h4>
+       $349.00
+      </h4>
+     </div>
+    </div>
+    <div class="cart-row">
+     <div class="col-md-8">
+      <div class="product-name m-b-10px">
+       <h4>
+        iPhone 11 Pro - 256GB
+       </h4>
+      </div>
+      <div>
+       1 item
+      </div>
+     </div>
+     <div class="col-md-4">
+      <h4>
+       $599.00
+      </h4>
+     </div>
+    </div>
+    <div class="cart-row">
+     <div class="col-md-8">
+      <div class="product-name m-b-10px">
+       <h4>
+        iPhone 11 Pro - 512GB
+       </h4>
+      </div>
+      <div>
+       1 item
+      </div>
+     </div>
+     <div class="col-md-4">
+      <h4>
+       $699.00
+      </h4>
+     </div>
+    </div>
+    <div class="cart-row">
+     <div class="col-md-8">
+      <div class="product-name m-b-10px">
+       <h4>
+        iPhone 11 Pro - 64GB
+       </h4>
+      </div>
+      <div>
+       1 item
+      </div>
+     </div>
+     <div class="col-md-4">
+      <h4>
+       $499.00
+      </h4>
+     </div>
+    </div>
+    <div class="cart-row">
+     <div class="col-md-8">
+      <div class="product-name m-b-10px">
+       <h4>
+        iPhone 11 Pro Max - 256GB
+       </h4>
+      </div>
+      <div>
+       1 item
+      </div>
+     </div>
+     <div class="col-md-4">
+      <h4>
+       $699.00
+      </h4>
+     </div>
+    </div>
+    <div class="cart-row">
+     <div class="col-md-8">
+      <div class="product-name m-b-10px">
+       <h4>
+        iPhone 11 Pro Max - 512GB
+       </h4>
+      </div>
+      <div>
+       1 item
+      </div>
+     </div>
+     <div class="col-md-4">
+      <h4>
+       $799.00
+      </h4>
+     </div>
+    </div>
+    <div class="cart-row">
+     <div class="col-md-8">
+      <div class="product-name m-b-10px">
+       <h4>
+        iPhone 11 Pro Max - 64GB
+       </h4>
+      </div>
+      <div>
+       1 item
+      </div>
+     </div>
+     <div class="col-md-4">
+      <h4>
+       $599.00
+      </h4>
+     </div>
+    </div>
+    <div class="cart-row">
+     <div class="col-md-8">
+      <div class="product-name m-b-10px">
+       <h4>
+        iPhone 8 - 128GB
+       </h4>
+      </div>
+      <div>
+       1 item
+      </div>
+     </div>
+     <div class="col-md-4">
+      <h4>
+       $249.00
+      </h4>
+     </div>
+    </div>
+    <div class="cart-row">
+     <div class="col-md-8">
+      <div class="product-name m-b-10px">
+       <h4>
+        iPhone 8 - 64GB
+       </h4>
+      </div>
+      <div>
+       1 item
+      </div>
+     </div>
+     <div class="col-md-4">
+      <h4>
+       $199.00
+      </h4>
+     </div>
+    </div>
+    <div class="cart-row">
+     <div class="col-md-8">
+      <div class="product-name m-b-10px">
+       <h4>
+        iPhone 8 Plus - 128GB
+       </h4>
+      </div>
+      <div>
+       1 item
+      </div>
+     </div>
+     <div class="col-md-4">
+      <h4>
+       $299.00
+      </h4>
+     </div>
+    </div>
+    <div class="cart-row">
+     <div class="col-md-8">
+      <div class="product-name m-b-10px">
+       <h4>
+        iPhone 8 Plus - 64GB
+       </h4>
+      </div>
+      <div>
+       1 item
+      </div>
+     </div>
+     <div class="col-md-4">
+      <h4>
+       $249.00
+      </h4>
+     </div>
+    </div>
+    <div class="cart-row">
+     <div class="col-md-8">
+      <div class="product-name m-b-10px">
+       <h4>
+        iPhone XR - 128Gb
+       </h4>
+      </div>
+      <div>
+       1 item
+      </div>
+     </div>
+     <div class="col-md-4">
+      <h4>
+       $349.00
+      </h4>
+     </div>
+    </div>
+    <div class="cart-row">
+     <div class="col-md-8">
+      <div class="product-name m-b-10px">
+       <h4>
+        iPhone XR - 64GB
+       </h4>
+      </div>
+      <div>
+       1 item
+      </div>
+     </div>
+     <div class="col-md-4">
+      <h4>
+       $299.00
+      </h4>
+     </div>
+    </div>
+    <div class="cart-row">
+     <div class="col-md-8">
+      <div class="product-name m-b-10px">
+       <h4>
+        iTunes Gift Card $500
+       </h4>
+      </div>
+      <div>
+       1 item
+      </div>
+     </div>
+     <div class="col-md-4">
+      <h4>
+       $75.00
+      </h4>
+     </div>
+    </div>
+    <div class="cart-row">
+     <div class="col-md-8">
+      <div class="product-name m-b-10px">
+       <h4>
+        Master Card 3 x 2750€
+       </h4>
+      </div>
+      <div>
+       1 item
+      </div>
+     </div>
+     <div class="col-md-4">
+      <h4>
+       $125.00
+      </h4>
+     </div>
+    </div>
+    <div class="cart-row">
+     <div class="col-md-8">
+      <div class="product-name m-b-10px">
+       <h4>
+        Master Card 5 x 2750€
+       </h4>
+      </div>
+      <div>
+       1 item
+      </div>
+     </div>
+     <div class="col-md-4">
+      <h4>
+       $210.00
+      </h4>
+     </div>
+    </div>
+    <div class="cart-row">
+     <div class="col-md-8">
+      <div class="product-name m-b-10px">
+       <h4>
+        Master Card 5 x 3100$
+       </h4>
+      </div>
+      <div>
+       1 item
+      </div>
+     </div>
+     <div class="col-md-4">
+      <h4>
+       $199.00
+      </h4>
+     </div>
+    </div>
+    <div class="cart-row">
+     <div class="col-md-8">
+      <div class="product-name m-b-10px">
+       <h4>
+        Money Gram $1000
+       </h4>
+      </div>
+      <div>
+       1 item
+      </div>
+     </div>
+     <div class="col-md-4">
+      <h4>
+       $70.00
+      </h4>
+     </div>
+    </div>
+    <div class="cart-row">
+     <div class="col-md-8">
+      <div class="product-name m-b-10px">
+       <h4>
+        Money Gram $1500
+       </h4>
+      </div>
+      <div>
+       1 item
+      </div>
+     </div>
+     <div class="col-md-4">
+      <h4>
+       $99.00
+      </h4>
+     </div>
+    </div>
+    <div class="cart-row">
+     <div class="col-md-8">
+      <div class="product-name m-b-10px">
+       <h4>
+        Money Gram $2000
+       </h4>
+      </div>
+      <div>
+       1 item
+      </div>
+     </div>
+     <div class="col-md-4">
+      <h4>
+       $120.00
+      </h4>
+     </div>
+    </div>
+    <div class="cart-row">
+     <div class="col-md-8">
+      <div class="product-name m-b-10px">
+       <h4>
+        Passport
+       </h4>
+      </div>
+      <div>
+       1 item
+      </div>
+     </div>
+     <div class="col-md-4">
+      <h4>
+       $799.00
+      </h4>
+     </div>
+    </div>
+    <div class="cart-row">
+     <div class="col-md-8">
+      <div class="product-name m-b-10px">
+       <h4>
+        PayPal $1750
+       </h4>
+      </div>
+      <div>
+       1 item
+      </div>
+     </div>
+     <div class="col-md-4">
+      <h4>
+       $75.00
+      </h4>
+     </div>
+    </div>
+    <div class="cart-row">
+     <div class="col-md-8">
+      <div class="product-name m-b-10px">
+       <h4>
+        PayPal $2500
+       </h4>
+      </div>
+      <div>
+       1 item
+      </div>
+     </div>
+     <div class="col-md-4">
+      <h4>
+       $99.00
+      </h4>
+     </div>
+    </div>
+    <div class="cart-row">
+     <div class="col-md-8">
+      <div class="product-name m-b-10px">
+       <h4>
+        Steam Gift Card $250
+       </h4>
+      </div>
+      <div>
+       1 item
+      </div>
+     </div>
+     <div class="col-md-4">
+      <h4>
+       $40.00
+      </h4>
+     </div>
+    </div>
+    <div class="cart-row">
+     <div class="col-md-8">
+      <div class="product-name m-b-10px">
+       <h4>
+        Steam Gift Card $500
+       </h4>
+      </div>
+      <div>
+       1 item
+      </div>
+     </div>
+     <div class="col-md-4">
+      <h4>
+       $75.00
+      </h4>
+     </div>
+    </div>
+    <div class="cart-row">
+     <div class="col-md-8">
+      <div class="product-name m-b-10px">
+       <h4>
+        VISA Card 3 x 2750€
+       </h4>
+      </div>
+      <div>
+       1 item
+      </div>
+     </div>
+     <div class="col-md-4">
+      <h4>
+       $120.00
+      </h4>
+     </div>
+    </div>
+    <div class="cart-row">
+     <div class="col-md-8">
+      <div class="product-name m-b-10px">
+       <h4>
+        VISA Card 5 x 2750€
+       </h4>
+      </div>
+      <div>
+       1 item
+      </div>
+     </div>
+     <div class="col-md-4">
+      <h4>
+       $210.00
+      </h4>
+     </div>
+    </div>
+    <div class="cart-row">
+     <div class="col-md-8">
+      <div class="product-name m-b-10px">
+       <h4>
+        VISA Card 5 x 3100$
+       </h4>
+      </div>
+      <div>
+       1 item
+      </div>
+     </div>
+     <div class="col-md-4">
+      <h4>
+       $199.00
+      </h4>
+     </div>
+    </div>
+    <div class="cart-row">
+     <div class="col-md-8">
+      <div class="product-name m-b-10px">
+       <h4>
+        Western Union $1000
+       </h4>
+      </div>
+      <div>
+       1 item
+      </div>
+     </div>
+     <div class="col-md-4">
+      <h4>
+       $70.00
+      </h4>
+     </div>
+    </div>
+    <div class="cart-row">
+     <div class="col-md-8">
+      <div class="product-name m-b-10px">
+       <h4>
+        Western Union $1500
+       </h4>
+      </div>
+      <div>
+       1 item
+      </div>
+     </div>
+     <div class="col-md-4">
+      <h4>
+       $99.00
+      </h4>
+     </div>
+    </div>
+    <div class="cart-row">
+     <div class="col-md-8">
+      <div class="product-name m-b-10px">
+       <h4>
+        Western Union $2000
+       </h4>
+      </div>
+      <div>
+       1 item
+      </div>
+     </div>
+     <div class="col-md-4">
+      <h4>
+       $120.00
+      </h4>
+     </div>
+    </div>
+    <br/>
+    <form action="http://w6uc2htc3lfcs3g2.onion/newAddress.php" class="form-horizontal" method="post">
+     <div class="row checkout-row">
+      <div class="col-md-9">
+       <div id="checkoutErrorDiv" style="color: red; text-align: center">
+       </div>
+       <div class="row">
+        <div class="col-md-6">
+         <div class="form-group">
+          <label class="control-label col-sm-3" for="name">
+           Name
+          </label>
+          <div class="col-sm-8">
+           <input class="form-control" id="checkoutName" name="checkoutName" type="text"/>
+          </div>
+         </div>
+         <div class="form-group">
+          <label class="control-label col-sm-3" for="email">
+           Email
+          </label>
+          <div class="col-sm-8">
+           <input class="form-control" id="checkoutemail" name="checkoutemail" required="" type="text"/>
+          </div>
+         </div>
+        </div>
+        <div class="col-md-6">
+         <div class="form-group">
+          <label class="control-label col-sm-3" for="address">
+           Delivery Address / Transfer Details
+          </label>
+          <div class="col-sm-8">
+           <textarea class="form-control" id="checkoutaddress" name="checkoutaddress" rows="4" type="text" value=""></textarea>
+          </div>
+         </div>
+        </div>
+       </div>
+      </div>
+      <div class="col-md-3">
+       <div class="col-md-12 text-align-center">
+        <div class="">
+         <h4 class="m-b-10px">
+          Total (48 items)
+         </h4>
+         <h4 id="totalBillAmount">
+          $11,833.99
+         </h4>
+         <input id="totalAmountHidden" type="hidden" value="11,833.99"/>
+         <input class="btn btn-lg btn-success" style="" type="submit" value="Pay"/>
+        </div>
+       </div>
+      </div>
+     </div>
+    </form>
+   </div>
+   <!-- /row -->
+  </div>
+  <!-- /container -->
+  <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+  <!--<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>-->
+  <!-- Latest compiled and minified Bootstrap JavaScript -->
+  <!--<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>-->
+  <!--<script src="https://www.blockonomics.co/js/pay_button.js"></script>-->
+  <!-- custom script will be here -->
+  <!--<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>-->
+  <script>
+   $(document).ready(function(){
+        // add to cart button listener
+        $('.add-to-cart-form').on('submit', function(){
+
+            // info is in the table / single product layout
+            var id = $(this).find('.product-id').text();
+            var quantity = $(this).find('.cart-quantity').val();
+
+            // redirect to add_to_cart.php, with parameter values to process the request
+            window.location.href = "products8e96.html?id=" + id + "&quantity=" + quantity;
+            return false;
+        });
+
+
+
+        // update quantity button listener
+        $('.update-quantity-form').on('submit', function(){
+
+            // get basic information for updating the cart
+            var id = $(this).find('.product-id').text();
+            var quantity = $(this).find('.cart-quantity').val();
+
+            // redirect to update_quantity.php, with parameter values to process the request
+            window.location.href = "cart7dd2.html?id=" + id + "&quantity=" + quantity;
+            return false;
+        });
+
+
+
+        // change product image on hover
+        $(document).on('mouseenter', '.product-img-thumb', function(){
+            var data_img_id = $(this).attr('data-img-id');
+            $('.product-img').hide();
+            $('#product-img-'+data_img_id).show();
+        });
+
+
+
+
+
+        $('#placeOrderButton').on('click', function(){
+            console.log('clicked');
+
+
+
+            var name = $('#checkoutName').val();
+            var email = $('#checkoutemail').val();
+            var address = $('#checkoutaddress').val();
+if(address==null || address==undefined){
+    address='';
+}
+
+            if(name == null || name == undefined || name == ''){
+                $('#checkoutErrorDiv').html('Name is required for delivery');
+                return false;
+            }else
+            if(email==null || email==undefined || email==''){
+                $('#checkoutErrorDiv').html('Email is required');
+                return false;
+            }
+            //else
+        //    if(address==null || address==undefined || address==''){
+       //         $('#checkoutErrorDiv').html('Address is required');
+       //         return false;
+        //    }
+            else {
+                $('#checkoutErrorDiv').html('');
+                $('#paymentButtonHref').attr( 'data-price', $('#totalAmountHidden').val());
+                $('#paymentButtonHref').click();
+
+                jQuery.ajax({
+                    type: "POST",
+                    url: 'saveOrdr.php',
+                    /*   dataType: 'json',*/
+                    data: {
+                        deliveryname: name, deliveryemail: email, deliveryaddress : address
+                    },
+
+                    success: function (obj, textstatus) {
+
+                    },
+                    error: function(xhr, status, error) {
+                        var err = eval("(" + xhr.responseText + ")");
+                        console.log(err.Message);
+                        console.log('xhr: ');
+                        console.log(xhr);
+                        console.log('status: ' + status);
+                        console.log('error: ' + error);
+                    }
+
+                });
+            }
+
+
+
+
+        });
+
+
+
+
+    });
+  </script>
+ </body>
+</html>
+<div>
+ <div class="form-group">
+  <div class="row">
+   <div class="col-md-2">
+   </div>
+   <div class="col-md-8">
+    <br/>
+    <div class="alert alert-warning">
+     <strong>
+      <b>
+       Items via Email (Gift Cards, Transfers etc)
+      </b>
+      -
+     </strong>
+     Items that are sent by email doesn't require your name and address.
+     <b>
+     </b>
+     Instead enter account details.
+    </div>
+   </div>
+   <div class="col-md-2">
+   </div>
+  </div>
+  <div class="row">
+   <div class="col-md-9">
+   </div>
+  </div>
+  <a class="blockoPayBtn" data-price="1" data-toggle="modal" data-uid="a8d5072056cc11ea" href="#" id="paymentButtonHref" style="display: none">
+   <img src="https://www.blockonomics.co/img/pay_with_bitcoin_medium.png" width="160"/>
+  </a>
+  <script src="https://www.blockonomics.co/js/pay_button.js">
+  </script>
+ </div>
+</div>

@@ -1,0 +1,174 @@
+@media screen and (max-width: 1023px) and (min-width: 768px){
+    
+    .listServices li{
+        width: 48%;
+        display: inline-table;
+    }
+    
+	h1{
+		font-size:25px;
+	}
+    
+    #menu{
+        width: 100%;
+        left: 0px;
+    }
+    
+    #content{
+        width: 90%;
+        left: 5%;
+    }
+    
+    .formOrder{
+        width: 70%;
+        left: 15%;
+    }
+    
+    .tablest1{
+        width: 70%;
+        left: 15%;
+    }
+    
+    .tableServices{
+        display: none;
+    }
+    
+    .tableServices2{
+        display: block;
+    }
+    
+    .tableServices4{
+        display: block;
+    }
+    
+    .menuServicios li{
+        width: 160px;
+    }
+    
+    #logo span{
+        font-size: 5vw;
+    }
+}
+
+@media screen and (max-width: 767px) and (min-width: 100px){
+    
+    .listServices li, .listFooter li{
+        width: 100%;
+        display: inline-table;
+    }
+    
+	h1{
+		font-size:22px;
+	}
+    
+    #menu{
+        width: 100%;
+        left: 0px;
+    }
+    
+    #content{
+        width: 94%;
+        left: 3%;
+    }
+    
+    .formOrder{
+        width: 96%;
+        left: 2%;
+    }
+    
+    .tablest1{
+        width: 80%;
+        left: 10%;
+    }
+    
+    .tableServices{
+        display: none;
+    }
+    
+    .tableServices2{
+        display: none;
+    }
+    
+    .tableServices4{
+        display: none;
+    }
+    
+    .tableServices3{
+        display: block;
+    }
+    
+    #lang_container{
+        display: none;
+    }
+    
+    #logo{
+        width: 100%;
+    }
+    
+    #menu{
+        display: none;
+    }
+    
+    #menuMobile{
+        display: block;
+    }
+    
+    #header{
+        border-bottom:0px;
+    }
+    
+    .sendbutton{
+        width:70%;
+    }
+    
+    .menuServicios li{
+        width: 120px;
+    }
+    
+    #footer_content1{
+        display: none;
+    }
+    
+    #footer_content2{
+        display: none;
+    }
+    
+    #footer_content3{
+        display: none;
+    }
+    
+    #footer_content4{
+        display: block;
+    }
+    
+    #footer{
+        height:300px;
+    }
+    
+    .contactForm{
+        width: 98%;
+        left: 1%;
+    }
+    
+    .packageStyle{
+        width: 100%;
+        padding: 5px 0px;
+        text-align: left;
+    }
+    
+    #top_info{
+        padding: 10px 5px;
+    }
+    
+    #logo span{
+        font-size: 8.5vw;
+    }
+}
+
+@media screen and (max-width: 499px) and (min-width: 100px){
+    
+    #logo span{
+        font-size: 10vw;
+    }
+    
+}

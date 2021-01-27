@@ -1,0 +1,86 @@
+@charset "utf-8";
+
+@font-face {
+	font-family: "Montserrat";
+	font-style: normal;
+	font-weight: 400;
+	src: url(../assets/fonts/montserrat-v12-latin-regular.html) format("woff2"), url(../assets/fonts/montserrat-v12-latin-regular-2.html) format("woff"), url(../assets/fonts/montserrat-v12-latin-regular-3.html) format("truetype");
+	font-display: swap;
+}
+@font-face {
+	font-family: "Montserrat";
+	font-style: italic;
+	font-weight: 400;
+	src: url(../assets/fonts/montserrat-v12-latin-italic.html) format("woff2"), url(../assets/fonts/montserrat-v12-latin-italic-2.html) format("woff"), url(../assets/fonts/montserrat-v12-latin-italic-3.html) format("truetype");
+	font-display: swap;
+}
+@font-face {
+	font-family: "Montserrat";
+	font-style: normal;
+	font-weight: 500;
+	src: url(../assets/fonts/montserrat-v12-latin-500.html) format("woff2"), url(../assets/fonts/montserrat-v12-latin-501.html) format("woff"), url(../assets/fonts/montserrat-v12-latin-502.html) format("truetype");
+	font-display: swap;
+}
+@font-face {
+	font-family: "Montserrat";
+	font-style: italic;
+	font-weight: 500;
+	src: url(../assets/fonts/montserrat-v12-latin-500italic.html) format("woff2"), url(../assets/fonts/montserrat-v12-latin-500italic-2.html) format("woff"), url(../assets/fonts/montserrat-v12-latin-500italic-3.html) format("truetype");
+	font-display: swap;
+}
+@font-face {
+	font-family: "Montserrat";
+	font-style: normal;
+	font-weight: 600;
+	src: url(../assets/fonts/montserrat-v12-latin-600.html) format("woff2"), url(../assets/fonts/montserrat-v12-latin-601.html) format("woff"), url(../assets/fonts/montserrat-v12-latin-602.html) format("truetype");
+	font-display: swap;
+}
+@font-face {
+	font-family: "Montserrat";
+	font-style: italic;
+	font-weight: 600;
+	src: url(../assets/fonts/montserrat-v12-latin-600italic.html) format("woff2"), url(../assets/fonts/montserrat-v12-latin-600italic-2.html) format("woff"), url(../assets/fonts/montserrat-v12-latin-600italic-3.html) format("truetype");
+	font-display: swap;
+}
+@font-face {
+	font-family: "Lato";
+	font-style: normal;
+	font-weight: 400;
+	src: url(../assets/fonts/lato-v14-latin-regular.html) format("woff2"), url(../assets/fonts/lato-v14-latin-regular-2.html) format("woff"), url(../assets/fonts/lato-v14-latin-regular-3.html) format("truetype");
+	font-display: swap;
+}
+@font-face {
+	font-family: "Lato";
+	font-style: italic;
+	font-weight: 400;
+	src: url(../assets/fonts/lato-v14-latin-italic.html) format("woff2"), url(../assets/fonts/lato-v14-latin-italic-2.html) format("woff"), url(../assets/fonts/lato-v14-latin-italic-3.html) format("truetype");
+	font-display: swap;
+}
+@font-face {
+	font-family: "Lato";
+	font-style: italic;
+	font-weight: 700;
+	src: url(../assets/fonts/lato-v14-latin-700italic.html) format("woff2"), url(../assets/fonts/lato-v14-latin-700italic-2.html) format("woff"), url(../assets/fonts/lato-v14-latin-700italic-3.html) format("truetype");
+	font-display: swap;
+}
+@font-face {
+	font-family: "Lato";
+	font-style: normal;
+	font-weight: 700;
+	src: url(../assets/fonts/lato-v14-latin-700.html) format("woff2"), url(../assets/fonts/lato-v14-latin-701.html) format("woff"), url(../assets/fonts/lato-v14-latin-702.html) format("truetype");
+	font-display: swap;
+}
+@font-face {
+	font-family: "Source Code Pro";
+	font-style: normal;
+	font-weight: 400;
+	src: url(../assets/fonts/source-code-pro-v7-latin-regular.html) format("woff2"), url(../assets/fonts/source-code-pro-v7-latin-regular-2.html) format("woff"), url(../assets/fonts/source-code-pro-v7-latin-regular-3.html) format("truetype");
+	font-display: swap;
+}
+@font-face {
+	font-family: "Source Code Pro";
+	font-style: normal;
+	font-weight: 600;
+	src: url(../assets/fonts/source-code-pro-v7-latin-600.html) format("woff2"), url(../assets/fonts/source-code-pro-v7-latin-601.html) format("woff"), url(../assets/fonts/source-code-pro-v7-latin-602.html) format("truetype");
+	font-display: swap;
+}

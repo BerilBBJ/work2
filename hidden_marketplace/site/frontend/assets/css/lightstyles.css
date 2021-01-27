@@ -1,0 +1,41 @@
+body {
+	background-color: rgb(236,239,241);
+	color: #666;
+}
+
+header {
+	background-color: #fff;
+}
+#stats-row .stat-r-entry > * {
+	color: #000;
+}
+.head-link {
+	color: #000;
+}
+#menu-container {
+  background-color: #F9F9F9;
+}
+footer {
+	background-color: #fff;
+	color: #e2e2e2;
+}
+footer li a{
+	color: #2096F3;
+}
+footer li a:hover {
+	color: #1478C6;
+}
+
+.loyalty-program-row .levels > div .lvl-status{
+	color: #000;
+}
+
+.loyalty-program-row .levels > div .lvl-purchases, 
+.loyalty-program-row .levels > div .support-type,
+.loyalty-program-row .levels > div p > span{ 
+	color: #999999;
+}
+
+.loyalty-program-row .levels > div .lvl-sale{
+	color: #FF0000;
+}

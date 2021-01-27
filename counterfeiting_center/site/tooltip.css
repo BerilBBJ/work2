@@ -1,0 +1,36 @@
+/* Tooltip container */
+tr.tooltip {
+  position: relative;
+  display: inline;
+}
+tr.tooltip span {
+  position: absolute;
+  width:300px;
+  color: #FFFFFF;
+  background: #0A66A3;
+  height: 130px;
+  line-height: 25px;
+  text-align: left;
+  margin-left: 10px;
+  visibility: hidden;
+  border-radius: 6px;
+}
+tr.tooltip span:after {
+  content: '';
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  margin-left: -8px;
+  width: 0; height: 0;
+  border-top: 8px solid #0A66A3;
+  border-right: 8px solid transparent;
+  border-left: 8px solid transparent;
+}
+tr:hover.tooltip span {
+  visibility: visible;
+  opacity: 0.8;
+  bottom: 30px;
+  left: 50%;
+  margin-left: -76px;
+  z-index: 999;
+}

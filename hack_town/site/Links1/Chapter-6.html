@@ -1,0 +1,247 @@
+<head>
+ <title>
+  Act I
+ </title>
+ <meta content="application/xhtml+xml; charset=utf-8" http-equiv="content-type"/>
+ <link href="../1.ico" rel="shortcut icon" type="image/x-icon"/>
+ <link href="../css/style.css" media="screen" rel="stylesheet" type="text/css">
+ </link>
+</head>
+<body>
+ <div class="wrap background">
+  <div class="clear">
+  </div>
+  <div id="left">
+   <div id="left">
+    <center>
+     <h1>
+      <a href="../1.html">
+       <font color="White">
+        Act I - Hack Wi-Fi
+       </font>
+      </a>
+     </h1>
+    </center>
+    <p class="subtitle">
+     Increase the POWER!
+    </p>
+    Another technique to increase your chances of success when hacking a Wi-Fi network is to increase the transmitting power of the Alfa network card to juice it the fuck up. When launching Wi-Fi network attacks it's best to be the closet and strongest signal to the target you're attacking. Depending on which Alfa network card you have this chapter may or may not be beneficial for you. Don't flip your shit if it's not as every card will respond differently.
+    <br/>
+    <br/>
+    Most Alfa network cards are capable of generating 1 WATT of power to increase the range of the Wi-Fi network card but by default are not setup to do so in Kali. We can tweak this shit by setting the transmitting power of the card to its max and boost our signal for best connection! Some people might have Alfa network cards that are capable of this and others do not depending on the one you purchased. If you get an error along the way, then you do not ;)
+    <br/>
+    <br/>
+    Update - The newest version of Kali creates issues with certain Alfa network cards that it worked on in the past. Some may have issues with increasing the power of the Alfa network card. Do not stress if this doesn't work as it's not the end of the world if it doesn't.
+    <br/>
+    <br/>
+    In Kali open up Terminal and type:
+    <br/>
+    <font color="red">
+     <b>
+      sudo iw reg set GY
+     </b>
+     <br/>
+    </font>
+    <code>
+     This command will set the region of your Kali machine to Guyana. Each country allows specific Wi-Fi regulations and by setting our OS host country to Guyana will allow us to increase the power beyond what is allowed in other countries. Certain countries don't want you to operate on certain channels whereas others do not have strict gudelines. By setting the country of our machine allows us to set different settings accordingly.
+    </code>
+    <br/>
+    <br/>
+    <font color="red">
+     <b>
+      sudo ifconfig
+     </b>
+     <br/>
+    </font>
+    <code>
+     Find your wireless card interface.
+    </code>
+    <br/>
+    <br/>
+    <font color="red">
+     <b>
+      sudo ifconfig INTERFACE down
+      <br/>
+      sudo iwconfig INTERFACE
+      <br/>
+     </b>
+    </font>
+    <code>
+     Look for "Tx-Power=" and you'll see the default transmitting power. We want to increase this!
+     <br/>
+     <br/>
+    </code>
+    <font color="red">
+     <b>
+      sudo iwconfig INTERFACE txpower 30
+      <br/>
+     </b>
+    </font>
+    <code>
+     This will set the max power to 1W if your network is capable of this.
+     <br/>
+     <br/>
+    </code>
+    <font color="red">
+     <b>
+      sudo iwconfig INTERFACE
+      <br/>
+     </b>
+    </font>
+    <code>
+     Check again to see the difference with "Tx-Power=".
+     <br/>
+     <br/>
+    </code>
+    <font color="red">
+     <b>
+      sudo ifconfig INTERFACE up
+      <br/>
+     </b>
+    </font>
+    <code>
+     Bring the interface back up.
+     <br/>
+     <br/>
+    </code>
+    Now that you've increased your transmitting power you'll be transmitting as the most powerful signal that card can put out. The downfall to increasing the transmitting power is you'll wear down your Alfa network card quicker than usual as it will generate more heat and energy. Personally, I found using it quite a bit after 2-3 years of owning one it would still function for my needs but not be as reliable as it once was (would disconnect randomly, drop connection, overheat, etc.).
+    <br/>
+    <br/>
+    <center>
+     <a class="button" href="Chapter-7.html" style="text-decoration:none">
+      <b>
+       Click to continue to Chapter 7
+      </b>
+     </a>
+    </center>
+    <div id="side">
+     <div class="boxtop">
+     </div>
+     <div class="box">
+      <center>
+       <span class="item">
+        <strong>
+         HackTown
+        </strong>
+        <br>
+         Hacking Courses
+        </br>
+       </span>
+      </center>
+     </div>
+     <div class="box">
+      <a href="Chapter-1.html">
+       <span class="item">
+        <strong>
+         Chapter 1
+        </strong>
+        <br>
+         Introduction
+        </br>
+       </span>
+      </a>
+     </div>
+     <div class="box">
+      <a href="Chapter-2.html">
+       <span class="item">
+        <strong>
+         Chapter 2
+        </strong>
+        <br>
+         Required Wi-Fi hardware
+        </br>
+       </span>
+      </a>
+     </div>
+     <div class="box">
+      <a href="Chapter-3.html">
+       <span class="item">
+        <strong>
+         Chapter 3
+        </strong>
+        <br>
+         Pre-requisites
+        </br>
+       </span>
+      </a>
+     </div>
+     <div class="box">
+      <a href="Chapter-4.html">
+       <span class="item">
+        <strong>
+         Chapter 4
+        </strong>
+        <br>
+         Hacking Wi-Fi Networks
+        </br>
+       </span>
+      </a>
+     </div>
+     <div class="box">
+      <a href="Chapter-5.html">
+       <span class="item">
+        <strong>
+         Chapter 5
+        </strong>
+        <br>
+         Unable to hack Wi-Fi
+        </br>
+       </span>
+      </a>
+     </div>
+     <div class="box">
+      <a href="Chapter-6.html">
+       <span class="item">
+        <strong>
+         Chapter 6
+        </strong>
+        <br>
+         Increase the POWER!
+        </br>
+       </span>
+      </a>
+     </div>
+     <div class="box">
+      <a href="Chapter-7.html">
+       <span class="item">
+        <strong>
+         Chapter 7
+        </strong>
+        <br>
+         Locating the Access Point (AP)
+        </br>
+       </span>
+      </a>
+     </div>
+     <div class="box">
+      <a href="Chapter-8.html">
+       <span class="item">
+        <strong>
+         Chapter 8
+        </strong>
+        <br>
+         WPA3 Networks
+        </br>
+       </span>
+      </a>
+     </div>
+     <div class="box">
+      <a href="Conclusion.html">
+       <span class="item">
+        <strong>
+         Conclusion
+        </strong>
+        <br>
+        </br>
+       </span>
+      </a>
+     </div>
+     <div class="boxbottom">
+     </div>
+    </div>
+    <p id="ad">
+    </p>
+   </div>
+  </div>
+ </div>
+</body>

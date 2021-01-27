@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+ <meta content="text/html;charset=utf-8" http-equiv="content-type"/>
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="IE=edge" http-equiv="X-UA-Compatible"/>
+  <meta content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui" name="viewport"/>
+  <title>
+   Amazin - Login
+  </title>
+  <meta content="Welcome to Amazin. Log in or create a account now." name="description"/>
+  <meta content="" name="keywords"/>
+  <meta content="Amazin" name="author"/>
+  <meta content="IE=edge" http-equiv="X-UA-Compatible">
+   <!-- App Icons -->
+   <link href="../img/favicon.ico" rel="shortcut icon"/>
+   <!--Morris Chart CSS -->
+   <link href="../assets/plugins/morris/morris.css" rel="stylesheet"/>
+   <!-- App css -->
+   <link href="../assets/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+    <link href="../assets/css/icons.css" rel="stylesheet" type="text/css">
+     <link href="../assets/css/style.css" rel="stylesheet" type="text/css"/>
+    </link>
+   </link>
+  </meta>
+ </head>
+ <body>
+  <!-- Begin page -->
+  <div class="accountbg">
+  </div>
+  <div class="wrapper-page">
+   <div class="card">
+    <div class="card-body">
+     <h3 class="text-center mt-0 m-b-15">
+      <a class="logo logo-admin" href="../index.html">
+       <img alt="logo" height="50" src="../img/logo-black.png"/>
+      </a>
+     </h3>
+     <h4 class="text-muted text-center font-18">
+      <b>
+       Login
+      </b>
+     </h4>
+     <div class="p-3" style="padding-top:0px !important;">
+      <form action="http://th242aqa2gn2hlln.onion/core/user_authenticate.php" class="form-horizontal m-t-20" method="POST">
+       <div class="form-group row">
+        <div class="col-12">
+         <input class="form-control" name="username" pattern="[a-zA-Z0-9-]+" placeholder="Username" required="required" type="text"/>
+        </div>
+       </div>
+       <div class="form-group row">
+        <div class="col-12">
+         <input class="form-control" name="password" placeholder="Password" required="required" type="password"/>
+        </div>
+       </div>
+       <div class="form-group row">
+        <label class="col-sm-4 col-form-label" for="example-text-input">
+         <img alt="loading captcha.." border="1" height="30" src="../inc/captcha.png" width="120"/>
+        </label>
+        <div class="col-sm-3">
+         <input class="form-control" maxlength="5" name="captcha" size="6" type="text" value=""/>
+        </div>
+       </div>
+       <div class="form-group text-center row m-t-20">
+        <div class="col-12">
+         <button class="btn btn-warning btn-block waves-effect waves-light" style="color:black;" type="submit">
+          Log In
+         </button>
+        </div>
+       </div>
+       <div class="form-group m-t-10 mb-0 row">
+        <div class="col-12 m-t-20 text-center">
+         <a class="text-muted" href="../registration/index.html">
+          <i class="mdi mdi-account-circle">
+          </i>
+          Create an account
+         </a>
+        </div>
+       </div>
+      </form>
+     </div>
+    </div>
+   </div>
+  </div>
+ </body>
+</html>

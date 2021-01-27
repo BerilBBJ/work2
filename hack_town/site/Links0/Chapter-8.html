@@ -1,0 +1,591 @@
+<head>
+ <title>
+  Act 0
+ </title>
+ <meta content="application/xhtml+xml; charset=utf-8" http-equiv="content-type"/>
+ <link href="../1.ico" rel="shortcut icon" type="image/x-icon"/>
+ <link href="../css/style.css" media="screen" rel="stylesheet" type="text/css">
+ </link>
+</head>
+<body>
+ <div class="wrap background">
+  <div id="logo">
+   <div class="clear">
+   </div>
+   <div id="left">
+    <center>
+     <h1>
+      <a href="../0.html">
+       <font color="White">
+        Act 0 - OPSec
+       </font>
+      </a>
+     </h1>
+    </center>
+    <p class="subtitle">
+     PGP
+    </p>
+    You should have an idea of what PGP is because you've already read the "Jolly Rogers catch-up" chapter. It's always best to test your PGP keys when you've created them to ensure you're able to decrypt messages before you send out your public PGP key to clients, associates, etc.
+    <br/>
+    <br/>
+    Since you're now using the Whonix VM all these examples are to done in Whonix-Workstation VM.
+    <br/>
+    <br/>
+    Load up your Whonix-Gateway and then you're Whonix-Workstation and open Terminal and type the following:
+    <br/>
+    <font color="red">
+     <b>
+      gpg --generate-full-key
+      <br/>
+      <br/>
+     </b>
+    </font>
+    <center>
+     <img height="150" src="../images0/32.png" width="700"/>
+     <br/>
+    </center>
+    <br/>
+    Select "(1) RSA and RSA (default)" and then "4096" when asked for key size
+    <br/>
+    <center>
+     <img height="250" src="../images0/33.png" width="700"/>
+     <br/>
+    </center>
+    <br/>
+    Hit "0" on your keyboard for "0 = key does not expire", then enter whatever fake information associated to your fake email address, and then hit "O" on your keyboard for "(O)kay". You'll be prompted to enter a passphrase which will be used to decrypt the PGP messages that are sent to you. Ensure you remember this passphrase as you'll need it.
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <p class="subtitle">
+     Exporting your public PGP key
+    </p>
+    You need to send someone your public PGP key in order for them to encrypt a PGP message to you. For the people who join HackTowm as a member you'll need to send me your public PGP key when joining. This is how.
+    <br/>
+    <br/>
+    To export your public PGP key you would open Terminal in Whonix-Workstation:
+    <br/>
+    <font color="red">
+     <b>
+      gpg --export -a "USERNAME"
+     </b>
+    </font>
+    <br/>
+    <br/>
+    To find your username of the keys you setup simply type:
+    <br/>
+    <font color="red">
+     <b>
+      gpg --list-keys
+     </b>
+    </font>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <p class="subtitle">
+     PGP OPSec
+    </p>
+    There are a few concerns about how people use PGP that you should be aware of. Let's look at a few examples that demonstrate the weakness in people when using PGP before you implement it yourself.
+    <br/>
+    <br/>
+    When you've received a new public PGP key it should be noted that sometimes when you import a public PGP key it will reach out to PGP servers to validate the key if setup to do so. Since we're using Whonix now we could care less but for the people who choose to use their host machine and not follow proper OPSec this will be a problem. Not every public PGP key will authenticate like this but if you've installed and are using opensnitch, Glasswire, or Littlesnitch then you would've caught the outgoing connection to the PGP server when importing the key and denied the connection.
+    <br/>
+    <br/>
+    Theoretically LE could give you their public PGP key and collaborate with the PGP servers to determine what IP reached out to it when validating their specific public PGP key. Tin foil hat shit but very plausible it's occurring or will occur.
+    <br/>
+    <br/>
+    Below you''ll see why using your host OS can be a concern sometimes without you even knowing it. Remember, you should be using Whonix in a VM.  Let's look at some examples of an encrypted PGP message when people did it from their host OS and we're not using Whonix:
+    <br/>
+    <br/>
+    <h4>
+     Example 1:
+    </h4>
+    <center>
+     <textarea cols="71" rows="18">
+-----BEGIN PGP MESSAGE-----
+Comment: GPGTools - https://gpgtools.org
+
+hQIMAx8sgPUu2KE5AQ/9GmXrRuRbqSc7rEUHoZHHAlyBFV3Gre7kHQc+A9KO/wvn
+Etc90+rz6LVXr3tJcYv3t6he+5XAHAj8gbCFsEyQ1QnVPt3Ggye8fadfS7UyIblG
+IAA4LYh4WfpFrhoJGiz2AbjTw1pDj30dALGL+nivaLXWh6FhU1VgeN/GsOIU/cMc
+b9ol1YVqreGZ62GNEfhNKq6NGGxhLMS/OL1DnxfJ6x3WqiqyIVS0PSI3x2APUB4r
+mB9IQbTNHb/TzPLw4Nt5bqE96KNT86M601IhFMAtKLJDguqaJUzCk5I/1ZeW4yRZ
+QpOdLaLq3DAG49sJBIvooAqJgOfCiEUmNzE2Psd2ZSYd8/nEYqQUtqxWGSvPLaLM
+eVlehsg+3QL2aWfqm5t5w1G9s6vfpwjqWr7EhSeBrAC5W+kAFZMrAczYVhjvkHF0
++Pqj6y1jIDo/FRfYOSIUfRchWPYPvU+l7Wmlz4NkKk9ytuWAO1zbGYFqF/uewFSw
+AZMIH58D/Ds7E0TnN7wNp4mLB5iWZszx7lDylQmOYqcxXt7IO5tg+8CBotxqOBmV
+/5VWsP8TzkqEwE5mq4VT+TnbvJhr5Vo4lKVvkqwIAKM3tLQS1+rIJGfmUyffxu7U
+lX2DXpInlHDcIOwq8U4dYpmRqPxx7jXciKZKfBiz5HXnQ+It1rJks0ZWqZLw/xvS
+QgHrO4H+Ru/2idH1gwHojTlPTWt9+a4RxH9V/fZvz7xfk0H3AUpf93sx0qZSPUm7
+uXH5hGic4ECC14Ucmc6TdkMSFw==
+=CxP7
+-----END PGP MESSAGE-----
+</textarea>
+    </center>
+    <br/>
+    <br/>
+    <h4>
+     Example 2:
+    </h4>
+    <center>
+     <textarea cols="71" rows="18">
+-----BEGIN PGP MESSAGE-----
+Version: GnuPG v2.0.22 (MingW32)
+
+hQIMAx8sgPUu2KE5AQ/9GmXrRuRbqSc7rEUHoZHHAlyBFV3Gre7kHQc+A9KO/wvn
+Etc90+rz6LVXr3tJcYv3t6he+5XAHAj8gbCFsEyQ1QnVPt3Ggye8fadfS7UyIblG
+IAA4LYh4WfpFrhoJGiz2AbjTw1pDj30dALGL+nivaLXWh6FhU1VgeN/GsOIU/cMc
+b9ol1YVqreGZ62GNEfhNKq6NGGxhLMS/OL1DnxfJ6x3WqiqyIVS0PSI3x2APUB4r
+mB9IQbTNHb/TzPLw4Nt5bqE96KNT86M601IhFMAtKLJDguqaJUzCk5I/1ZeW4yRZ
+QpOdLaLq3DAG49sJBIvooAqJgOfCiEUmNzE2Psd2ZSYd8/nEYqQUtqxWGSvPLaLM
+eVlehsg+3QL2aWfqm5t5w1G9s6vfpwjqWr7EhSeBrAC5W+kAFZMrAczYVhjvkHF0
++Pqj6y1jIDo/FRfYOSIUfRchWPYPvU+l7Wmlz4NkKk9ytuWAO1zbGYFqF/uewFSw
+AZMIH58D/Ds7E0TnN7wNp4mLB5iWZszx7lDylQmOYqcxXt7IO5tg+8CBotxqOBmV
+/5VWsP8TzkqEwE5mq4VT+TnbvJhr5Vo4lKVvkqwIAKM3tLQS1+rIJGfmUyffxu7U
+lX2DXpInlHDcIOwq8U4dYpmRqPxx7jXciKZKfBiz5HXnQ+It1rJks0ZWqZLw/xvS
+QgHrO4H+Ru/2idH1gwHojTlPTWt9+a4RxH9V/fZvz7xfk0H3AUpf93sx0qZSPUm7
+uXH5hGic4ECC14Ucmc6TdkMSFw==
+=CxP7
+-----END PGP MESSAGE-----
+</textarea>
+    </center>
+    <br/>
+    <br/>
+    <h4>
+     Example 3:
+    </h4>
+    <center>
+     <textarea cols="71" rows="18">
+-----BEGIN PGP MESSAGE-----
+Version: GnuPG v2.0.22 (GNU/Linux)
+
+hQIMAx8sgPUu2KE5AQ/9GmXrRuRbqSc7rEUHoZHHAlyBFV3Gre7kHQc+A9KO/wvn
+Etc90+rz6LVXr3tJcYv3t6he+5XAHAj8gbCFsEyQ1QnVPt3Ggye8fadfS7UyIblG
+IAA4LYh4WfpFrhoJGiz2AbjTw1pDj30dALGL+nivaLXWh6FhU1VgeN/GsOIU/cMc
+b9ol1YVqreGZ62GNEfhNKq6NGGxhLMS/OL1DnxfJ6x3WqiqyIVS0PSI3x2APUB4r
+mB9IQbTNHb/TzPLw4Nt5bqE96KNT86M601IhFMAtKLJDguqaJUzCk5I/1ZeW4yRZ
+QpOdLaLq3DAG49sJBIvooAqJgOfCiEUmNzE2Psd2ZSYd8/nEYqQUtqxWGSvPLaLM
+eVlehsg+3QL2aWfqm5t5w1G9s6vfpwjqWr7EhSeBrAC5W+kAFZMrAczYVhjvkHF0
++Pqj6y1jIDo/FRfYOSIUfRchWPYPvU+l7Wmlz4NkKk9ytuWAO1zbGYFqF/uewFSw
+AZMIH58D/Ds7E0TnN7wNp4mLB5iWZszx7lDylQmOYqcxXt7IO5tg+8CBotxqOBmV
+/5VWsP8TzkqEwE5mq4VT+TnbvJhr5Vo4lKVvkqwIAKM3tLQS1+rIJGfmUyffxu7U
+lX2DXpInlHDcIOwq8U4dYpmRqPxx7jXciKZKfBiz5HXnQ+It1rJks0ZWqZLw/xvS
+QgHrO4H+Ru/2idH1gwHojTlPTWt9+a4RxH9V/fZvz7xfk0H3AUpf93sx0qZSPUm7
+uXH5hGic4ECC14Ucmc6TdkMSFw==
+=CxP7
+-----END PGP MESSAGE-----
+</textarea>
+    </center>
+    <br/>
+    <br/>
+    Notice the line right under "-----BEGIN PGP MESSAGE-----" are different in each example. This is because each PGP message was created on a different operating system.
+    <br/>
+    <br/>
+    Example 1 was done on a macOS computer.
+    <br/>
+    Example 2 was done on a Windows computer.
+    <br/>
+    Example 3 was done on a Linux computer.
+    <br/>
+    <br/>
+    By mistakenly letting others know what OS you're using allows for your adversaries to know what exploits to send you ;)
+    <br/>
+    <br/>
+    This is why we're doing everything through Whonix! For the people that ignore this and use their host OS you expose yourself to unknown risks.
+    <br/>
+    <br/>
+    If you were, for whatever reason, using PGP on Windows, macOS, or Linux there's no need to give out any information that can reveal what type of OS you're using. We ensure we're not leaking any sensitive details by using:
+    <br/>
+    <font color="red">
+     <b>
+      gpg --encrypt --armor --no-comments --no-emit-version -r PUBLIC_KEY_OF_RECEPIENT
+     </b>
+    </font>
+    <br/>
+    <br/>
+    When using PGP in Whonix in Terminal we use:
+    <br/>
+    <font color="red">
+     <b>
+      gpg --encrypt --armor -r KEY
+     </b>
+    </font>
+    <br/>
+    This seems to strip out all of that information automatically for you. You can see how this information can reveal more to our adversaries and the rationale for not wanting any of that leaked out.
+    <br/>
+    <br/>
+    The final PGP OPSec caution to be aware of is when you're signing a PGP message to verify it's you for whatever reason.  You want to ensure you put the date in the message and the reason for the signed PGP message to ensure you don't get impersonated on other forums.
+    <br/>
+    <br/>
+    For example, if I've registered on a new hacking forum and existing members want me to prove my identity then I would sign a PGP message associated to my public PGP key. This is quite common and totally safe but below is a
+    <font color="red">
+     <b>
+      bad way of doing it.
+     </b>
+    </font>
+    <br/>
+    <br/>
+    <center>
+     <textarea cols="70" rows="17">
+-----BEGIN PGP SIGNED MESSAGE-----
+Hash: SHA256
+
+Hey guys it's me. You can trust me because you can trust this is a PGP signed message therefor you know whoever signed this message is the owner of the identity/public PGP key in question.
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAEBCAAdFiEEc0VVWfJGdDAknFCXi4KbmP2R1f4FAl5ZzxEACgkQi4KbmP2R
+1f5zQQf+J/EQNcu4FjJC+4IIou6beHORbTt6bU4F27d9UH0+ZWPs3Gmfo1db/pjS
+85CPQUTjxCHGHoNvIl2UXhKnGZVfDWb9pNhuN+TGvLrvWEEkcALOCOoZ4EgAH9TI
+jQy+xG0oY0M1FO8SIlgzv4LCcgttFMOgHglKNGT6jhsJxvNszaHL77GVRaKFT5sR
+yAj1M+GyJ5rt5BxU18j+CIFxjCBc4h7Qag14G9rSNU+cAqpQQ7QcIahYAABJHg9K
+4c3Ts6g71+K2Z11YzS07AHJSEQ31lZwuxlxVnzRf6s6feJTd5wHXl+GV3DEpi0Kc
+dbhaV4bzXFe6HT2FBd9hT5GEss8zlg==
+=tTf8
+-----END PGP SIGNATURE-----
+
+</textarea>
+    </center>
+    <br/>
+    <br/>
+    To verify signed PGP messages we would:
+    <br/>
+    <font color="red">
+     <b>
+      gpg --verify
+     </b>
+    </font>
+    <br/>
+    Paste the whole signed PGP message:
+    <br/>
+    -----BEGIN PGP SIGNED MESSAGE-----
+    <br/>
+    Eveything in between these two lines
+    <br/>
+    -----END PGP SIGNED SIGNATURE-----
+    <br/>
+    <br/>
+    Then hit enter once and hold "CTRL" the hit the letter "d" on your keyboard.
+    <br/>
+    <br/>
+    People can verify your signed message to know %100 it's you since only the public/private PGP key owner can sign the PGP message to prove their identity. However, since we didn't add any date or any information to the PGP signed message anyone can copy our signed message and use it on any forum attempting to impersonate you. So if you're going to verify yourself via PGP then ensure you cover your ass.
+    <br/>
+    <br/>
+    <center>
+     <textarea cols="70" rows="17">
+-----BEGIN PGP SIGNED MESSAGE-----
+Hash: SHA256
+
+It's me and today is July 17, 1984. Send me your BTC now please thanks.
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAEBCAAdFiEEc0VVWfJGdDAknFCXi4KbmP2R1f4FAl4fopsACgkQi4KbmP2R
+1f7LDQgAqA1+T6IXnukDqgUg5QIO8ZnRM69HSasxy8NzTQSHyQ96PyUO+wSfnNQ9
+E4RTWgvFSzKWsd1p3oVplFDHfNmCzLjcliySJuAuFhBKXn69J+k4LBt784kI2qGt
+p1KIdIQcfk9ITMFSXX/kciGYpSIEpoGa4NmNUdOzvvYpy2dhHwb8VEQLuhYKQq34
+NHSCWcbhVPM5qKhq+05QeU5uBXUj6TyI7TSxexETsis43WuG0hAivich6QjMBIxK
+eaigOM/oveWMglpFwZNx2iWdjE4CICY1BDnrjdHaaBCdAJxELzS9Zii3e5aBtypl
+M3zR/JmroVxYOZFWc+BEXKGo7jeplg==
+=c//H
+-----END PGP SIGNATURE-----
+</textarea>
+    </center>
+    <br/>
+    <br/>
+    Food for thought.
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <p class="subtitle">
+     How to import public PGP keys
+    </p>
+    Before you encrypt any messages to your drug cartel gang bangers you need their public PGP key to encrypt messages specifically for them. Their public PGP key would appear like mine does:
+    <br/>
+    <br/>
+    <center>
+     <textarea cols="73" rows="30">
+-----BEGIN PGP PUBLIC KEY BLOCK-----
+
+mQENBF3OD6MBCACr37u11G9RAcINL1P1G6ecoSABaMxYNOO1UDxz1G7fNLiSZi5b
+lj+H2HTSnoGBQpg5gFmCUnIMn0wFK8rMO2o30WRBsjfumxAoR4iZzKGs9bvQgM+t
+as1LvoCB0Iifn6kQEcFA2N0vLXTg8TL3qW2R8Bz6SJEoyoAXxt5bVepqqwsWQcDo
+pPInm0TsBbmMd8kKs3SCrM6kR+WdNKjV+beFvYs/+4U/GiHopAEOF9UZPBG7xwka
+R3/DD8Jalpl2d0MW4jQs6fuC/PQafJlqmhJpEZvygJ4qvh1UusM1i2/5kGbSeEfG
+ZJfb3vfs7ToUcbJC4mK6EySvVepfgUAZ8KeXABEBAAG0H0Z1bnNoaW5lIDxGdW5z
+aGluZUBzZWNtYWlsLnBybz6JAVQEEwEIAD4WIQRzRVVZ8kZ0MCScUJeLgpuY/ZHV
+/gUCXc4PowIbAwUJA8JnAAULCQgHAgYVCgkICwIEFgIDAQIeAQIXgAAKCRCLgpuY
+/ZHV/hAvCACEEFkLni6tahk5DWMPLNQK0GTa0wbcRjEKIs578IU0vbRqlRCA+g6c
+snpcdkCYtQ6YhartRCAdSc6/xIJh86DT27besMaKxmTDuxZmfzyj0xdsiY1ifOr7
+CI0OXl84A4hg5N/9rpb5mZ8LnJsxW51ZsK7YnhrBthBvn2aGtB81C8SLV6kjaHJV
+91ncg8zonrmyKPPno+JJilAUNcP+umSgGDEgAXPBlrPxPWf8iPMW2Z557AseNwDm
+d2zPmeYLjitv1rV4ryjrYRZBEV6qGBlR25FMgeUPuQCECAJ+bJNW4zoy1esZpd67
+iRJ0O9DQzsG6fj6aFpKLRrjN+R+6EQnKuQENBF3OD6MBCAC140LykN/lrNgzrDvY
+3GSfu4D2puVuDxpb1CZLg7IFkWzPJqDJ3azJBYr7sykC8NFevlzNfOqdP6jDg8fl
+hJu4naFnk8cPDOtsssO2yC324m52kJDfEi2hYD8AFSuuknvMcDDM8PG8VkuDZ9C7
+L2J2pqVLfKS7GEhArSzEB/6Ls3b2ZuRS6qXDRebpottf/L1qStcqPDWFenIDlDWV
+E/UaDxl3qTebXbdYbIJKR26FKsu2R/DELOOpG0UUkQ5NjnMdbuR/0gEQlWgEOh5c
+4mgLJs1BiiZhgDNcUbvY6LDJGykf9AyTMSPjAjsf22H7FET/D1RSIX0LTnj2Nn7l
+mRxZABEBAAGJATwEGAEIACYWIQRzRVVZ8kZ0MCScUJeLgpuY/ZHV/gUCXc4PowIb
+DAUJA8JnAAAKCRCLgpuY/ZHV/pMCB/98M5usyZqNwcddC7F3vgLlb+rwptIkwoHS
+ryz2nd4xk+MzMF+EGdcwYRKNGvXy5DLKzvujFO4ZmYfEBnhEa98T/cChL/YSRVO6
+sYe4HGvYUXe80iJ/N3585WqmawXq6fzMzuyK5zuApymJMnkLDpE2dtiCWBMx1k0z
+7yTJOm4jCdWCyw/337T0BUSb2W9EBSuyqNK8I4hXWtyLNWcjc64mUT/m5+Hc59TM
+AcII4M6u12Xy/ODnmTtL0l9bh6F4P8WqShucsGLQGm/omqvPkNQpdqC94ODpKSdY
+6cGTTBIKbURbh+HaepwyB56w/QR8j6LAmycCLe/2HU1Xo02WOU9m
+=eoIe
+-----END PGP PUBLIC KEY BLOCK-----
+</textarea>
+    </center>
+    <br/>
+    <br/>
+    When you've received a new public PGP key and you want to import it onto your key ring with PGP we then:
+    <br/>
+    Open up terminal
+    <br/>
+    <font color="red">
+     <b>
+      gpg --import
+      <br/>
+     </b>
+    </font>
+    Hit Enter on your keyboard
+    <br/>
+    <br/>
+    Paste my whole public PGP key and then hit enter once then hold "CTRL" and hit the letter "d" on your keyboard.
+You can now see my key:
+    <br/>
+    gpg: key 8B829B98FD91D5FE: "Funshine Funshine@secmail.pro&gt;" imported
+    <br/>
+    <br/>
+    "8B829B98FD91D5FE" is my key needed to send an encrypted PGP message to me.
+    <br/>
+    <br/>
+    In Whonix in Terminal:
+    <br/>
+    <font color="red">
+     <b>
+      gpg --encrypt --armor -r 8B829B98FD91D5FE
+     </b>
+    </font>
+    <br/>
+    Type out your message and when you're done hit enter then hold "CTRL" and hit the letter "d" on your keyboard which will produce the encrypted PGP message to send.
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <p class="subtitle">
+     Encrypting messages
+    </p>
+    In Whonix in Terminal:
+    <br/>
+    <font color="red">
+     <b>
+      gpg --encrypt --armor -r KEY
+     </b>
+    </font>
+    <br/>
+    Type out your message and when you're done hit enter then hold "CTRL" then hit the letter "d" on your keyboard which will produce the encrypted PGP message to send.
+    <br/>
+    <br/>
+    Remember to send the whole message including the associated headers to your clients/people.
+    <br/>
+    <br/>
+    So you would send below:
+    <br/>
+    -----BEGIN PGP MESSAGE-----
+    <br/>
+    Everything in between
+    <br/>
+    -----END PGP MESSAGE-----
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <p class="subtitle">
+     Decrypting messages
+    </p>
+    In Whonix in Terminal:
+    <br/>
+    <font color="red">
+     <b>
+      gpg -d
+     </b>
+    </font>
+    <br/>
+    Hit Enter on your keyboard
+    <br/>
+    <br/>
+    Paste the whole message including the proper headers.
+    <br/>
+    <br/>
+    -----BEGIN PGP MESSAGE-----
+    <br/>
+    Everything in between
+    <br/>
+    -----END PGP MESSAGE-----
+    <br/>
+    <br/>
+    Hit enter once then hold "CTRL" then hit the letter of "d" when done.
+    <br/>
+    <br/>
+    You'll need to enter your passphrase for your public PGP key in order to decrypt the message.
+    <br/>
+    <br/>
+    That's all you really need to know about PGP as the Jolly Rogers Security guide should've filled you in on the rest!
+    <br/>
+    <br/>
+    ***Ensure you backup your key ring from time to time!***
+    <br/>
+    <br/>
+    <center>
+     <a class="button" href="Chapter-9.html" style="text-decoration:none">
+      <b>
+       Click to continue to Chapter 9
+      </b>
+     </a>
+    </center>
+    <div id="side">
+     <div class="boxtop">
+     </div>
+     <div class="box">
+      <center>
+       <span class="item">
+        <strong>
+         HackTown
+        </strong>
+        <br>
+         Hacking Courses
+        </br>
+       </span>
+      </center>
+     </div>
+     <div class="box">
+      <a href="Chapter-1.html">
+       <span class="item">
+        <strong>
+         Chapter 1
+        </strong>
+        <br>
+         Introduction
+        </br>
+       </span>
+      </a>
+     </div>
+     <div class="box">
+      <a href="Chapter-2.html">
+       <span class="item">
+        <strong>
+         Chapter 2
+        </strong>
+        <br>
+         A Jolly Rogers catch-up
+        </br>
+       </span>
+      </a>
+     </div>
+     <div class="box">
+      <a href="Chapter-3.html">
+       <span class="item">
+        <strong>
+         Chapter 3
+        </strong>
+        <br>
+         Computers and Hardening of your OS
+        </br>
+       </span>
+      </a>
+     </div>
+     <div class="box">
+      <a href="Chapter-4.html">
+       <span class="item">
+        <strong>
+         Chapter 4
+        </strong>
+        <br>
+         Spoofing your MAC and hostname
+        </br>
+       </span>
+      </a>
+     </div>
+     <div class="box">
+      <a href="Chapter-5.html">
+       <span class="item">
+        <strong>
+         Chapter 5
+        </strong>
+        <br>
+         Encryption
+        </br>
+       </span>
+      </a>
+     </div>
+     <div class="box">
+      <a href="Chapter-6.html">
+       <span class="item">
+        <strong>
+         Chapter 6
+        </strong>
+        <br>
+         VM, VPS, RDP, VPN
+        </br>
+       </span>
+      </a>
+     </div>
+     <div class="box">
+      <a href="Chapter-7.html">
+       <span class="item">
+        <strong>
+         Chapter 7
+        </strong>
+        <br>
+         Anonymous Crypto
+        </br>
+       </span>
+      </a>
+     </div>
+     <div class="box">
+      <a href="Chapter-8.html">
+       <span class="item">
+        <strong>
+         Chapter 8
+        </strong>
+        <br>
+         PGP
+        </br>
+       </span>
+      </a>
+     </div>
+     <div class="box">
+      <a href="Chapter-9.html">
+       <span class="item">
+        <strong>
+         Chapter 9
+        </strong>
+        <br>
+         Anonymous e-mails
+        </br>
+       </span>
+      </a>
+     </div>
+     <div class="box">
+      <a href="Conclusion.html">
+       <span class="item">
+        <strong>
+         Conclusion
+        </strong>
+        <br>
+        </br>
+       </span>
+      </a>
+     </div>
+     <div class="boxbottom">
+     </div>
+    </div>
+    <p id="ad">
+    </p>
+   </div>
+  </div>
+ </div>
+</body>

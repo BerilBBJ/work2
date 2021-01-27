@@ -1,0 +1,242 @@
+<h1>
+ Booting from USB Media: A Comprehensive Overview
+</h1>
+<div class="container">
+ <div class="row">
+  <div class="col-md-10 offset-md-1">
+   <span class="lead-text">
+    <p>
+     While
+ fans of different operating systems might debate which one is the most 
+stable' reliable' flexible or user-friendly' there’s one inarguable 
+point: Every machine – regardless of the OS – can run into issues.
+    </p>
+   </span>
+  </div>
+  And while users historically would pop a boot media disk into their DVD or CD drive' many computers no longer come with optical disk drives. As a result' booting from USB media is becoming the standard.
+  <br/>
+  <br/>
+  How you start that rescue media can vary depending on the operating 
+system you are using' but there are a few general guidelines that can 
+help get your machine started' regardless of the OS you prefer.
+So if your system is unstable' you need to run a diagnostic tool on the 
+hard drive' or you just want to load a Linux desktop just to see what 
+it’s all about' let’s look at how you start your machine using rescue 
+USB boot media.
+  <h2>
+   How to boot a Mac from USB media
+  </h2>
+  <p>
+   Getting your Mac to load from a USB drive is fairly straightforward.
+  </p>
+  <ol>
+   <li>
+    Insert the USB boot media into an open USB slot.
+   </li>
+   <li value="2">
+    Press the
+    <strong>
+     Power
+    </strong>
+    button to turn on your Mac (or
+    <strong>
+     Restart
+    </strong>
+    your Mac if it’s already on).
+   </li>
+   <li value="3">
+    When you hear the startup chime' press and hold the
+    <strong>
+     Option
+    </strong>
+    key.
+ Holding that key gives you access to OS X’s Startup Manager. Once the 
+Startup Manager screen appears' release the Option key. The utility will
+ look for any available drives that include bootable content.
+   </li>
+   <li value="4">
+    Using either the pointer or arrow keys on the keyboard' select the USB drive you wish to boot from.
+   </li>
+   <li value="5">
+    Once selected' either hit the
+    <strong>
+     Return
+    </strong>
+    key or double-click your selection. The machine will start to boot from the USB drive.
+   </li>
+  </ol>
+  <p>
+   <strong>
+    NOTE:
+   </strong>
+   Have
+ multiple USB devices connected to your Mac? Don’t worry. The Startup 
+Manager only lists drives that include bootable content.
+  </p>
+  <h2>
+   Boot from USB: Windows
+  </h2>
+  <p>
+   Starting
+ your PC using USB rescue media is not difficult' although it first 
+requires an adjustment in the BIOS (Basic Input Output System). That’s 
+because the BIOS settings include the boot sequence the machine follows 
+when starting up. The boot order tells the machine which devices to 
+search for the software needed to launch the computer and the priority 
+each device in that search.
+   <br/>
+   <br/>
+   If you’re booting from USB media' you must change the BIOS boot order so
+ the USB device is listed first. Otherwise the computer will load from 
+the hard drive as normal.
+   <br/>
+   <br/>
+   Start by plugging the thumb drive into a USB port. Then t
+   <strong>
+    o change the BIOS boot sequence
+   </strong>
+   :
+  </p>
+  <ol>
+   <li>
+    Press the
+    <strong>
+     Power
+    </strong>
+    button for your computer.
+   </li>
+   <li>
+    During the initial startup screen' press
+    <strong>
+     ESC' F1' F2' F8
+    </strong>
+    or
+    <strong>
+     F10
+    </strong>
+    . (Depending on the company that created your version of BIOS' a menu may appear.)
+   </li>
+   <li>
+    When you choose to enter BIOS Setup' the setup utility page will appear.
+   </li>
+   <li>
+    Using the arrow keys on your keyboard' select the
+    <strong>
+     <em>
+      BOOT
+     </em>
+    </strong>
+    tab.
+ All of the available system devices will be displayed in order of their
+ boot priority. You can reorder the devices here.
+   </li>
+   <li>
+    Move
+    <em>
+     USB
+    </em>
+    to be first in the boot sequence.
+    <br/>
+    <br/>
+    <strong>
+     NOTE:
+    </strong>
+    If you cannot find
+    <em>
+     USB
+    </em>
+    or
+    <em>
+     Removable Devices
+    </em>
+    among the device options' your BIOS may list it under
+    <em>
+     Hard Drive Devices
+    </em>
+    . In that case' you’ll need to:
+    <ul style="list-style-type:circle;">
+     <li>
+      Move
+      <em>
+       Hard Drive Devices
+      </em>
+      to the top
+     </li>
+     <li>
+      Expand to show all hard drive device options
+     </li>
+     <li>
+      Move
+      <em>
+       USB device
+      </em>
+      to the top of that hard drive list
+      <br/>
+     </li>
+    </ul>
+   </li>
+   <li>
+    Save the change and then exit the BIOS Setup.
+   </li>
+   <li>
+    The computer will restart using the new settings' booting from your USB drive.
+   </li>
+   <li>
+    <strong>
+     Stay alert!
+    </strong>
+    Depending on your BIOS' you may be prompted with a message to
+    <em>
+     Press any key to boot from external device
+    </em>
+    and you will only have a few seconds to respond. If you do nothing' 
+your computer will go to the next device in the boot sequence list' 
+which will likely be your hard drive.
+   </li>
+  </ol>
+  <p>
+   In the future' your 
+computer will first check the USB port for boot media when starting up. 
+That won’t be a problem' since the BIOS will move to the next device in 
+the boot sequence ... unless you keep the boot media in the USB port. 
+Then the system will launch from that device every time.
+  </p>
+  <h2>
+   Linux USB Boot Process
+  </h2>
+  <p>
+   <strong>
+    To boot Ubuntu from USB media' the process is very similar to the Windows instructions above.
+   </strong>
+  </p>
+  <ol>
+   <li>
+    Confirm the BIOS boot sequence lists the USB drive first' or make that change as needed.
+   </li>
+   <li>
+    After the USB flash drive is inserted into the USB port' press the
+    <strong>
+     Power
+    </strong>
+    button for your machine (or
+    <strong>
+     Restart
+    </strong>
+    if the computer is running).
+   </li>
+   <li>
+    The installer boot menu will load' where you will select
+    <em>
+     Run Ubuntu from this USB
+    </em>
+    .
+   </li>
+   <li>
+    Ubuntu
+ will launch and you can begin to working in the system – setting 
+preferences' reconfiguring the system as needed' or running any 
+diagnostic tools.
+   </li>
+  </ol>
+ </div>
+</div>

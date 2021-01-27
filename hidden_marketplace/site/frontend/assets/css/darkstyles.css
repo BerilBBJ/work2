@@ -1,0 +1,50 @@
+body {
+	background-color: #212121;
+	color: #FFFFFF;
+	position: relative;
+}
+header {
+	background-color: #000000;
+}
+#stats-row .stat-r-entry b {
+	color: #FFD800;
+}
+.head-link {
+	color: inherit;
+}
+.lvl-status {
+	color: #fff;
+}
+.loyalty-program-row .levels > div .lvl-purchases, 
+.loyalty-program-row .levels > div .support-type{ 
+	color: #fff;
+}
+.loyalty-program-row .levels > div .lvl-sale{
+	color: #FFD800;
+}
+footer {
+	background-color: #000;
+	color: #fff;
+}
+footer h5 {
+	color: inherit;
+}
+footer a {
+	color: inherit;
+}
+ul.statistics li strong {
+	color: #FFD800;
+}
+
+.closed-access span{
+	color: #FFD800;
+}
+
+.closed-access {
+	text-align: center;
+	font-weight: bold;
+	font-size: 52px;
+	line-height: 1;
+	margin-top: 64px;
+	margin-bottom: 64px;
+}

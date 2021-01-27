@@ -1,0 +1,15 @@
+@font-face {font-family: bernard;src: url(bernard.ttf);}
+body {font-size: 18px; color:#C69319; text-align:justify;background-image: url('back.jpg');}
+a:link {color:#009958;font-weight: bold;text-shadow: 1px 1px 0px #444;}
+a:hover {color:red;font-weight: bold;text-shadow: 1px 1px 0px #444;}
+a:active {color:red;font-weight: bold;text-shadow: 1px 1px 0px #444;}
+h1 {font-size:24px;}
+h2 {font-size:20px;}
+h3 {font-size:18px;}
+th {font-size:20px; font-family:bernard,Impact, Charcoal, sans-serif; color: #009958; letter-spacing: 2px; text-shadow: 1px 2px 0px #12229f;border-style: groove;border-color:rgba(174, 130, 25, 0.37)}
+td {font-size:16px; font-family:verdana; color: #CB0; font-weight: bold;text-shadow: 2px 1px 0px #5F460C;groove;border-color:rgba(174, 130, 25, 0.37)}
+li {font-size:16px; font-family:verdana; color: #CB0; font-weight: bold;text-shadow: 2px 1px 0px #5F460C;groove;border-color:rgba(174, 130, 25, 0.37)}
+em {font-size:22px; font-family:Arial; color: #ffff66; font-weight: bold;text-shadow: 1px 1px 0px #444;}
+samp {font-size:16px; font-family:Arial; color: #DB9F13}
+kbd {font-family:verdana; color: #ED132A;}
+* {box-sizing: border-box;} 

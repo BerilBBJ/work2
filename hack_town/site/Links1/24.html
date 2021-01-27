@@ -1,0 +1,77 @@
+<html>
+ <title>
+  Accessing HackTown...
+ </title>
+ <meta content="8 url = HackTown.html" http-equiv="refresh"/>
+ <link href="1.ico" rel="shortcut icon" type="image/x-icon"/>
+ <style>
+  .bb, .bb::before, .bb::after {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+
+.bb {
+  width: 400px;
+  height: 400px;
+  margin: auto;
+  background: url("HT.png") no-repeat 49%/50% rgba(1, 0, 0, 0.1);
+  background-size: 100%  100%;
+  color: white;
+  box-shadow: inset 0 0 0 1px rgba(105, 0, 1, 0);
+}
+.bb::before, .bb::after {
+  content: '';
+  z-index: -1;
+  margin: -3%;
+  box-shadow: inset 0 0 0 2px;
+  animation: clipMe 8s linear infinite;
+}
+.bb::before {
+  animation-delay: -4s;
+}
+.bb:hover::after, .bb:hover::before {
+  background-color: rgba(0, 0, 0, 0);
+}
+
+@keyframes clipMe {
+  0%, 100% {
+    clip: rect(900px, 0px, 0px, 0px);
+  }
+  10% {
+    clip: rect(0px, 0px, 0px, 800px);
+  }
+  30% {
+    clip: rect(0px, 0px, 900px, 0px);
+  }
+  60% {
+    clip: rect(0px, 900px, 0px, 0px);
+  }
+}
+html,
+body {
+  height: 100%;
+}
+
+body {
+  position: relative;
+  background-color: 000000;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+ </style>
+ <br/>
+ <br/>
+ <br/>
+ <br/>
+ <body>
+  <div class="bb">
+  </div>
+ </body>
+</html>
